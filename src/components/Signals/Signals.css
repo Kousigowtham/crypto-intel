@@ -1,0 +1,14 @@
+.bi-plus::before {
+  content: "\f4fe";
+  position: absolute;
+  /* text-align: center; */
+  left: 0;
+}
+
+.plus:hover {
+  text-shadow: 4px 4px 15px #fff;
+  -webkit-box-shadow: 4px 3px 15px #117416;
+          box-shadow: 4px 3px 15px #117416;
+  cursor: pointer;
+}
+/*# sourceMappingURL=Signals.css.map */

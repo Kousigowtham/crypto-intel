@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,QAAQ,AAAA,QAAQ,CAAC;EACf,OAAO,EAAE,OAAO;EAChB,QAAQ,EAAE,QAAQ;EAClB,yBAAyB;EACzB,IAAI,EAAE,CAAC;CACR;;AACD,AACE,KADG,AACF,MAAM,CAAC;EACN,WAAW,EAAE,iBAAiB;EAC9B,UAAU,EAAE,GAAG,CAAC,GAAG,CAAC,IAAI,CAAC,OAAgB;EACzC,MAAM,EAAE,OAAO;CAChB",
+    "sources": [
+        "Signals.scss"
+    ],
+    "names": [],
+    "file": "Signals.css"
+}

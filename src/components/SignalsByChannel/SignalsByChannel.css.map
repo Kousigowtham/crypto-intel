@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AACE,eADa,AACZ,MAAM,CAAC;EACN,MAAM,EAAE,OAAO;CAChB",
+    "sources": [
+        "SignalsByChannel.scss"
+    ],
+    "names": [],
+    "file": "SignalsByChannel.css"
+}

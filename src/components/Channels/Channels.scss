@@ -1,0 +1,34 @@
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.accordion-container {
+  &:hover {
+    cursor: pointer;
+  }
+}
+.active-channel {
+  cursor: pointer;
+  color: black !important;
+  background: rgba($color: rgb(5, 4, 51), $alpha: 0.1);
+  border-radius: 15px;
+}
+.channel-container {
+  &:hover {
+    cursor: pointer;
+    color: black !important;
+    background: rgba($color: rgb(5, 4, 51), $alpha: 0.1);
+    border-radius: 15px;
+  }
+}

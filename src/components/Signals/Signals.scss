@@ -1,0 +1,13 @@
+.bi-plus::before {
+  content: "\f4fe";
+  position: absolute;
+  /* text-align: center; */
+  left: 0;
+}
+.plus {
+  &:hover {
+    text-shadow: 4px 4px 15px #fff;
+    box-shadow: 4px 3px 15px rgb(17, 116, 22);
+    cursor: pointer;
+  }
+}
