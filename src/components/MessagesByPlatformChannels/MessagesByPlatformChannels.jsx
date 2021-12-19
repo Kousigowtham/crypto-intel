@@ -1,13 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 const MessagesByPlatformChannels = ({
   platformChannelMessages,
   selectedPlatformChannel,
 }) => {
-  const navigate = useNavigate();
-
   console.log(platformChannelMessages, selectedPlatformChannel);
   return (
     <>
