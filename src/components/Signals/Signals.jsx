@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import Channles from "../Channels/Channles";
 import SignalsByChannel from "../SignalsByChannel/SignalsByChannel";
-import { GET_SIGNALSLIST_ACTION } from "../../actions";
+import {
+  GET_SIGNALSLIST_ACTION,
+  UPDATE_SIGNAL_LIST_LOADER_ACTION,
+} from "../../actions";
 import { getSignals } from "../../axios/api/async";
 import "./Signals.css";
 import SkeletonSignal from "../Skeleton/SkeletonSignal";
@@ -10,11 +13,18 @@ import SkeletonSignal from "../Skeleton/SkeletonSignal";
 const Signals = ({
   getSignalListDispatch,
   updateSignalListLoader,
+  updateSignalListLoaderDispatch,
   signalList,
 }) => {
   const [selectedChannel, setselectedChannel] = useState("");
   const selectedChannelHandler = (name) => {
     setselectedChannel(name);
+    updateSignalListLoaderDispatch(UPDATE_SIGNAL_LIST_LOADER_ACTION(true));
+
+    getSignals().then((res) => {
+      getSignalListDispatch(GET_SIGNALSLIST_ACTION(res.data));
+      updateSignalListLoaderDispatch(UPDATE_SIGNAL_LIST_LOADER_ACTION(false));
+    });
   };
   useEffect(() => {
     getSignals().then((res) => {
@@ -78,6 +88,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getSignalListDispatch: (getSignalListAction) => dispatch(getSignalListAction),
+  updateSignalListLoaderDispatch: (updateSignalListLoaderAction) =>
+    dispatch(updateSignalListLoaderAction),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signals);

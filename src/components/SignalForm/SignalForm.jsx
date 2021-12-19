@@ -16,11 +16,22 @@ const SignalForm = ({
         <div className="me-2 flex-fill">
           <label htmlFor="channel">Channel</label>
           <Field
-            className="form-control"
+            as="select"
+            className="form-select"
             id="channel"
             name="channel"
-            type="text"
-          />
+          >
+            <option selected value="">
+              Select
+            </option>
+            {METADATA !== null
+              ? METADATA.filterData.channelList.map((channel, index) => (
+                  <option key={channel.name + index} value={channel.name}>
+                    {channel.name}
+                  </option>
+                ))
+              : null}
+          </Field>
           <ErrorMessage name="channel">
             {(error) => (
               <div className="text-danger" style={{ fontSize: "0.5rem" }}>

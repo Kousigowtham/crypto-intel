@@ -238,7 +238,7 @@ const CreateSignalPopup = ({
                           <button
                             type="submit"
                             onClick={() => deletehandler(formik)}
-                            classNameName="btn btn-danger me-4 px-4"
+                            className="btn btn-danger me-4 px-4"
                             data-bs-dismiss="modal"
                           >
                             Delete
