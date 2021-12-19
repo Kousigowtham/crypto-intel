@@ -5,7 +5,7 @@ const Dropdown = ({ coinList, selectHandler, selected, disabled }) => {
   const [search, setsearch] = useState("");
   return (
     <>
-      <div className="btn-group" style={{ width: "7rem" }}>
+      <div className="btn-group" style={{ minWidth: "20rem" }}>
         <button
           type="button"
           className="btn btn-danger dropdown-toggle"
@@ -18,8 +18,8 @@ const Dropdown = ({ coinList, selectHandler, selected, disabled }) => {
         <ul
           className="dropdown-menu overflow-auto"
           style={{
-            height: "300px",
-            width: "200px",
+            height: "20rem",
+            width: "20rem",
           }}
         >
           <input
@@ -27,7 +27,7 @@ const Dropdown = ({ coinList, selectHandler, selected, disabled }) => {
             value={search}
             onChange={(e) => setsearch(e.target.value)}
             type="search"
-            className="border-0 border-bottom ms-1 mb-3 search-form"
+            className="border-0 border-bottom my-3 search-form w-100"
           />
           {coinList !== null
             ? search !== ""

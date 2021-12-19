@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import "./SignalsByChannel.css";
 import { SET_SIGNALDATA_ACTION, UPDATE_SIGNAL_ACTION } from "../../actions";
+import { useNavigate } from "react-router-dom";
 
 const SignalsByChannel = ({
   setSignalDispatch,
@@ -9,6 +10,8 @@ const SignalsByChannel = ({
   updateSignalDispatch,
   channel,
 }) => {
+  const navigate = useNavigate();
+
   const clickHandler = (signal) => {
     const date = signal.signalDate.substring(0, signal.signalDate.indexOf(" "));
     const time = signal.signalDate.substring(
@@ -42,9 +45,21 @@ const SignalsByChannel = ({
       })
     );
     updateSignalDispatch(UPDATE_SIGNAL_ACTION(true));
+    navigate("/createSignal");
   };
   return (
     <>
+      <i
+        className="bi bi-plus m-4 text-center rounded-circle position-absolute text-white bg-success plus"
+        style={{
+          height: "50px",
+          width: "50px",
+          fontSize: "50px",
+          bottom: "5%",
+          right: "5%",
+        }}
+        onClick={() => navigate("/createSignal")}
+      ></i>
       {signalListByChannel.length > 0 ? (
         signalListByChannel.map((signals, index) => {
           return (
@@ -52,8 +67,6 @@ const SignalsByChannel = ({
               <div className="container">
                 <div
                   className="my-3 ms-5"
-                  data-bs-toggle="modal"
-                  data-bs-target="#staticBackdrop"
                   onClick={() => {
                     clickHandler(signals.signal);
                   }}

@@ -4,13 +4,10 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { createCoin } from "../../axios/api/async";
 import { connect } from "react-redux";
-import {
-  SET_SIGNALDATA_ACTION,
-  UPDATE_SIGNAL_ACTION,
-  UPDATE_SIGNAL_LIST_LOADER_ACTION,
-} from "../../actions";
+import { SET_SIGNALDATA_ACTION, UPDATE_SIGNAL_ACTION } from "../../actions";
 import { useDispatch } from "react-redux";
 import { fetchSignalList } from "../../reducers/signalListReducer";
+import { useNavigate } from "react-router-dom";
 
 const initialValues = {
   channel: "",
@@ -36,9 +33,8 @@ const validation = Yup.object({
   date: Yup.string().required("Required*"),
 });
 
-const CreateSignalPopup = ({
+const CreateSignal = ({
   setSignalDispatch,
-  updateSignalListLoaderDispatch,
   updateSignalDispatch,
   COINLIST,
   METADATA,
@@ -46,6 +42,7 @@ const CreateSignalPopup = ({
   UPDATESIGNAL,
 }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [selected, setselected] = useState(() => ({
     name: "Select Coin",
     id: "",
@@ -141,9 +138,8 @@ const CreateSignalPopup = ({
           })),
           coinDetail: { ...SelectedCoin },
         };
-
+    console.log(signalSkeleton);
     createCoin(signalSkeleton).then((res) => {
-      console.log(signalSkeleton);
       console.log(res);
       onSubmitProps.setSubmitting(false);
       onSubmitProps.resetForm();
@@ -153,14 +149,13 @@ const CreateSignalPopup = ({
       });
       dispatch(fetchSignalList());
     });
-    updateSignalListLoaderDispatch(UPDATE_SIGNAL_LIST_LOADER_ACTION(true));
     updateSignalDispatch(UPDATE_SIGNAL_ACTION(false));
     setSignalDispatch(SET_SIGNALDATA_ACTION({ ...initialValues }));
+    navigate("/signals");
   };
 
   const deletehandler = (formik) => {
     formik.resetForm();
-    updateSignalListLoaderDispatch(UPDATE_SIGNAL_LIST_LOADER_ACTION(true));
     createCoin({ ...SIGNALDATA, active: false }).then((res) => {
       dispatch(fetchSignalList());
     });
@@ -173,86 +168,71 @@ const CreateSignalPopup = ({
   };
   return (
     <>
-      <div
-        className="modal fade"
-        id="staticBackdrop"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
-        tabIndex="-1"
-        aria-labelledby="staticBackdropLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="staticBackdropLabel">
-                {`${
-                  UPDATESIGNAL ? "Update the Signal" : "Create a new Signal!"
-                }`}
-              </h5>
-            </div>
-            <div className="modal-body">
-              <Formik
-                initialValues={SIGNALDATA || initialValues}
-                onSubmit={SumbitHandler}
-                validationSchema={validation}
-                enableReinitialize
-              >
-                {(formik) => {
-                  return (
-                    <Form>
-                      <SignalForm
-                        SumbitHandler={SumbitHandler}
-                        selected={selected}
-                        disabled={formik.values.market === "" ? true : false}
-                        setselected={setselected}
-                        coinList={COINLIST?.coinList?.filter(
-                          (x) => x.market === formik.values.market
-                        )}
-                      />
-                      <div className="modal-footer">
-                        <button
-                          type="reset"
-                          className="btn btn-outline-secondary px-4 me-4"
-                          data-bs-dismiss="modal"
-                          disabled={formik.isSubmitting}
-                          onClick={() => {
-                            if (UPDATESIGNAL)
-                              updateSignalDispatch(UPDATE_SIGNAL_ACTION(false));
-                            setSignalDispatch(
-                              SET_SIGNALDATA_ACTION({ ...initialValues })
-                            );
-                            setselected({
-                              name: "Select Coin",
-                              id: "",
-                            });
-                          }}
-                        >
-                          Close
-                        </button>
-                        {UPDATESIGNAL === true ? (
-                          <button
-                            type="submit"
-                            onClick={() => deletehandler(formik)}
-                            className="btn btn-danger me-4 px-4"
-                            data-bs-dismiss="modal"
-                          >
-                            Delete
-                          </button>
-                        ) : null}
-                        <button
-                          type="submit"
-                          disabled={!formik.isValid}
-                          className="btn btn-primary px-4"
-                        >
-                          {formik.isSubmitting ? "Saving..." : "Save"}
-                        </button>
-                      </div>
-                    </Form>
-                  );
-                }}
-              </Formik>
-            </div>
+      <div className="pt-5 bg-secondary min-vh-100">
+        <div className="container bg-white w-50 py-5 px-4 rounded">
+          <div>
+            <h5>
+              {`${UPDATESIGNAL ? "Update the Signal" : "Create a new Signal!"}`}
+            </h5>
+          </div>
+          <div>
+            <Formik
+              initialValues={SIGNALDATA || initialValues}
+              onSubmit={SumbitHandler}
+              validationSchema={validation}
+              enableReinitialize
+            >
+              {(formik) => {
+                return (
+                  <Form>
+                    <SignalForm
+                      SumbitHandler={SumbitHandler}
+                      selected={selected}
+                      disabled={formik.values.market === "" ? true : false}
+                      setselected={setselected}
+                      coinList={COINLIST?.coinList?.filter(
+                        (x) => x.market === formik.values.market
+                      )}
+                    />
+                    <button
+                      type="reset"
+                      className="btn btn-outline-secondary px-4 me-4"
+                      disabled={formik.isSubmitting}
+                      onClick={() => {
+                        if (UPDATESIGNAL)
+                          updateSignalDispatch(UPDATE_SIGNAL_ACTION(false));
+                        setSignalDispatch(
+                          SET_SIGNALDATA_ACTION({ ...initialValues })
+                        );
+                        setselected({
+                          name: "Select Coin",
+                          id: "",
+                        });
+                        navigate("/signals");
+                      }}
+                    >
+                      Close
+                    </button>
+                    {UPDATESIGNAL === true ? (
+                      <button
+                        type="submit"
+                        onClick={() => deletehandler(formik)}
+                        className="btn btn-danger me-4 px-4"
+                      >
+                        Delete
+                      </button>
+                    ) : null}
+                    <button
+                      type="submit"
+                      disabled={!formik.isValid}
+                      className="btn btn-primary px-4"
+                    >
+                      {formik.isSubmitting ? "Saving..." : "Save"}
+                    </button>
+                  </Form>
+                );
+              }}
+            </Formik>
           </div>
         </div>
       </div>
@@ -271,8 +251,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   setSignalDispatch: (setSignalAction) => dispatch(setSignalAction),
   updateSignalDispatch: (updateSignalAction) => dispatch(updateSignalAction),
-  updateSignalListLoaderDispatch: (updateSignalListLoaderAction) =>
-    dispatch(updateSignalListLoaderAction),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateSignalPopup);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateSignal);

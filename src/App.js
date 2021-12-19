@@ -1,22 +1,21 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { GET_COINLIST_ACTION, GET_METADATA_ACTION } from "./actions";
 import "./App.css";
-import { getCoinsList, getMetaData } from "./axios/api/async";
+import { fetchCoinList } from "./reducers/coinListReducer";
 import Header from "./components/Header/Header";
 import { Route, Routes } from "react-router-dom";
 import Signals from "./components/Signals/Signals";
 import CreateSignalPopup from "./components/CreateSignalPopup/CreateSignalPopup";
+import { useDispatch } from "react-redux";
+import { fetchMetaData } from "./reducers/metaDataReducer";
+import CreateSignal from "./components/CreateSignal/CreateSignal";
 
-const App = ({ metaDataDispatch, coinListDispatch }) => {
+const App = () => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    getMetaData().then((metaData) =>
-      metaDataDispatch(GET_METADATA_ACTION(metaData))
-    );
-    getCoinsList().then((coinList) =>
-      coinListDispatch(GET_COINLIST_ACTION(coinList))
-    );
-  }, [coinListDispatch, metaDataDispatch]);
+    dispatch(fetchMetaData());
+    dispatch(fetchCoinList());
+  }, []);
 
   return (
     <>
@@ -24,14 +23,10 @@ const App = ({ metaDataDispatch, coinListDispatch }) => {
       <CreateSignalPopup />
       <Routes>
         <Route exact path="/signals" element={<Signals />} />
+        <Route exact path="/createSignal" element={<CreateSignal />} />
       </Routes>
     </>
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  metaDataDispatch: (metadataAction) => dispatch(metadataAction),
-  coinListDispatch: (coinListAction) => dispatch(coinListAction),
-});
-
-export default connect(null, mapDispatchToProps)(App);
+export default App;

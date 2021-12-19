@@ -5,6 +5,7 @@ import SkeletonChannel from "../Skeleton/SkeletonChannel";
 
 const Channles = ({ METADATA, selectChannelHandler }) => {
   const [accordion, setaccordion] = useState(false);
+
   return (
     <>
       <div className="d-flex overflow-auto flex-column scrollbar-styling">
@@ -27,8 +28,8 @@ const Channles = ({ METADATA, selectChannelHandler }) => {
             channels
           </span>
         </div>
-        {METADATA !== null
-          ? METADATA.filterData.channelList.map((channel, index) => {
+        {!METADATA.loading
+          ? METADATA?.metaData?.channelList?.map((channel, index) => {
               return (
                 <div
                   key={channel.name + index}

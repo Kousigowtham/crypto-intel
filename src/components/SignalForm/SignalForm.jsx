@@ -24,8 +24,8 @@ const SignalForm = ({
             <option selected value="">
               Select
             </option>
-            {METADATA !== null
-              ? METADATA.filterData.channelList.map((channel, index) => (
+            {!METADATA.loading
+              ? METADATA?.metaData?.channelList?.map((channel, index) => (
                   <option key={channel.name + index} value={channel.name}>
                     {channel.name}
                   </option>
@@ -70,8 +70,8 @@ const SignalForm = ({
             <option selected value="">
               Select
             </option>
-            {METADATA !== null
-              ? METADATA.filterData.marketList.map((market, index) => (
+            {!METADATA.loading
+              ? METADATA?.metaData?.marketList?.map((market, index) => (
                   <option key={market.name + index} value={market.name}>
                     {market.name}
                   </option>
@@ -131,7 +131,7 @@ const SignalForm = ({
           )}
         </ErrorMessage>
       </div>
-      <div className="bg-light p-4">
+      <div className="bg-light p-4 position-relative">
         <label htmlFor="targetDetails">Target Details</label>
         <FieldArray name="targetDetails" id="targetDetails">
           {(fieldArrayProps) => {
@@ -141,6 +141,19 @@ const SignalForm = ({
 
             return (
               <>
+                <div
+                  className="btn btn-success position-absolute me-4"
+                  style={{ width: "3rem", right: "0%" }}
+                  onClick={() =>
+                    push({
+                      targetType: "",
+                      targetValue: "",
+                      targetValueUnit: "%",
+                    })
+                  }
+                >
+                  +
+                </div>
                 {targetDetails?.map((targetDetail, index) => (
                   <div
                     key={index}
@@ -150,6 +163,7 @@ const SignalForm = ({
                       <label htmlFor="targetType" style={{ fontSize: "10px" }}>
                         TargetType
                       </label>
+
                       <Field
                         as="select"
                         className="form-select"
@@ -157,8 +171,8 @@ const SignalForm = ({
                         name={`targetDetails[${index}].targetType`}
                       >
                         <option value=""></option>
-                        {METADATA !== null
-                          ? METADATA.filterData.targetTypeList.map(
+                        {!METADATA.loading
+                          ? METADATA?.metaData?.targetTypeList?.map(
                               (targetType, index) => (
                                 <option
                                   key={targetType.name + index}
@@ -199,29 +213,16 @@ const SignalForm = ({
                         name={`targetDetails[${index}].targetValueUnit`}
                       />
                     </div>
-                    {index > 0 ? (
-                      <div
-                        className="btn btn-danger"
-                        style={{ width: "3rem" }}
-                        onClick={() => remove(index)}
-                      >
-                        -
-                      </div>
-                    ) : (
-                      <div
-                        className="btn btn-success"
-                        style={{ width: "3rem" }}
-                        onClick={() =>
-                          push({
-                            targetType: "",
-                            targetValue: "",
-                            targetValueUnit: "%",
-                          })
-                        }
-                      >
-                        +
-                      </div>
-                    )}
+
+                    <div
+                      className={`btn btn-danger ${
+                        targetDetails.length === 1 ? "disabled" : ""
+                      }`}
+                      style={{ width: "3rem" }}
+                      onClick={() => remove(index)}
+                    >
+                      -
+                    </div>
                   </div>
                 ))}
               </>
