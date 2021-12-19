@@ -47,8 +47,8 @@ const Header = () => {
                   location.pathname === "/about" ? "active" : ""
                 }`}
               >
-                <Link to="/about" className="nav-link" aria-current="page">
-                  About
+                <Link to="/platforms" className="nav-link" aria-current="page">
+                  Platforms
                 </Link>
               </li>
               <li

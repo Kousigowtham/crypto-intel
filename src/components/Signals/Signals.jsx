@@ -6,7 +6,6 @@ import "./Signals.css";
 import SkeletonSignal from "../Skeleton/SkeletonSignal";
 import { useDispatch } from "react-redux";
 import { fetchSignalList } from "../../reducers/signalListReducer";
-import { useNavigate } from "react-router-dom";
 const Signals = ({ signalList }) => {
   const dispatch = useDispatch();
   const [selectedChannel, setselectedChannel] = useState("");
@@ -15,10 +14,9 @@ const Signals = ({ signalList }) => {
     dispatch(fetchSignalList());
   };
 
-  const navigate = useNavigate();
   useEffect(() => {
     dispatch(fetchSignalList());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

@@ -57,6 +57,24 @@ export const getSignalListFailure = (error) => ({
   payload: error,
 });
 
+//_______________________________________________________________________________
+// get platformChannel Action
+//_______________________________________________________________________________
+
+export const getPlatformChannelRequest = () => ({
+  type: "PLATFORMCHANNEL_REQUEST",
+});
+
+export const getPlatformChannelSuccess = (platformChannel) => ({
+  type: "PLATFORMCHANNEL_SUCCESS",
+  payload: platformChannel,
+});
+
+export const getPlatformChannelFailure = (error) => ({
+  type: "PLATFORMCHANNEL_FAILURE",
+  payload: error,
+});
+
 export const SET_SIGNALDATA_ACTION = (payload) => ({
   type: "SET_SIGNAL_DATA",
   payload: payload,
@@ -64,9 +82,5 @@ export const SET_SIGNALDATA_ACTION = (payload) => ({
 
 export const UPDATE_SIGNAL_ACTION = (payload) => ({
   type: "UPDATE_SIGNAL",
-  payload: payload,
-});
-export const UPDATE_SIGNAL_LIST_LOADER_ACTION = (payload) => ({
-  type: "UPDATE_SIGNAL_LIST_LOADER",
   payload: payload,
 });

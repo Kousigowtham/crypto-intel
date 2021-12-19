@@ -216,8 +216,8 @@ const CreateSignal = ({
                     {UPDATESIGNAL === true ? (
                       <button
                         type="submit"
-                        onClick={() => deletehandler(formik)}
                         className="btn btn-danger me-4 px-4"
+                        onClick={() => deletehandler(formik)}
                       >
                         Delete
                       </button>
