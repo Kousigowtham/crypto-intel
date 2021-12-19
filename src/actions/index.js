@@ -75,6 +75,24 @@ export const getPlatformChannelFailure = (error) => ({
   payload: error,
 });
 
+//_______________________________________________________________________________
+// get platformChannelMessasges Action
+//_______________________________________________________________________________
+
+export const getPlatformChannelMessagesRequest = () => ({
+  type: "PLATFORMCHANNELMESSAGES_REQUEST",
+});
+
+export const getPlatformChannelMessagesSuccess = (PlatformChannelMessages) => ({
+  type: "PLATFORMCHANNELMESSAGES_SUCCESS",
+  payload: PlatformChannelMessages,
+});
+
+export const getPlatformChannelMessagesFailure = (error) => ({
+  type: "PLATFORMCHANNELMESSAGES_FAILURE",
+  payload: error,
+});
+
 export const SET_SIGNALDATA_ACTION = (payload) => ({
   type: "SET_SIGNAL_DATA",
   payload: payload,

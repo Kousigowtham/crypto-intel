@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
-const ChannelsByPlatform = ({ platformChannelList, METADATA }) => {
+const ChannelsByPlatform = ({
+  platformChannelList,
+  selectedPlatformChannelHandler,
+  METADATA,
+}) => {
   const [accordion, setaccordion] = useState({
     DISCORD: false,
     TELEGRAM: false,
@@ -53,6 +57,11 @@ const ChannelsByPlatform = ({ platformChannelList, METADATA }) => {
                               <li
                                 className="pt-3 pb-2 ps-4 mx-3  text-secondary"
                                 key={platformChannel.id}
+                                onClick={() =>
+                                  selectedPlatformChannelHandler(
+                                    platformChannel.id
+                                  )
+                                }
                               >
                                 {platformChannel.platformChannelName}
                               </li>
