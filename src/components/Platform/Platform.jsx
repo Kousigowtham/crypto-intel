@@ -11,6 +11,36 @@ const MessagesByPlatform = ({ platformChannel, platformChannelMessages }) => {
   const dispatch = useDispatch();
   const [selectedPlatformChannel, setselectedPlatformChannel] = useState("");
 
+  const scrollHandler = (event) => {
+    const { scrollTop, clientHeight, scrollHeight } = event.currentTarget;
+
+    console.log(platformChannelMessages);
+    if (
+      scrollHeight - scrollTop === clientHeight &&
+      platformChannelMessages.platformChannelMessages.pageNumber <
+        platformChannelMessages.platformChannelMessages.pageCount - 1
+    ) {
+      dispatch(
+        fetchPlatformChannelMessages(
+          selectedPlatformChannel,
+          platformChannelMessages.platformChannelMessages.pageNumber + 1,
+          platformChannelMessages.platformChannelMessages.pageLimit
+        )
+      );
+    }
+    if (
+      scrollTop === 0 &&
+      platformChannelMessages.platformChannelMessages.pageNumber > 0
+    ) {
+      dispatch(
+        fetchPlatformChannelMessages(
+          selectedPlatformChannel,
+          platformChannelMessages.platformChannelMessages.pageNumber - 1,
+          platformChannelMessages.platformChannelMessages.pageLimit
+        )
+      );
+    }
+  };
   useEffect(() => {
     dispatch(fetchPlatformChannelMessages(selectedPlatformChannel));
   }, [dispatch, selectedPlatformChannel]);
@@ -47,7 +77,11 @@ const MessagesByPlatform = ({ platformChannel, platformChannelMessages }) => {
               </div>
             )}
           </div>
-          <div className="col-8 p-0 overflow-auto" style={{ height: "680px" }}>
+          <div
+            className="col-8 px-0  py-5 overflow-auto"
+            style={{ height: "680px" }}
+            onScroll={scrollHandler}
+          >
             {!platformChannelMessages.loading ? (
               <MessagesByPlatformChannels
                 platformChannelMessages={platformChannelMessages}

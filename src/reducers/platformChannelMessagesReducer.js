@@ -28,7 +28,11 @@ const platformChannelMessagesReducer = (state = initialState, action) => {
   }
 };
 
-export const fetchPlatformChannelMessages = (platformChannelId) => {
+export const fetchPlatformChannelMessages = (
+  platformChannelId,
+  pageNumber = 0,
+  pageLimit = 100
+) => {
   return (dispatch) => {
     dispatch(getPlatformChannelMessagesRequest());
     api
@@ -38,6 +42,8 @@ export const fetchPlatformChannelMessages = (platformChannelId) => {
           platformChannelInfoId: platformChannelId,
           sortBy: "date",
           sortType: "DESCENDING",
+          pageLimit: pageLimit,
+          pageNumber: pageNumber,
         }),
         {
           headers: {
