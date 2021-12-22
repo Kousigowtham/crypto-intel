@@ -24,20 +24,25 @@ const signalListReducer = (state = initialState, action) => {
   }
 };
 
-export const fetchSignalList = () => {
+export const fetchSignalList = (startDate = "", endDate = "", coinId = "") => {
+  const body = { startDate, endDate, coinId };
+  console.log(body);
   return (dispatch) => {
     dispatch(getSignalListRequest());
     api
-      .post("/signalAnalysisDetail/list", JSON.stringify({}), {
+      .post("/signalAnalysisDetail/list", JSON.stringify(body), {
         headers: {
           "content-Type": "application/json",
         },
       })
       .then((res) => {
         console.log("fetching...");
+        console.log(res.data.data.data);
         dispatch(getSignalListSuccess(res.data.data.data));
       })
-      .catch((error) => dispatch(getSignalListFailure(error)));
+      .catch((error) => {
+        dispatch(getSignalListFailure(error));
+      });
   };
 };
 

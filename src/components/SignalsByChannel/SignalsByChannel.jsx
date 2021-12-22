@@ -47,6 +47,7 @@ const SignalsByChannel = ({
     updateSignalDispatch(UPDATE_SIGNAL_ACTION(true));
     navigate("/createSignal");
   };
+
   return (
     <>
       <i
@@ -60,8 +61,39 @@ const SignalsByChannel = ({
         }}
         onClick={() => navigate("/createSignal")}
       ></i>
+
       {signalListByChannel.length > 0 ? (
         signalListByChannel.map((signals, index) => {
+          const channelTargetSignals =
+            signals.signal.signalTargetDetails.filter(
+              (x) => x.targetMode === "CHANNEL_TARGET"
+            );
+          const takeProfit = channelTargetSignals.filter(
+            (x) => x.targetType === "TAKE_PROFIT"
+          );
+          const stopLoss = channelTargetSignals.filter(
+            (x) => x.targetType === "STOP_LOSS"
+          );
+          const channelTargetTimeLines = signals.targetTimelines.filter((x) =>
+            channelTargetSignals.find((xx) => xx.id === x.signalTargetDetailId)
+          );
+          let orderedChannelTargets = channelTargetTimeLines.map(
+            (reachedTimeLines) => {
+              const matchedTarget = channelTargetSignals.find(
+                (x) => x.id === reachedTimeLines.signalTargetDetailId
+              );
+              const removeIndex = channelTargetSignals.findIndex(
+                (x) => x.id === reachedTimeLines.signalTargetDetailId
+              );
+              channelTargetSignals.splice(removeIndex, 1);
+              return matchedTarget;
+            }
+          );
+          orderedChannelTargets = [
+            ...orderedChannelTargets,
+            ...channelTargetSignals,
+          ];
+
           return (
             <>
               <div className="container">
@@ -105,6 +137,60 @@ const SignalsByChannel = ({
                         Current price:{" "}
                         {`  ${signals.signal.buyPrice.toFixed(2)}`}
                       </div>
+                      {stopLoss.map((sl) => {
+                        return (
+                          <div
+                            className="me-5 mb-2 px-2 py-1 bg-danger text-white"
+                            style={{
+                              fontSize: "0.8rem",
+                            }}
+                          >
+                            {" "}
+                            Stop Loss:
+                            {`  ${sl.targetValue.toFixed(2)}`}
+                          </div>
+                        );
+                      })}
+                    </div>
+                    <div className="d-flex flex-wrap">
+                      {orderedChannelTargets.map((signaltargets, index) => {
+                        return (
+                          <div
+                            className={`pe-2
+                              ${
+                                signaltargets.reached
+                                  ? signaltargets.targetType === "TAKE_PROFIT"
+                                    ? "text-success"
+                                    : "text-danger"
+                                  : "text-muted"
+                              }`}
+                            style={{
+                              fontSize: "0.95rem",
+                            }}
+                          >
+                            {signaltargets.targetType === "TAKE_PROFIT"
+                              ? `TP${
+                                  takeProfit.findIndex(
+                                    (x) => x.id === signaltargets.id
+                                  ) + 1
+                                }: ${
+                                  signaltargets.targetValue
+                                } (${signaltargets.percentage.toFixed(2)}%)`
+                              : `SL${
+                                  stopLoss.findIndex(
+                                    (x) => x.id === signaltargets.id
+                                  ) + 1
+                                }: ${
+                                  signaltargets.targetValue
+                                } (${signaltargets.percentage
+                                  .toFixed(2)
+                                  .replace("-", "")}%)`}
+                            {orderedChannelTargets.length - 1 > index ? (
+                              <span className="ps-2">{"-->"}</span>
+                            ) : null}
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>
