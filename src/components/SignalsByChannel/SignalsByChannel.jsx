@@ -74,26 +74,30 @@ const SignalsByChannel = ({
           const stopLoss = channelTargetSignals.filter(
             (x) => x.targetType === "STOP_LOSS"
           );
-          const channelTargetTimeLines = signals.targetTimelines.filter((x) =>
-            channelTargetSignals.find((xx) => xx.id === x.signalTargetDetailId)
-          );
-          let orderedChannelTargets = channelTargetTimeLines.map(
-            (reachedTimeLines) => {
-              const matchedTarget = channelTargetSignals.find(
-                (x) => x.id === reachedTimeLines.signalTargetDetailId
-              );
-              const removeIndex = channelTargetSignals.findIndex(
-                (x) => x.id === reachedTimeLines.signalTargetDetailId
-              );
-              channelTargetSignals.splice(removeIndex, 1);
-              return matchedTarget;
-            }
-          );
-          orderedChannelTargets = [
-            ...orderedChannelTargets,
-            ...channelTargetSignals,
-          ];
-
+          let orderedChannelTargets;
+          if (signals.targetTimelines) {
+            const channelTargetTimeLines = signals.targetTimelines.filter((x) =>
+              channelTargetSignals.find(
+                (xx) => xx.id === x.signalTargetDetailId
+              )
+            );
+            orderedChannelTargets = channelTargetTimeLines.map(
+              (reachedTimeLines) => {
+                const matchedTarget = channelTargetSignals.find(
+                  (x) => x.id === reachedTimeLines.signalTargetDetailId
+                );
+                const removeIndex = channelTargetSignals.findIndex(
+                  (x) => x.id === reachedTimeLines.signalTargetDetailId
+                );
+                channelTargetSignals.splice(removeIndex, 1);
+                return matchedTarget;
+              }
+            );
+            orderedChannelTargets = [
+              ...orderedChannelTargets,
+              ...channelTargetSignals,
+            ];
+          } else orderedChannelTargets = [...channelTargetSignals];
           return (
             <>
               <div className="container">
@@ -173,16 +177,16 @@ const SignalsByChannel = ({
                                   takeProfit.findIndex(
                                     (x) => x.id === signaltargets.id
                                   ) + 1
-                                }: ${
-                                  signaltargets.targetValue
-                                } (${signaltargets.percentage.toFixed(2)}%)`
+                                }: ${signaltargets.targetValue.toFixed(
+                                  2
+                                )} (${signaltargets.percentage.toFixed(2)}%)`
                               : `SL${
                                   stopLoss.findIndex(
                                     (x) => x.id === signaltargets.id
                                   ) + 1
-                                }: ${
-                                  signaltargets.targetValue
-                                } (${signaltargets.percentage
+                                }: ${signaltargets.targetValue.toFixed(
+                                  2
+                                )} (${signaltargets.percentage
                                   .toFixed(2)
                                   .replace("-", "")}%)`}
                             {orderedChannelTargets.length - 1 > index ? (

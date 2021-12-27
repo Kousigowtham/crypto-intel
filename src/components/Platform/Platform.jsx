@@ -3,6 +3,7 @@ import { connect, useDispatch } from "react-redux";
 import { fetchPlatformChannelMessages } from "../../reducers/platformChannelMessagesReducer";
 import { fetchPlatformChannel } from "../../reducers/platformChannelReducer";
 import ChannelsByPlatform from "../ChannelsByPlatform/ChannelsByPlatform";
+import { Wrapper } from "../components.styles";
 import MessagesByPlatformChannels from "../MessagesByPlatformChannels/MessagesByPlatformChannels";
 import SkeletonChannel from "../Skeleton/SkeletonChannel";
 import SkeletonSignal from "../Skeleton/SkeletonSignal";
@@ -54,7 +55,7 @@ const MessagesByPlatform = ({ platformChannel, platformChannelMessages }) => {
   };
 
   return (
-    <>
+    <Wrapper>
       <div className="container-fluid m-0 p-0 border-top">
         <div className="row">
           <div
@@ -100,7 +101,7 @@ const MessagesByPlatform = ({ platformChannel, platformChannelMessages }) => {
           </div>
         </div>
       </div>
-    </>
+    </Wrapper>
   );
 };
 

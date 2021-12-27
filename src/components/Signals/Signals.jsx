@@ -7,6 +7,8 @@ import SkeletonSignal from "../Skeleton/SkeletonSignal";
 import { useDispatch } from "react-redux";
 import { fetchSignalList } from "../../reducers/signalListReducer";
 import Dropdown from "../Dropdown/Dropdown";
+import { Wrapper } from "../components.styles";
+
 const Signals = ({ signalList, METADATA, coinList }) => {
   const dispatch = useDispatch();
   const [selectedChannel, setselectedChannel] = useState("");
@@ -80,7 +82,7 @@ const Signals = ({ signalList, METADATA, coinList }) => {
   }, [dispatch]);
 
   return (
-    <>
+    <Wrapper>
       <div className="container-fluid m-0 p-0 border-top">
         <div className="row">
           <div
@@ -206,7 +208,7 @@ const Signals = ({ signalList, METADATA, coinList }) => {
           </div>
         </div>
       </div>
-    </>
+    </Wrapper>
   );
 };
 

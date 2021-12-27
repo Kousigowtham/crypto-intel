@@ -8,6 +8,7 @@ import { SET_SIGNALDATA_ACTION, UPDATE_SIGNAL_ACTION } from "../../actions";
 import { useDispatch } from "react-redux";
 import { fetchSignalList } from "../../reducers/signalListReducer";
 import { useNavigate } from "react-router-dom";
+import { Wrapper } from "../components.styles";
 
 const initialValues = {
   channel: "",
@@ -167,7 +168,7 @@ const CreateSignal = ({
     });
   };
   return (
-    <>
+    <Wrapper>
       <div className="pt-5 bg-secondary min-vh-100">
         <div className="container bg-white w-50 py-5 px-4 rounded">
           <div>
@@ -236,7 +237,7 @@ const CreateSignal = ({
           </div>
         </div>
       </div>
-    </>
+    </Wrapper>
   );
 };
 

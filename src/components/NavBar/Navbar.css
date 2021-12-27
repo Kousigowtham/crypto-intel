@@ -1,0 +1,231 @@
+header {
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  color: white;
+  width: 100%;
+  z-index: 10000;
+  padding: 1rem 0 1rem 9rem;
+}
+
+header .logo {
+  font-size: 2rem;
+  color: #2a52dc;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+@media (max-width: 70rem) {
+  header {
+    padding-left: 2rem;
+  }
+  header .logo {
+    font-size: 1.5rem;
+  }
+}
+
+header .nav-items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
+  font-size: 0.9rem;
+  margin-right: 5rem;
+}
+
+@media (max-width: 70rem) {
+  header .nav-items {
+    display: none;
+  }
+}
+
+header .nav-items .active {
+  color: #2ddfa3 !important;
+}
+
+header .nav-items .active + div {
+  width: 100%;
+}
+
+header .nav-items li {
+  list-style: none;
+  margin-right: 1rem;
+}
+
+header .nav-items li div {
+  border-bottom: 3px solid #2ddfa3;
+  margin-top: 0.3rem;
+  width: 0%;
+}
+
+header .nav-items li a {
+  text-decoration: none;
+  color: white;
+  padding-right: 1rem;
+}
+
+header .nav-items li:hover a {
+  cursor: pointer;
+  color: #2ddfa3;
+}
+
+header .nav-items li:hover div {
+  -webkit-animation: link-animation 1s 1 forwards;
+          animation: link-animation 1s 1 forwards;
+}
+
+header button {
+  background-color: #2ddfa3;
+  border-radius: 30px;
+  color: white;
+  padding: 0.25rem 1rem;
+}
+
+.nav-scroll {
+  background-color: black;
+  opacity: 0;
+  -webkit-animation: nav-bar-animation 0.5s 1 forwards;
+          animation: nav-bar-animation 0.5s 1 forwards;
+}
+
+.menu-item {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 40px;
+  margin-right: 2rem;
+  width: 41px;
+}
+
+@media (min-width: 70rem) {
+  .menu-item {
+    display: none;
+  }
+}
+
+.menu-item:hover {
+  cursor: pointer;
+}
+
+.menu-item.open .menu-item-burger {
+  -webkit-transform: translateX(-30px);
+          transform: translateX(-30px);
+  background: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.menu-item.open .menu-item-burger::before {
+  -webkit-transform: rotate(45deg) translate(25px, -25px);
+          transform: rotate(45deg) translate(25px, -25px);
+}
+
+.menu-item.open .menu-item-burger::after {
+  -webkit-transform: rotate(-45deg) translate(25px, 25px);
+          transform: rotate(-45deg) translate(25px, 25px);
+}
+
+.menu-item-burger {
+  height: 5px;
+  background-color: #2ddfa3;
+  width: 100%;
+  -webkit-box-shadow: 0px 2px 1px #056e4b;
+          box-shadow: 0px 2px 1px #056e4b;
+  border-radius: 5px;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.menu-item-burger::after,
+.menu-item-burger::before {
+  content: "";
+  position: absolute;
+  height: 5px;
+  border-radius: 5px;
+  background-color: #2ddfa3;
+  width: 100%;
+  -webkit-box-shadow: 0px 2px 1px #056e4b;
+          box-shadow: 0px 2px 1px #056e4b;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.menu-item-burger::after {
+  -webkit-transform: translateY(10px);
+          transform: translateY(10px);
+}
+
+.menu-item-burger::before {
+  -webkit-transform: translateY(-10px);
+          transform: translateY(-10px);
+}
+
+.menu-item-nav-list {
+  position: fixed;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: 9999;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.menu-item-nav-list li {
+  list-style: none;
+  margin: 1rem 0;
+}
+
+.menu-item-nav-list a {
+  color: white;
+  text-decoration: none;
+}
+
+@-webkit-keyframes link-animation {
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes link-animation {
+  to {
+    width: 100%;
+  }
+}
+
+@-webkit-keyframes nav-bar-animation {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes nav-bar-animation {
+  to {
+    opacity: 1;
+  }
+}
+/*# sourceMappingURL=Navbar.css.map */
