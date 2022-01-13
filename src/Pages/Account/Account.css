@@ -1,0 +1,113 @@
+.account-bg {
+  min-height: 100vh;
+  min-width: 100%;
+  background: #6868ff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.account-bg .login-container {
+  background: #202225;
+  padding: 3rem 0;
+  width: clamp(30vw, 500px, 100vw);
+  border-radius: 10px;
+}
+
+.account-bg .login-container .form-container {
+  position: relative;
+  margin: 0 5rem 0 3rem;
+}
+
+@media (max-width: 500px) {
+  .account-bg .login-container .form-container {
+    margin-right: 1rem;
+  }
+}
+
+.account-bg .login-container .account-helper {
+  color: #b9bbbe;
+  font-size: 0.8rem;
+  padding-top: 0.5rem;
+  margin-left: 3rem;
+  max-width: 70%;
+}
+
+.account-bg .login-container .account-helper span {
+  color: #5bbdff;
+  padding-left: 0.2rem;
+}
+
+.account-bg .login-container .account-helper span:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.account-bg .login-container .greeter-container {
+  color: whitesmoke;
+  text-align: center;
+}
+
+.account-bg .login-container .greeter-container div {
+  font-size: 2rem;
+  line-height: 1.75;
+}
+
+.account-bg .login-container .greeter-container p {
+  font-size: 0.8rem;
+  color: #b9bbbe;
+}
+
+.account-bg .login-container .btn-signin {
+  display: inline-block;
+  border-radius: 5px;
+  text-align: center;
+  background: #4f4ff8;
+  width: 100%;
+  border: none;
+  font-weight: bold;
+}
+
+.account-bg .login-container .btn-signin:hover {
+  background: rgba(79, 79, 248, 0.5);
+  color: white;
+}
+
+.account-bg .input-container {
+  color: #b9bbbe;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.account-bg .input-container label {
+  font-size: 0.7rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.account-bg .input-container input {
+  background: #303339;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0.25rem 1rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  color: whitesmoke;
+}
+
+.account-bg .input-container input:focus {
+  outline: none;
+  border: 1px solid #0187bd;
+}
+/*# sourceMappingURL=Account.css.map */

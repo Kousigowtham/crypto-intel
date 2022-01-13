@@ -7,7 +7,6 @@ import SkeletonSignal from "../Skeleton/SkeletonSignal";
 import { useDispatch } from "react-redux";
 import { fetchSignalList } from "../../reducers/signalListReducer";
 import Dropdown from "../Dropdown/Dropdown";
-import { Wrapper } from "../components.styles";
 
 const Signals = ({ signalList, METADATA, coinList }) => {
   const dispatch = useDispatch();
@@ -82,7 +81,7 @@ const Signals = ({ signalList, METADATA, coinList }) => {
   }, [dispatch]);
 
   return (
-    <Wrapper>
+    <div className="signal-container">
       <div className="container-fluid m-0 p-0 border-top">
         <div className="row">
           <div
@@ -91,8 +90,11 @@ const Signals = ({ signalList, METADATA, coinList }) => {
           >
             <Channles selectChannelHandler={selectedChannelHandler} />
           </div>
-          <div className="col-8 p-0 overflow-auto" style={{ height: "680px" }}>
-            <div className="d-flex ps-4 mb-5 mt-2">
+          <div
+            className="col-8 p-0 overflow-auto flex-grow-1 bg-white"
+            style={{ height: "680px" }}
+          >
+            <div className="d-flex ps-4 py-2">
               <form className="d-flex  flex-wrap ms-5" onSubmit={searchHandler}>
                 <div className="me-4">
                   <label htmlFor="signalFromDateTimeFilter">From</label>
@@ -208,7 +210,7 @@ const Signals = ({ signalList, METADATA, coinList }) => {
           </div>
         </div>
       </div>
-    </Wrapper>
+    </div>
   );
 };
 

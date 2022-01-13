@@ -1,3 +1,16 @@
+.signal-container {
+  margin: 3rem 5rem;
+  -webkit-box-shadow: 2px 2px 10px black;
+          box-shadow: 2px 2px 10px black;
+}
+
+.signal-container .search-container {
+  position: fixed;
+  max-width: 1000px;
+  z-index: 2;
+  background-color: white;
+}
+
 .bi-plus::before {
   content: "\f4fe";
   position: absolute;

@@ -1,0 +1,13 @@
+.platform-container {
+  margin: 3rem 5rem;
+  -webkit-box-shadow: 2px 2px 10px black;
+          box-shadow: 2px 2px 10px black;
+  z-index: 2;
+}
+
+body {
+  background: ivory;
+  background: -webkit-gradient(linear, left bottom, left top, from(ivory), color-stop(64%, ivory), to(#3737c1));
+  background: linear-gradient(0deg, ivory 0%, ivory 64%, #3737c1 100%);
+}
+/*# sourceMappingURL=Platform.css.map */

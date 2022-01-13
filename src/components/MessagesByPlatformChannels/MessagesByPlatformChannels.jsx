@@ -12,9 +12,6 @@ const MessagesByPlatformChannels = ({
       {!platformChannelMessages.loading &&
       platformChannelMessages.platformChannelMessages !== null ? (
         <>
-          <div className="py-5 d-flex justify-content-center">START</div>
-          <div className="py-5 d-flex justify-content-center"></div>
-
           {platformChannelMessages?.platformChannelMessages?.data?.map(
             (msg, index) => {
               return (
@@ -41,8 +38,6 @@ const MessagesByPlatformChannels = ({
               );
             }
           )}
-          <div className="py-5 d-flex justify-content-center"></div>
-          <div className="py-5 d-flex justify-content-center">END</div>
         </>
       ) : (
         <div className="d-flex flex-column justify-content-center align-items-center h-100">

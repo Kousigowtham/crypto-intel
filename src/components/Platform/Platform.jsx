@@ -3,14 +3,18 @@ import { connect, useDispatch } from "react-redux";
 import { fetchPlatformChannelMessages } from "../../reducers/platformChannelMessagesReducer";
 import { fetchPlatformChannel } from "../../reducers/platformChannelReducer";
 import ChannelsByPlatform from "../ChannelsByPlatform/ChannelsByPlatform";
-import { Wrapper } from "../components.styles";
 import MessagesByPlatformChannels from "../MessagesByPlatformChannels/MessagesByPlatformChannels";
 import SkeletonChannel from "../Skeleton/SkeletonChannel";
 import SkeletonSignal from "../Skeleton/SkeletonSignal";
+import "./Platform.css";
 
 const MessagesByPlatform = ({ platformChannel, platformChannelMessages }) => {
   const dispatch = useDispatch();
   const [selectedPlatformChannel, setselectedPlatformChannel] = useState("");
+  const [showLoadmoreLabel, setshowLoadmoreLabel] = useState({
+    Bottom: false,
+    Top: false,
+  });
 
   const scrollHandler = (event) => {
     const { scrollTop, clientHeight, scrollHeight } = event.currentTarget;
@@ -21,25 +25,33 @@ const MessagesByPlatform = ({ platformChannel, platformChannelMessages }) => {
       platformChannelMessages.platformChannelMessages.pageNumber <
         platformChannelMessages.platformChannelMessages.pageCount - 1
     ) {
-      dispatch(
-        fetchPlatformChannelMessages(
-          selectedPlatformChannel,
-          platformChannelMessages.platformChannelMessages.pageNumber + 1,
-          platformChannelMessages.platformChannelMessages.pageLimit
-        )
-      );
+      setshowLoadmoreLabel({ Top: false, Bottom: true });
+      setTimeout(() => {
+        dispatch(
+          fetchPlatformChannelMessages(
+            selectedPlatformChannel,
+            platformChannelMessages.platformChannelMessages.pageNumber + 1,
+            platformChannelMessages.platformChannelMessages.pageLimit
+          )
+        );
+        setshowLoadmoreLabel({ Top: false, Bottom: false });
+      }, 2000);
     }
     if (
       scrollTop === 0 &&
       platformChannelMessages.platformChannelMessages.pageNumber > 0
     ) {
-      dispatch(
-        fetchPlatformChannelMessages(
-          selectedPlatformChannel,
-          platformChannelMessages.platformChannelMessages.pageNumber - 1,
-          platformChannelMessages.platformChannelMessages.pageLimit
-        )
-      );
+      setshowLoadmoreLabel({ Top: true, Bottom: false });
+      setTimeout(() => {
+        dispatch(
+          fetchPlatformChannelMessages(
+            selectedPlatformChannel,
+            platformChannelMessages.platformChannelMessages.pageNumber - 1,
+            platformChannelMessages.platformChannelMessages.pageLimit
+          )
+        );
+        setshowLoadmoreLabel({ Top: false, Bottom: false });
+      }, 2000);
     }
   };
   useEffect(() => {
@@ -55,7 +67,7 @@ const MessagesByPlatform = ({ platformChannel, platformChannelMessages }) => {
   };
 
   return (
-    <Wrapper>
+    <div className="platform-container">
       <div className="container-fluid m-0 p-0 border-top">
         <div className="row">
           <div
@@ -79,10 +91,13 @@ const MessagesByPlatform = ({ platformChannel, platformChannelMessages }) => {
             )}
           </div>
           <div
-            className="col-8 px-0  py-5 overflow-auto"
+            className="col-8 px-0  d-flex flex-column py-5 bg-white overflow-auto flex-grow-1 me-3"
             style={{ height: "680px" }}
             onScroll={scrollHandler}
           >
+            {showLoadmoreLabel.Top && (
+              <span className="m-auto bg-light px-3 py-2 ">Loading...</span>
+            )}
             {!platformChannelMessages.loading ? (
               <MessagesByPlatformChannels
                 platformChannelMessages={platformChannelMessages}
@@ -98,10 +113,13 @@ const MessagesByPlatform = ({ platformChannel, platformChannelMessages }) => {
                 ))}
               </div>
             )}
+            {showLoadmoreLabel.Bottom && (
+              <span className="m-auto bg-light px-3 py-2 ">Loading...</span>
+            )}
           </div>
         </div>
       </div>
-    </Wrapper>
+    </div>
   );
 };
 

@@ -1,3 +1,16 @@
+:root {
+  --primary-color: #2ddfa3;
+  --wrapper-lg-side-padding: 0 4em 0 9em;
+  --wrapper-lg-top-padding: 7em;
+  --wrapper-sm-side-padding: 0 3rem;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
 html,
 body,
 div,
@@ -96,6 +109,8 @@ section {
 
 nav ul {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 blockquote,

@@ -1,0 +1,23 @@
+.button {
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 0.9rem;
+  border: none;
+  padding: 0.5em 1.5em;
+  border-radius: 30px;
+  cursor: pointer;
+  border: 1px solid var(--primary-color);
+}
+
+.button:hover {
+  background-color: rgba(45, 223, 163, 0.5);
+  color: white;
+}
+
+.button:active {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  cursor: not-allowed;
+}
+/*# sourceMappingURL=Button.css.map */

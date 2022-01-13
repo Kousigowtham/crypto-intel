@@ -1,39 +1,46 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Navbar.css";
 import { Link, useLocation } from "react-router-dom";
+import Button from "../Button/Button";
+import { useNavigate } from "react-router-dom";
 
-const Navbar = ({ style }) => {
+const Navbar = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const [show, setshow] = useState(false);
+  const navRef = useRef();
 
-  const observer = new IntersectionObserver(
-    (entities) => {
-      if (!entities[0].isIntersecting) {
-        document.getElementById("navBar-header").classList.add("nav-scroll");
-        console.log("inside");
-      } else {
-        document.getElementById("navBar-header").classList.remove("nav-scroll");
-        console.log("outside");
-      }
-    },
-    {
-      rootMargin: "-300px 0px 0px 0px",
-    }
-  );
-  const handleNavObserver = () => {
-    console.log(document.getElementById("home-container-section-1"));
-    if (document.getElementById("home-container-section-1") !== null)
-      window.onload = observer.observe(
-        document.getElementById("home-container-section-1")
-      );
-  };
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entities) => {
+        if (!entities[0].isIntersecting && navRef && navRef.current) {
+          navRef.current.classList.add("nav-scroll");
+          console.log("inside");
+        } else if (navRef && navRef.current) {
+          navRef.current.classList.remove("nav-scroll");
+          console.log("outside");
+        }
+      },
+      {
+        rootMargin: "-300px 0px 0px 0px",
+      }
+    );
+    const handleNavObserver = () => {
+      if (document.getElementById("home-container-section-1") !== null)
+        window.onload = observer.observe(
+          document.getElementById("home-container-section-1")
+        );
+    };
+    const navreference = navRef.current;
     window.addEventListener("scroll", handleNavObserver);
     return () => {
       window.removeEventListener("scroll", handleNavObserver);
+      console.log(navreference);
+      if (navreference) navreference.classList.remove("nav-scroll");
     };
-  });
+  }, []);
 
+  console.log(navRef);
   const clickHanlder = () => {
     if (!show) {
       document.getElementsByClassName("menu-item")[0].classList.add("open");
@@ -45,53 +52,56 @@ const Navbar = ({ style }) => {
       setshow((prev) => !prev);
     }
   };
+  const activeTab = window.location.pathname;
 
   return (
     <>
-      <header style={style} id="navBar-header">
-        <h1 className="logo">CRYPTO-INTEL</h1>
-        <div className="nav-items">
-          <li>
-            <Link className={location.pathname === "/" ? "active" : ""} to="/">
+      <header id="navBar-header" ref={navRef}>
+        <h2 className="logo">CRYPTO-INTEL</h2>
+        <nav className="nav-container">
+          <ul className="nav-items">
+            <li
+              className={`nav-item push-right ${activeTab === "/" && "active"}`}
+              onClick={() => navigate("/")}
+            >
               HOME
-            </Link>
-            <div />
-          </li>
-
-          <li>
-            <Link
-              className={location.pathname === "/signals" ? "active" : ""}
-              to="/signals"
+            </li>
+            <li
+              className={`nav-item ${activeTab === "/signals" && "active"}`}
+              onClick={() => navigate("/platforms")}
             >
               SIGNALS
-            </Link>
-            <div />
-          </li>
-
-          <li>
-            <Link
-              className={location.pathname === "/platforms" ? "active" : ""}
-              to="/platforms"
+            </li>
+            <li
+              className={`nav-item ${activeTab === "/platforms" && "active"}`}
+              onClick={() => navigate("/signals")}
             >
               SIGNAL ANALYSIS
-            </Link>
-            <div />
-          </li>
-
-          <li>
-            <Link
-              className={location.pathname === "/about" ? "active" : ""}
-              to="/about"
+            </li>
+            <li
+              className={`nav-item ${activeTab === "/about" && "active"}`}
+              onClick={() => navigate("/about")}
             >
               ABOUT US
-            </Link>
-            <div />
-          </li>
+            </li>
+            <li className="push-right btn-grp">
+              {activeTab !== "/login" && (
+                <Button
+                  classes="login-button"
+                  Content="Login"
+                  onClick={() => navigate("/login")}
+                />
+              )}
 
-          <div>
-            <button>SIGN UP</button>
-          </div>
-        </div>
+              {activeTab !== "/register" && (
+                <Button
+                  Content="SIGN UP"
+                  onClick={() => navigate("/register")}
+                />
+              )}
+            </li>
+          </ul>
+        </nav>
         <div className="menu-item" onClick={clickHanlder}>
           <div className="menu-item-burger"></div>
         </div>
