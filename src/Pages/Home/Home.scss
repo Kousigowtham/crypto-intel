@@ -50,6 +50,9 @@
           @media (max-width: 80rem) {
             display: block;
           }
+          @media (max-width: 830px) {
+            display: none;
+          }
         }
       }
 

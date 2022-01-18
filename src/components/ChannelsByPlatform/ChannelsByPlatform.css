@@ -1,0 +1,10 @@
+.platform-channel-container {
+  padding: 0 3rem;
+}
+
+.platform-channel-container:hover {
+  cursor: pointer;
+  background: rgba(66, 63, 62, 0.5);
+  border-radius: 15px;
+}
+/*# sourceMappingURL=ChannelsByPlatform.css.map */

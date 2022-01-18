@@ -58,6 +58,7 @@ const SignalsByChannel = ({
           fontSize: "50px",
           bottom: "5%",
           right: "5%",
+          zIndex: "99",
         }}
         onClick={() => navigate("/createSignal")}
       ></i>
@@ -100,9 +101,9 @@ const SignalsByChannel = ({
           } else orderedChannelTargets = [...channelTargetSignals];
           return (
             <>
-              <div className="container">
+              <div className="channel-container">
                 <div
-                  className="my-3 ms-5"
+                  className=" channel-signal-container ms-5"
                   onClick={() => {
                     clickHandler(signals.signal);
                   }}
@@ -198,13 +199,13 @@ const SignalsByChannel = ({
                     </div>
                   </div>
                 </div>
-                <hr />
+                <hr className="m-0" />
               </div>
             </>
           );
         })
       ) : (
-        <div className="d-flex flex-column justify-content-center align-items-center h-100">
+        <div className="d-flex flex-column justify-content-center no-content-container position-absolute align-items-center h-100">
           <i className="bi bi-chat-left-text-fill"></i>
           <p>{`${
             channel === ""

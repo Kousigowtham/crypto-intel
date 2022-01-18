@@ -1,14 +1,23 @@
+.signal-main-container {
+  background-color: rgba(104, 104, 255, 0.8);
+  padding: 3rem 5rem;
+}
+
 .signal-container {
-  margin: 3rem 5rem;
   -webkit-box-shadow: 2px 2px 10px black;
           box-shadow: 2px 2px 10px black;
+  background: #2b2b2b;
+  color: whitesmoke;
 }
 
 .signal-container .search-container {
   position: fixed;
   max-width: 1000px;
   z-index: 2;
-  background-color: white;
+}
+
+.signal-container .channel-column-container {
+  border-right: 1px solid whitesmoke;
 }
 
 .bi-plus::before {

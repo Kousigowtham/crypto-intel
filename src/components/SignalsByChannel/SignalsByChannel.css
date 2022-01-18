@@ -1,4 +1,21 @@
 .card-container:hover {
   cursor: pointer;
 }
+
+.channel-container {
+  margin: 0 2rem;
+}
+
+.channel-container:hover {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.channel-container .channel-signal-container {
+  padding: 1rem;
+}
+
+.no-content-container {
+  left: 35%;
+  bottom: 0%;
+}
 /*# sourceMappingURL=SignalsByChannel.css.map */

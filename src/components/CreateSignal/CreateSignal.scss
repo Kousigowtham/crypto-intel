@@ -1,0 +1,16 @@
+.create-signal-main-container {
+  padding: 3rem 0 3rem 2rem;
+
+  background-color: rgba(0, 0, 0, 0.5);
+  .create-signal-container {
+    padding: 5rem !important;
+    box-shadow: 0 2px 10px black;
+    background-color: white;
+
+    .header-container {
+      h5 {
+        font-size: 2rem;
+      }
+    }
+  }
+}

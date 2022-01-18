@@ -28,38 +28,38 @@ const Channles = ({ METADATA, selectChannelHandler }) => {
             channels
           </span>
         </div>
-        {!METADATA.loading
-          ? METADATA?.metaData?.channelList?.map((channel, index) => {
-              return (
-                <div
-                  key={channel.name + index}
-                  className={
-                    "pt-3 pb-2 ps-4 mx-3  text-secondary channel-container"
-                  }
-                  style={
-                    accordion
-                      ? {
-                          display: "none",
-                        }
-                      : {}
-                  }
-                  onClick={() => {
-                    selectChannelHandler(channel.name);
-                  }}
-                >
-                  <p className="fs-6 font-monospace">
-                    <span className="ms-3 me-2">#</span>
-                    {channel.name}
-                  </p>
+        <div className="channel-main-container">
+          {!METADATA.loading
+            ? METADATA?.metaData?.channelList?.map((channel, index) => {
+                return (
+                  <div
+                    key={channel.name + index}
+                    className={"pt-3 pb-3 ps-4 ms-3 channel-container"}
+                    style={
+                      accordion
+                        ? {
+                            display: "none",
+                          }
+                        : {}
+                    }
+                    onClick={() => {
+                      selectChannelHandler(channel.name);
+                    }}
+                  >
+                    <div className="fs-6 font-monospace">
+                      <span className="ms-3 me-2">#</span>
+                      {channel.name}
+                    </div>
+                  </div>
+                );
+              })
+            : [1, 2, 3, 4, 5].map((index) => (
+                <div key={index}>
+                  <SkeletonChannel />
+                  <hr />
                 </div>
-              );
-            })
-          : [1, 2, 3, 4, 5].map((index) => (
-              <div key={index}>
-                <SkeletonChannel />
-                <hr />
-              </div>
-            ))}
+              ))}
+        </div>
       </div>
     </>
   );

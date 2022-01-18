@@ -76,6 +76,10 @@ header .nav-container .nav-items .btn-grp {
   gap: 2rem;
 }
 
+header .nav-container .nav-items .btn-grp .userData {
+  margin-top: 0.5rem;
+}
+
 header .nav-container .nav-items .btn-grp .login-button {
   background-color: transparent;
   color: var(--primary-color);

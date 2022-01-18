@@ -3,3 +3,17 @@
     cursor: pointer;
   }
 }
+.channel-container {
+  margin: 0 2rem;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.2) !important;
+  }
+
+  .channel-signal-container {
+    padding: 1rem;
+  }
+}
+.no-content-container {
+  left: 35%;
+  bottom: 0%;
+}

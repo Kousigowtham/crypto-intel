@@ -2,6 +2,7 @@ import React from "react";
 import { Field, ErrorMessage, FieldArray } from "formik";
 import { connect } from "react-redux";
 import Dropdown from "../Dropdown/Dropdown";
+import "./SignalForm.css";
 
 const SignalForm = ({
   METADATA,
@@ -11,13 +12,13 @@ const SignalForm = ({
   disabled,
 }) => {
   return (
-    <>
-      <div className="d-flex mb-2  justify-content-between">
+    <div className="d-flex flex-column gap-4">
+      <div className="d-flex mb-2 flex-wrap justify-content-between">
         <div className="me-2 flex-fill">
           <label htmlFor="channel">Channel</label>
           <Field
             as="select"
-            className="form-select"
+            className="form-select "
             id="channel"
             name="channel"
           >
@@ -34,35 +35,35 @@ const SignalForm = ({
           </Field>
           <ErrorMessage name="channel">
             {(error) => (
-              <div className="text-danger" style={{ fontSize: "0.5rem" }}>
+              <div className="text-danger" style={{ fontSize: "0.7rem" }}>
                 {error}
               </div>
             )}
           </ErrorMessage>
         </div>
-        <div className="">
+        <div className="flex-fill">
           <label htmlFor="leverage">Leverage</label>
           <Field
-            className="form-control"
+            className="form-control "
             id="leverage"
             name="leverage"
             type="text"
           />
           <ErrorMessage name="leverage">
             {(error) => (
-              <div className="text-danger" style={{ fontSize: "0.5rem" }}>
+              <div className="text-danger" style={{ fontSize: "0.7rem" }}>
                 {error}
               </div>
             )}
           </ErrorMessage>
         </div>
       </div>
-      <div className="d-flex mb-2 justify-content-between">
+      <div className="d-flex flex-wrap mb-2 justify-content-between">
         <div className="me-2 flex-fill">
           <label htmlFor="Market">Market</label>
           <Field
             as="select"
-            className="form-select"
+            className="form-select "
             id="market"
             name="market"
             type="text"
@@ -80,7 +81,7 @@ const SignalForm = ({
           </Field>
           <ErrorMessage name="market">
             {(error) => (
-              <div className="text-danger" style={{ fontSize: "0.5rem" }}>
+              <div className="text-danger" style={{ fontSize: "0.7rem" }}>
                 {error}
               </div>
             )}
@@ -101,7 +102,7 @@ const SignalForm = ({
             <option value="dsds">dsds</option>
             <ErrorMessage name="coin">
               {(error) => (
-                <div className="text-danger" style={{ fontSize: "0.5rem" }}>
+                <div className="text-danger" style={{ fontSize: "0.7rem" }}>
                   {error}
                 </div>
               )}
@@ -115,23 +116,23 @@ const SignalForm = ({
           />
         </div>
       </div>
-      <div className="mb-2 ">
+      <div className="mb-2">
         <label htmlFor="buyPrice">BuyPrice</label>
         <Field
           id="buyPrice"
-          className="form-control"
+          className="form-control "
           name="buyPrice"
           type="number"
         />
         <ErrorMessage name="buyPrice">
           {(error) => (
-            <div className="text-danger" style={{ fontSize: "0.5rem" }}>
+            <div className="text-danger" style={{ fontSize: "0.7rem" }}>
               {error}
             </div>
           )}
         </ErrorMessage>
       </div>
-      <div className="bg-light p-4 position-relative">
+      <div className="bg-light text-black p-4 position-relative">
         <label htmlFor="targetDetails">Target Details</label>
         <FieldArray name="targetDetails" id="targetDetails">
           {(fieldArrayProps) => {
@@ -166,7 +167,7 @@ const SignalForm = ({
 
                       <Field
                         as="select"
-                        className="form-select"
+                        className="form-select "
                         id="targetType"
                         name={`targetDetails[${index}].targetType`}
                       >
@@ -191,7 +192,7 @@ const SignalForm = ({
                       </label>
                       <Field
                         type="number"
-                        className="form-control"
+                        className="form-control "
                         style={{ width: "6rem" }}
                         id="tagerValue"
                         name={`targetDetails[${index}].targetValue`}
@@ -205,7 +206,7 @@ const SignalForm = ({
                         Unit
                       </label>
                       <Field
-                        className="form-control bg-light"
+                        className="form-control"
                         style={{ width: "2.5rem" }}
                         id="targetValueUnit"
                         value="%"
@@ -233,7 +234,7 @@ const SignalForm = ({
       <div className="mb-2 ">
         <label htmlFor="date">Signal Date</label>
         <Field
-          className="form-control"
+          className="form-control "
           id="date"
           name="date"
           format="DD-MM-YYYYThh:mm"
@@ -241,13 +242,13 @@ const SignalForm = ({
         />
         <ErrorMessage name="date">
           {(error) => (
-            <div className="text-danger" style={{ fontSize: "0.5rem" }}>
+            <div className="text-danger" style={{ fontSize: "0.7rem" }}>
               {error}
             </div>
           )}
         </ErrorMessage>
       </div>
-    </>
+    </div>
   );
 };
 

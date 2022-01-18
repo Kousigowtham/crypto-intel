@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import "./ChannelsByPlatform.css";
 
 const ChannelsByPlatform = ({
   platformChannelList,
@@ -21,9 +22,9 @@ const ChannelsByPlatform = ({
                   const platformName = platform.name;
                   console.log(accordion[platformName]);
                   return (
-                    <>
+                    <div className="mb-3">
                       <div
-                        className="d-flex align-items-center "
+                        className="d-flex align-items-center"
                         onClick={() =>
                           setaccordion((prevState) => ({
                             ...prevState,
@@ -48,6 +49,7 @@ const ChannelsByPlatform = ({
                         style={{
                           listStyle: "none",
                           display: accordion[platformName] ? "none" : "",
+                          padding: "0",
                         }}
                       >
                         {platformChannelList
@@ -55,7 +57,7 @@ const ChannelsByPlatform = ({
                           .map((platformChannel, index) => {
                             return (
                               <li
-                                className="pt-3 pb-2 ps-4 mx-3  text-secondary"
+                                className="py-3 platform-channel-container text-secondary"
                                 key={platformChannel.id}
                                 onClick={() =>
                                   selectedPlatformChannelHandler(
@@ -68,7 +70,7 @@ const ChannelsByPlatform = ({
                             );
                           })}
                       </ul>
-                    </>
+                    </div>
                   );
                 })
               : null}

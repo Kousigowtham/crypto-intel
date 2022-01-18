@@ -8,7 +8,8 @@ import { SET_SIGNALDATA_ACTION, UPDATE_SIGNAL_ACTION } from "../../actions";
 import { useDispatch } from "react-redux";
 import { fetchSignalList } from "../../reducers/signalListReducer";
 import { useNavigate } from "react-router-dom";
-import { Wrapper } from "../components.styles";
+import Divider from "../Divider/Divider";
+import "./CreateSignal.css";
 
 const initialValues = {
   channel: "",
@@ -48,6 +49,7 @@ const CreateSignal = ({
     name: "Select Coin",
     id: "",
   }));
+
   useEffect(() => {
     if (SIGNALDATA !== null) {
       if (SIGNALDATA?.channel !== "") setselected(SIGNALDATA.coinDetail);
@@ -167,34 +169,36 @@ const CreateSignal = ({
       id: "",
     });
   };
+
   return (
-    <Wrapper>
-      <div className="pt-5 bg-secondary min-vh-100">
-        <div className="container bg-white w-50 py-5 px-4 rounded">
-          <div>
-            <h5>
-              {`${UPDATESIGNAL ? "Update the Signal" : "Create a new Signal!"}`}
-            </h5>
-          </div>
-          <div>
-            <Formik
-              initialValues={SIGNALDATA || initialValues}
-              onSubmit={SumbitHandler}
-              validationSchema={validation}
-              enableReinitialize
-            >
-              {(formik) => {
-                return (
-                  <Form>
-                    <SignalForm
-                      SumbitHandler={SumbitHandler}
-                      selected={selected}
-                      disabled={formik.values.market === "" ? true : false}
-                      setselected={setselected}
-                      coinList={COINLIST?.coinList?.filter(
-                        (x) => x.market === formik.values.market
-                      )}
-                    />
+    <div className="create-signal-main-container">
+      <div className="container w-100 d-flex flex-column rounded create-signal-container">
+        <div className="header-container">
+          <h5>
+            {`${UPDATESIGNAL ? "Update the Signal" : "Create a new Signal!"}`}
+          </h5>
+        </div>
+        <Divider />
+        <div>
+          <Formik
+            initialValues={SIGNALDATA || initialValues}
+            onSubmit={SumbitHandler}
+            validationSchema={validation}
+            enableReinitialize
+          >
+            {(formik) => {
+              return (
+                <Form>
+                  <SignalForm
+                    SumbitHandler={SumbitHandler}
+                    selected={selected}
+                    disabled={formik.values.market === "" ? true : false}
+                    setselected={setselected}
+                    coinList={COINLIST?.coinList?.filter(
+                      (x) => x.market === formik.values.market
+                    )}
+                  />
+                  <div className="mt-5">
                     <button
                       type="reset"
                       className="btn btn-outline-secondary px-4 me-4"
@@ -230,14 +234,14 @@ const CreateSignal = ({
                     >
                       {formik.isSubmitting ? "Saving..." : "Save"}
                     </button>
-                  </Form>
-                );
-              }}
-            </Formik>
-          </div>
+                  </div>
+                </Form>
+              );
+            }}
+          </Formik>
         </div>
       </div>
-    </Wrapper>
+    </div>
   );
 };
 

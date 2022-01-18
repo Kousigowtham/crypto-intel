@@ -81,17 +81,17 @@ const Signals = ({ signalList, METADATA, coinList }) => {
   }, [dispatch]);
 
   return (
-    <div className="signal-container">
-      <div className="container-fluid m-0 p-0 border-top">
+    <div className="signal-main-container">
+      <div className="signal-container">
         <div className="row">
           <div
-            className="col-3 p-0 overflow-auto bg-light"
+            className="col-3 channel-column-container my-1 p-0 overflow-auto"
             style={{ height: "680px" }}
           >
             <Channles selectChannelHandler={selectedChannelHandler} />
           </div>
           <div
-            className="col-8 p-0 overflow-auto flex-grow-1 bg-white"
+            className="col-8 p-0 overflow-auto flex-grow-1 position-relative"
             style={{ height: "680px" }}
           >
             <div className="d-flex ps-4 py-2">
@@ -173,7 +173,7 @@ const Signals = ({ signalList, METADATA, coinList }) => {
                   Search
                 </button>
                 <button
-                  className="btn btn-outline-dark mt-4 px-3"
+                  className="btn btn-outline-light mt-4 px-3"
                   onClick={() => {
                     setsearch({ from: "", to: "" });
                     setmarket("");

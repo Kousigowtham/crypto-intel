@@ -1,7 +1,7 @@
 .account-bg {
   min-height: 100vh;
   min-width: 100%;
-  background: #6868ff;
+  background: rgba(104, 104, 255, 0.8);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -23,6 +23,14 @@
 .account-bg .login-container .form-container {
   position: relative;
   margin: 0 5rem 0 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1.5rem;
 }
 
 @media (max-width: 500px) {
@@ -77,37 +85,5 @@
 .account-bg .login-container .btn-signin:hover {
   background: rgba(79, 79, 248, 0.5);
   color: white;
-}
-
-.account-bg .input-container {
-  color: #b9bbbe;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-.account-bg .input-container label {
-  font-size: 0.7rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
-.account-bg .input-container input {
-  background: #303339;
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 0.25rem 1rem;
-  margin-bottom: 2rem;
-  width: 100%;
-  color: whitesmoke;
-}
-
-.account-bg .input-container input:focus {
-  outline: none;
-  border: 1px solid #0187bd;
 }
 /*# sourceMappingURL=Account.css.map */

@@ -77,6 +77,12 @@
   }
 }
 
+@media (max-width: 830px) {
+  .home-container .home-section-1 .section-1-container .business_man_container .business-man {
+    display: none;
+  }
+}
+
 .home-container .home-section-1 .section-1-container .button {
   padding: 1em 2em;
 }

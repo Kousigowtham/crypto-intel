@@ -8,9 +8,27 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [show, setshow] = useState(false);
+  const [currentUser, setcurrentUser] = useState("");
   const navRef = useRef();
 
+  const HandleLogOut = () => {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (currentUser)
+      localStorage.setItem(
+        "currentUser",
+        JSON.stringify({ ...currentUser, loggedIn: false })
+      );
+    setcurrentUser("");
+    navigate("/login");
+  };
+
   useEffect(() => {
+    const userData = localStorage.getItem("currentUser");
+    if (userData) {
+      console.log(JSON.parse(userData));
+      setcurrentUser(JSON.parse(userData));
+    }
+
     const observer = new IntersectionObserver(
       (entities) => {
         if (!entities[0].isIntersecting && navRef && navRef.current) {
@@ -84,22 +102,33 @@ const Navbar = () => {
             >
               ABOUT US
             </li>
-            <li className="push-right btn-grp">
-              {activeTab !== "/login" && (
+            {!currentUser.loggedIn ? (
+              <li className="push-right btn-grp">
+                {activeTab !== "/login" && (
+                  <Button
+                    classes="login-button"
+                    Content="Login"
+                    onClick={() => navigate("/login")}
+                  />
+                )}
+
+                {activeTab !== "/register" && (
+                  <Button
+                    Content="SIGN UP"
+                    onClick={() => navigate("/register")}
+                  />
+                )}
+              </li>
+            ) : (
+              <ul className="push-right btn-grp">
+                <li className="userData">{currentUser.name}</li>
                 <Button
                   classes="login-button"
-                  Content="Login"
-                  onClick={() => navigate("/login")}
+                  Content="Logout"
+                  onClick={HandleLogOut}
                 />
-              )}
-
-              {activeTab !== "/register" && (
-                <Button
-                  Content="SIGN UP"
-                  onClick={() => navigate("/register")}
-                />
-              )}
-            </li>
+              </ul>
+            )}
           </ul>
         </nav>
         <div className="menu-item" onClick={clickHanlder}>
@@ -109,48 +138,44 @@ const Navbar = () => {
       {show && (
         <div className="menu-item-nav-list">
           <li>
-            <Link
-              className={location.pathname === "/" ? "active" : ""}
-              to="/"
-              onClick={clickHanlder}
-            >
+            <Link to="/" onClick={clickHanlder}>
               HOME
             </Link>
             <div />
           </li>
 
           <li>
-            <Link
-              className={location.pathname === "/signals" ? "active" : ""}
-              onClick={clickHanlder}
-              to="/signals"
-            >
+            <Link onClick={clickHanlder} to="/signals">
               SIGNALS
             </Link>
             <div />
           </li>
 
           <li>
-            <Link
-              className={location.pathname === "/platforms" ? "active" : ""}
-              onClick={clickHanlder}
-              to="/platforms"
-            >
+            <Link onClick={clickHanlder} to="/platforms">
               SIGNAL ANALYSIS
             </Link>
             <div />
           </li>
 
           <li>
-            <Link
-              className={location.pathname === "/about" ? "active" : ""}
-              onClick={clickHanlder}
-              to="/about"
-            >
+            <Link onClick={clickHanlder} to="/about">
               ABOUT US
             </Link>
             <div />
           </li>
+          {currentUser ? (
+            <li onClick={HandleLogOut}>
+              <Link to="/">Logout</Link>
+            </li>
+          ) : (
+            <>
+              <li>
+                <Link to="/login">SIGNIN</Link>
+                <div />
+              </li>
+            </>
+          )}
         </div>
       )}
     </>

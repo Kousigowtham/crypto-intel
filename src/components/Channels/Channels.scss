@@ -12,7 +12,9 @@
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 0, 0, 0.3);
 }
-
+.channel-list-container {
+  color: whitesmoke;
+}
 .accordion-container {
   &:hover {
     cursor: pointer;
@@ -24,11 +26,14 @@
   background: rgba($color: rgb(5, 4, 51), $alpha: 0.1);
   border-radius: 15px;
 }
+
+.channel-main-container {
+  margin-top: 1rem;
+}
 .channel-container {
   &:hover {
     cursor: pointer;
-    color: black !important;
-    background: rgba($color: rgb(5, 4, 51), $alpha: 0.1);
+    background: rgba(66, 63, 62, 0.5);
     border-radius: 15px;
   }
 }

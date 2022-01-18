@@ -3,9 +3,92 @@ import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import "./Account.css";
 import { useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+const signInInitialValue = {
+  email: "",
+  username: "",
+  password: "",
+};
+
+const signUpInitialValue = {
+  email: "",
+  username: "",
+  password: "",
+  confirmPassword: "",
+};
+
+const validationSchemaSignIn = Yup.object({
+  email: Yup.string().email("Invalid email").required("* Required"),
+  username: Yup.string().required("* Required"),
+  password: Yup.string().required("* Required"),
+});
+
+const validationSchemaSignUp = Yup.object({
+  email: Yup.string().email("Invalid email").required("* Required"),
+  username: Yup.string().required("* Required"),
+  password: Yup.string().required("* Required"),
+  confirmPassword: Yup.string().required("* Required"),
+});
+
+const onSubmitSignIn = (values, formikBag, navigate) => {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  if (currentUser && !currentUser.loggedIn) {
+    if (
+      currentUser.name === values.username &&
+      currentUser.email === values.email
+    ) {
+      localStorage.removeItem("currentUser");
+      localStorage.setItem(
+        "currentUser",
+        JSON.stringify({
+          name: values.username,
+          email: values.email,
+          loggedIn: true,
+        })
+      );
+      navigate("/platforms");
+    } else {
+      alert("Account doesn't Exists, Register to proceed!");
+      return;
+    }
+  }
+};
+
+const onSubmitSignUp = (values, formikBag, navigate) => {
+  console.log(formikBag);
+  const currentUser = localStorage.getItem("currentUser");
+  if (currentUser) {
+    alert("Account Exists, Login to proceed!");
+    navigate("/login");
+    return;
+  }
+  if (values.password === values.confirmPassword) {
+    localStorage.setItem(
+      "currentUser",
+      JSON.stringify({
+        name: values.username,
+        email: values.email,
+        loggedIn: true,
+      })
+    );
+    navigate("/platforms");
+  } else {
+    formikBag.setFieldError(
+      "confirmPassword",
+      "confirm password does not match with password"
+    );
+  }
+};
 
 export const Login = () => {
   const navigate = useNavigate();
+  const formik = useFormik({
+    initialValues: signInInitialValue,
+    validationSchema: validationSchemaSignIn,
+    onSubmit: (values, formikBag) =>
+      onSubmitSignIn(values, formikBag, navigate),
+  });
 
   return (
     <div className="account-bg">
@@ -14,30 +97,33 @@ export const Login = () => {
           <div>Welcome back!</div>
           <p>We're excited to see you again!</p>
         </div>
-        <form className="form-container">
+        <form className="form-container" onSubmit={formik.handleSubmit}>
           <Input
+            id="email"
+            name="email"
             type="email"
             label="EMAIL"
-            classes="input-container"
-            required
+            formik={formik}
           />
           <Input
+            id="username"
+            name="username"
             type="text"
             label="USERNAME"
-            classes="input-container"
-            required
+            formik={formik}
           />
           <Input
+            id="password"
+            name="password"
             type="password"
             label="PASSWORD"
-            classes="input-container"
-            required
+            formik={formik}
           />
           <Button
             type="submit"
             Content="Sign In"
             classes="btn-signin"
-            onClick={() => navigate("/")}
+            // onClick={() => navigate("/")}
           />
         </form>
         <p className="account-helper">
@@ -51,6 +137,13 @@ export const Login = () => {
 
 export const Signup = () => {
   const navigate = useNavigate();
+  const formik = useFormik({
+    initialValues: signUpInitialValue,
+    validationSchema: validationSchemaSignUp,
+    onSubmit: (values, formikBag) =>
+      onSubmitSignUp(values, formikBag, navigate),
+  });
+
   return (
     <div className="account-bg register">
       <div className="login-container">
@@ -58,36 +151,40 @@ export const Signup = () => {
           <div>Create an account</div>
           <p>Explore the signals!</p>
         </div>
-        <form className="form-container">
+        <form className="form-container" onSubmit={formik.handleSubmit}>
           <Input
+            id="email"
+            name="email"
             type="email"
             label="EMAIL"
-            classes="input-container"
-            required
+            formik={formik}
           />
           <Input
+            id="username"
+            name="username"
             type="text"
             label="USERNAME"
-            classes="input-container"
-            required
+            formik={formik}
           />
           <Input
+            id="password"
+            name="password"
             type="password"
             label="PASSWORD"
-            classes="input-container"
-            required
+            formik={formik}
           />
           <Input
+            id="confirmPassword"
+            name="confirmPassword"
             type="password"
             label="CONFIRM PASSWORD"
-            classes="input-container"
-            required
+            formik={formik}
           />
           <Button
             type="submit"
             Content="Sign Up"
             classes="btn-signin"
-            onClick={() => navigate("/")}
+            // onClick={() => navigate("/")}
           />
         </form>
         <p className="account-helper">
