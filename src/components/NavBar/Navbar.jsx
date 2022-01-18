@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Navbar.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Button from "../Button/Button";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const [show, setshow] = useState(false);
   const [currentUser, setcurrentUser] = useState("");
   const navRef = useRef();
