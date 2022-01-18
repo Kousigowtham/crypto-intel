@@ -84,14 +84,11 @@ const Signals = ({ signalList, METADATA, coinList }) => {
     <div className="signal-main-container">
       <div className="signal-container">
         <div className="row">
-          <div
-            className="col-3 channel-column-container my-1 p-0 overflow-auto"
-            style={{ height: "680px" }}
-          >
+          <div className="col-3 channel-column-container my-1 p-0 overflow-auto">
             <Channles selectChannelHandler={selectedChannelHandler} />
           </div>
           <div
-            className="col-8 p-0 overflow-auto flex-grow-1 position-relative"
+            className="col-8 p-0 overflow-auto flex-grow-1 position-relative "
             style={{ height: "680px" }}
           >
             <div className="d-flex ps-4 py-2">
@@ -151,7 +148,7 @@ const Signals = ({ signalList, METADATA, coinList }) => {
                         : null}
                     </select>
                   </div>
-                  <div className="d-flex flex-column">
+                  <div className="d-flex flex-column me-2">
                     <label htmlFor="searchCoin">Coin</label>
                     <Dropdown
                       selectHandler={setselected}
@@ -168,7 +165,7 @@ const Signals = ({ signalList, METADATA, coinList }) => {
                   disabled={
                     search.from !== "" && search.to === "" ? true : false
                   }
-                  className="btn btn-light mt-4 px-3 me-4"
+                  className="btn btn-primary mt-4 px-3 me-4"
                 >
                   Search
                 </button>

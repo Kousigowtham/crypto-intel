@@ -3,11 +3,25 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+@media (max-width: 650px) {
+  .create-signal-main-container {
+    padding: 0;
+  }
+}
+
 .create-signal-main-container .create-signal-container {
   padding: 5rem !important;
   -webkit-box-shadow: 0 2px 10px black;
           box-shadow: 0 2px 10px black;
   background-color: white;
+}
+
+@media (max-width: 650px) {
+  .create-signal-main-container .create-signal-container {
+    padding: 0 1rem 0 2rem !important;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
 }
 
 .create-signal-main-container .create-signal-container .header-container h5 {

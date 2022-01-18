@@ -70,10 +70,7 @@ const MessagesByPlatform = ({ platformChannel, platformChannelMessages }) => {
     <div className="platform-main-container">
       <div className="platform-container">
         <div className="row">
-          <div
-            className="col-3 p-0 my-1 overflow-auto platform-channel-column-container"
-            style={{ height: "680px" }}
-          >
+          <div className="col-3 p-0 my-1 overflow-auto platform-channel-column-container">
             {!platformChannel.loading ? (
               <ChannelsByPlatform
                 platformChannelList={platformChannel.platformChannel}

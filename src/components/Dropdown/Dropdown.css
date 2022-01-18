@@ -2,4 +2,26 @@
   border: none;
   outline: none;
 }
+
+.inner-dropdown {
+  min-width: 20rem;
+}
+
+@media (max-width: 700px) {
+  .inner-dropdown {
+    min-width: 10rem;
+  }
+}
+
+.inner-dropdown-menu {
+  width: 20rem;
+  height: 20rem;
+}
+
+@media (max-width: 700px) {
+  .inner-dropdown-menu {
+    width: 10rem;
+    height: 10rem;
+  }
+}
 /*# sourceMappingURL=Dropdown.css.map */

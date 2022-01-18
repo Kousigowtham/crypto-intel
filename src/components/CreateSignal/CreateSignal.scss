@@ -1,11 +1,24 @@
 .create-signal-main-container {
   padding: 3rem 0 3rem 2rem;
 
+  @media (max-width: 650px) {
+    & {
+      padding: 0;
+    }
+  }
+
   background-color: rgba(0, 0, 0, 0.5);
   .create-signal-container {
     padding: 5rem !important;
     box-shadow: 0 2px 10px black;
     background-color: white;
+
+    @media (max-width: 650px) {
+      & {
+        padding: 0 1rem 0 2rem !important;
+        box-shadow: none;
+      }
+    }
 
     .header-container {
       h5 {

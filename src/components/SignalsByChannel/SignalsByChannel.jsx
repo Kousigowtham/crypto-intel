@@ -49,7 +49,7 @@ const SignalsByChannel = ({
   };
 
   return (
-    <>
+    <div className="h-100 position-relative">
       <i
         className="bi bi-plus m-4 text-center rounded-circle position-absolute text-white bg-success plus"
         style={{
@@ -205,7 +205,7 @@ const SignalsByChannel = ({
           );
         })
       ) : (
-        <div className="d-flex flex-column justify-content-center no-content-container position-absolute align-items-center h-100">
+        <div className="d-flex flex-column justify-content-center align-items-center h-100">
           <i className="bi bi-chat-left-text-fill"></i>
           <p>{`${
             channel === ""
@@ -214,7 +214,7 @@ const SignalsByChannel = ({
           }`}</p>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
