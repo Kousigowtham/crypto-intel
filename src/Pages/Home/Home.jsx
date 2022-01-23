@@ -294,7 +294,7 @@ const Home = () => {
         </Wrapper>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100">
           <path
-            fill="#0274be"
+            fill="#5C7AFF"
             fill-opacity="1"
             d="M0,64L1440,96L1440,0L0,0Z"
           ></path>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { connect, useDispatch } from "react-redux";
 import { fetchPlatformChannelMessages } from "../../reducers/platformChannelMessagesReducer";
 import { fetchPlatformChannel } from "../../reducers/platformChannelReducer";
@@ -11,6 +11,7 @@ import "./Platform.css";
 const MessagesByPlatform = ({ platformChannel, platformChannelMessages }) => {
   const dispatch = useDispatch();
   const [selectedPlatformChannel, setselectedPlatformChannel] = useState("");
+  const PlatformMessageRef = useRef();
   const [showLoadmoreLabel, setshowLoadmoreLabel] = useState({
     Bottom: false,
     Top: false,
@@ -19,11 +20,14 @@ const MessagesByPlatform = ({ platformChannel, platformChannelMessages }) => {
   const scrollHandler = (event) => {
     const { scrollTop, clientHeight, scrollHeight } = event.currentTarget;
 
-    console.log(platformChannelMessages);
+    console.log(scrollTop, "scrollTop");
+    console.log(clientHeight, "clientHeight");
+    console.log(scrollHeight, "scrollHeight");
+
     if (
-      scrollHeight - scrollTop === clientHeight &&
-      platformChannelMessages.platformChannelMessages.pageNumber <
-        platformChannelMessages.platformChannelMessages.pageCount - 1
+      Math.round(scrollHeight - scrollTop) === clientHeight &&
+      platformChannelMessages?.platformChannelMessages?.pageNumber <
+        platformChannelMessages?.platformChannelMessages?.pageCount - 1
     ) {
       setshowLoadmoreLabel({ Top: false, Bottom: true });
       setTimeout(() => {
@@ -39,7 +43,7 @@ const MessagesByPlatform = ({ platformChannel, platformChannelMessages }) => {
     }
     if (
       scrollTop === 0 &&
-      platformChannelMessages.platformChannelMessages.pageNumber > 0
+      platformChannelMessages?.platformChannelMessages?.pageNumber > 0
     ) {
       setshowLoadmoreLabel({ Top: true, Bottom: false });
       setTimeout(() => {
@@ -59,6 +63,9 @@ const MessagesByPlatform = ({ platformChannel, platformChannelMessages }) => {
   }, [dispatch, selectedPlatformChannel]);
 
   useEffect(() => {
+    if (platformChannelMessages) PlatformMessageRef.current.scrollTop = 50;
+  }, [platformChannelMessages]);
+  useEffect(() => {
     dispatch(fetchPlatformChannel());
   }, [dispatch]);
 
@@ -67,54 +74,50 @@ const MessagesByPlatform = ({ platformChannel, platformChannelMessages }) => {
   };
 
   return (
-    <div className="platform-main-container">
-      <div className="platform-container">
-        <div className="row">
-          <div className="col-3 p-0 my-1 overflow-auto platform-channel-column-container">
-            {!platformChannel.loading ? (
-              <ChannelsByPlatform
-                platformChannelList={platformChannel.platformChannel}
-                selectedPlatformChannelHandler={selectedPlatformChannelHandler}
-              />
-            ) : (
-              <div className="d-flex container flex-column justify-content-between">
-                {[1, 2, 3, 4, 5].map((index) => (
-                  <div key={index}>
-                    <SkeletonChannel />
-                    <hr />
-                  </div>
-                ))}
+    <div className="platform-container">
+      <div className="col-3  platform-channel-column-container">
+        {!platformChannel.loading ? (
+          <ChannelsByPlatform
+            platformChannelList={platformChannel.platformChannel}
+            selectedPlatformChannelHandler={selectedPlatformChannelHandler}
+          />
+        ) : (
+          <div className="d-flex container flex-column justify-content-between">
+            {[1, 2, 3, 4, 5].map((index) => (
+              <div key={index}>
+                <SkeletonChannel />
+                <hr />
               </div>
-            )}
+            ))}
           </div>
-          <div
-            className="col-8 px-0  d-flex flex-column py-5 overflow-auto flex-grow-1"
-            style={{ height: "680px" }}
-            onScroll={scrollHandler}
-          >
-            {showLoadmoreLabel.Top && (
-              <span className="m-auto px-3 py-2 ">Loading...</span>
-            )}
-            {!platformChannelMessages.loading ? (
-              <MessagesByPlatformChannels
-                platformChannelMessages={platformChannelMessages}
-                selectedPlatformChannel={selectedPlatformChannel}
-              />
-            ) : (
-              <div className="d-flex container flex-column justify-content-between">
-                {[1, 2, 3, 4, 5].map((index) => (
-                  <div key={index}>
-                    <SkeletonSignal />
-                    <hr />
-                  </div>
-                ))}
+        )}
+      </div>
+      <div
+        className="col-8 platform-message-column-container"
+        onScroll={scrollHandler}
+        ref={PlatformMessageRef}
+      >
+        {showLoadmoreLabel.Top && (
+          <span className="m-auto px-3 py-2 ">Loading...</span>
+        )}
+        {!platformChannelMessages.loading ? (
+          <MessagesByPlatformChannels
+            platformChannelMessages={platformChannelMessages}
+            selectedPlatformChannel={selectedPlatformChannel}
+          />
+        ) : (
+          <div className="d-flex container flex-column justify-content-between">
+            {[1, 2, 3, 4, 5].map((index) => (
+              <div key={index}>
+                <SkeletonSignal />
+                <hr />
               </div>
-            )}
-            {showLoadmoreLabel.Bottom && (
-              <span className="m-auto px-3 py-2 ">Loading...</span>
-            )}
+            ))}
           </div>
-        </div>
+        )}
+        {showLoadmoreLabel.Bottom && (
+          <span className="m-auto px-3 py-2 ">Loading...</span>
+        )}
       </div>
     </div>
   );

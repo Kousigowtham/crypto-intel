@@ -2,7 +2,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background: #3737c1;
+  background: var(--primary-color-1);
   color: white;
   padding-bottom: 5rem;
   border-bottom-right-radius: 10%;
@@ -305,7 +305,7 @@
 }
 
 .xtra-section {
-  background: #0274be;
+  background: var(--primary-color-1);
   color: white;
 }
 
@@ -495,7 +495,7 @@ footer .grid .grid-col-4 h4 {
 .subscribe-container .btn-subs {
   font-size: 1rem;
   padding: 0.5rem 2rem;
-  background: #0274be;
+  background: var(--primary-color-1);
   border: none;
 }
 
@@ -509,6 +509,6 @@ footer .grid .grid-col-4 h4 {
 
 .subscribe-container input[type="email"]:focus {
   border: none;
-  outline: 2px solid #8dd1ff;
+  outline: 2px solid var(--primary-color-3);
 }
 /*# sourceMappingURL=Home.css.map */

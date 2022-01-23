@@ -1,19 +1,13 @@
-.signal-main-container {
-  background-color: rgba(104, 104, 255, 0.8);
-  padding: 3rem 5rem;
-}
-
-@media (max-width: 700px) {
-  .signal-main-container {
-    padding: 0;
-  }
-}
-
 .signal-container {
   -webkit-box-shadow: 2px 2px 10px black;
           box-shadow: 2px 2px 10px black;
   background: #2b2b2b;
   color: whitesmoke;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
 }
 
 .signal-container .search-container {
@@ -24,26 +18,17 @@
 
 .signal-container .channel-column-container {
   border-right: 1px solid whitesmoke;
-  height: 680px;
+  max-height: 100vh;
+  overflow-y: auto;
+  margin: 1rem 0;
 }
 
-@media (max-width: 1200px) {
-  .signal-container .row {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
-  .signal-container .row .col-8 {
-    width: 100%;
-  }
-  .signal-container .row .col-3 {
-    width: 100%;
-  }
-  .signal-container .channel-column-container {
-    border-right: none;
-    height: 200px;
-  }
+.signal-container .signals-column-container {
+  overflow: auto;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  margin: 1rem 0.5rem 0;
 }
 
 .bi-plus::before {
@@ -53,10 +38,11 @@
   left: 0;
 }
 
+.plus {
+  background-color: var(--primary-color-5);
+}
+
 .plus:hover {
-  text-shadow: 4px 4px 15px #fff;
-  -webkit-box-shadow: 4px 3px 15px #117416;
-          box-shadow: 4px 3px 15px #117416;
   cursor: pointer;
 }
 /*# sourceMappingURL=Signals.css.map */

@@ -172,7 +172,7 @@ const CreateSignal = ({
 
   return (
     <div className="create-signal-main-container">
-      <div className="container w-100 d-flex flex-column rounded create-signal-container">
+      <div className="container d-flex flex-column rounded create-signal-container">
         <div className="header-container">
           <h5>
             {`${UPDATESIGNAL ? "Update the Signal" : "Create a new Signal!"}`}

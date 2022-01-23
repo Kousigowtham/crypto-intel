@@ -3,7 +3,7 @@
   min-width: clamp(20vw, 400px, 100vw);
 
   background: rgba(0, 0, 0, 0.4);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.18);
 
@@ -42,7 +42,11 @@
       &:hover {
         cursor: pointer;
         background: var(--primary-color-1);
+        color: white;
       }
+    }
+    .active {
+      color: var(--primary-color-1);
     }
   }
 }

@@ -80,19 +80,21 @@ const Signals = ({ signalList, METADATA, coinList }) => {
     dispatch(fetchSignalList());
   }, [dispatch]);
 
+  console.log(signalList.signalList);
   return (
-    <div className="signal-main-container">
-      <div className="signal-container">
-        <div className="row">
-          <div className="col-3 channel-column-container my-1 p-0 overflow-auto">
-            <Channles selectChannelHandler={selectedChannelHandler} />
-          </div>
-          <div
-            className="col-8 p-0 overflow-auto flex-grow-1 position-relative "
-            style={{ height: "680px" }}
-          >
-            <div className="d-flex ps-4 py-2">
-              <form className="d-flex  flex-wrap ms-5" onSubmit={searchHandler}>
+    <div className="signal-container">
+      <div className="col-3 channel-column-container">
+        <Channles selectChannelHandler={selectedChannelHandler} />
+      </div>
+      <div className="col-8 signals-column-container ">
+        {!signalList.loading &&
+          signalList.signalList.filter(
+            (x) =>
+              x.signal.channelDetail.name === selectedChannel &&
+              x.signal.active === true
+          ).length > 0 && (
+            <div className="d-flex py-2  ms-5">
+              <form className="d-flex  flex-wrap" onSubmit={searchHandler}>
                 <div className="me-4">
                   <label htmlFor="signalFromDateTimeFilter">From</label>
                   <input
@@ -160,52 +162,53 @@ const Signals = ({ signalList, METADATA, coinList }) => {
                     />
                   </div>
                 </div>
-                <button
-                  type="submit"
-                  disabled={
-                    search.from !== "" && search.to === "" ? true : false
-                  }
-                  className="btn btn-primary mt-4 px-3 me-4"
-                >
-                  Search
-                </button>
-                <button
-                  className="btn btn-outline-light mt-4 px-3"
-                  onClick={() => {
-                    setsearch({ from: "", to: "" });
-                    setmarket("");
-                    setselected({
-                      name: "Select Coin",
-                      id: "",
-                    });
-                    dispatch(fetchSignalList());
-                  }}
-                >
-                  cancel
-                </button>
+                <div>
+                  <button
+                    type="submit"
+                    disabled={
+                      search.from !== "" && search.to === "" ? true : false
+                    }
+                    className="btn btn-primary mt-4 px-3 me-4"
+                  >
+                    Search
+                  </button>
+                  <button
+                    className="btn btn-outline-light mt-4 px-3"
+                    onClick={() => {
+                      setsearch({ from: "", to: "" });
+                      setmarket("");
+                      setselected({
+                        name: "Select Coin",
+                        id: "",
+                      });
+                      dispatch(fetchSignalList());
+                    }}
+                  >
+                    cancel
+                  </button>
+                </div>
               </form>
             </div>
-            {!signalList.loading ? (
-              <SignalsByChannel
-                channel={selectedChannel}
-                signalListByChannel={signalList.signalList.filter(
-                  (x) =>
-                    x.signal.channelDetail.name === selectedChannel &&
-                    x.signal.active === true
-                )}
-              />
-            ) : (
-              <div className="d-flex container flex-column justify-content-between">
-                {[1, 2, 3, 4, 5].map((index) => (
-                  <div key={index}>
-                    <SkeletonSignal />
-                    <hr />
-                  </div>
-                ))}
-              </div>
+          )}
+        {!signalList.loading ? (
+          <SignalsByChannel
+            channel={selectedChannel}
+            signalListByChannel={signalList.signalList.filter(
+              (x) =>
+                x.signal.channelDetail.name === selectedChannel &&
+                x.signal.active === true
             )}
+          />
+        ) : (
+          <div className="d-flex container flex-column justify-content-between">
+            {[1, 2, 3, 4, 5].map((index) => (
+              <div key={index}>
+                <SkeletonSignal />
+                <hr />
+              </div>
+            ))}
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
