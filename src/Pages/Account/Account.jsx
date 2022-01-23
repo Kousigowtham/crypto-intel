@@ -5,6 +5,8 @@ import "./Account.css";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import cryptocurrency from "../../Assets/Login/cryptocurrency.svg";
+import FocusedWorking from "../../Assets/Login/Focused Working_Isometric.svg";
 const signInInitialValue = {
   email: "",
   username: "",
@@ -91,47 +93,55 @@ export const Login = () => {
   });
 
   return (
-    <div className="account-bg">
-      <div className="login-container">
-        <div className="greeter-container">
-          <div>Welcome back!</div>
-          <p>We're excited to see you again!</p>
+    <>
+      <div className="account-bg">
+        <div className="login-main-container">
+          <div className="login-container">
+            <div className="greeter-container">
+              <div>Welcome back!</div>
+              <p>We're excited to see you again!</p>
+            </div>
+            <form className="form-container" onSubmit={formik.handleSubmit}>
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                label="EMAIL"
+                formik={formik}
+              />
+              <Input
+                id="username"
+                name="username"
+                type="text"
+                label="USERNAME"
+                formik={formik}
+              />
+              <Input
+                id="password"
+                name="password"
+                type="password"
+                label="PASSWORD"
+                formik={formik}
+              />
+              <Button
+                type="submit"
+                Content="Sign In"
+                classes="btn-signin"
+                // onClick={() => navigate("/")}
+              />
+            </form>
+            <p className="account-helper">
+              Need an account?
+              <span onClick={() => navigate("/register")}>Register</span>
+            </p>
+          </div>
+          <div className="Img-container">
+            <img className="" src={FocusedWorking} alt="" />
+          </div>
+          <i className="bi bi-paperclip paperClip"></i>
         </div>
-        <form className="form-container" onSubmit={formik.handleSubmit}>
-          <Input
-            id="email"
-            name="email"
-            type="email"
-            label="EMAIL"
-            formik={formik}
-          />
-          <Input
-            id="username"
-            name="username"
-            type="text"
-            label="USERNAME"
-            formik={formik}
-          />
-          <Input
-            id="password"
-            name="password"
-            type="password"
-            label="PASSWORD"
-            formik={formik}
-          />
-          <Button
-            type="submit"
-            Content="Sign In"
-            classes="btn-signin"
-            // onClick={() => navigate("/")}
-          />
-        </form>
-        <p className="account-helper">
-          Need an account?
-          <span onClick={() => navigate("/register")}>Register</span>
-        </p>
       </div>
-    </div>
+    </>
   );
 };
 
@@ -146,58 +156,63 @@ export const Signup = () => {
 
   return (
     <div className="account-bg register">
-      <div className="login-container">
-        <div className="greeter-container">
-          <div>Create an account</div>
-          <p>Explore the signals!</p>
+      <div className="register-main-container">
+        <div className="login-container">
+          <div className="greeter-container">
+            <div>Create an account</div>
+            <p>Explore the signals!</p>
+          </div>
+          <form className="form-container" onSubmit={formik.handleSubmit}>
+            <Input
+              id="email"
+              name="email"
+              type="email"
+              label="EMAIL"
+              formik={formik}
+            />
+            <Input
+              id="username"
+              name="username"
+              type="text"
+              label="USERNAME"
+              formik={formik}
+            />
+            <Input
+              id="password"
+              name="password"
+              type="password"
+              label="PASSWORD"
+              formik={formik}
+            />
+            <Input
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+              label="CONFIRM PASSWORD"
+              formik={formik}
+            />
+            <Button
+              type="submit"
+              Content="Sign Up"
+              classes="btn-signin"
+              // onClick={() => navigate("/")}
+            />
+          </form>
+          <p className="account-helper">
+            <span onClick={() => navigate("/login")}>
+              Already have an account?
+            </span>
+          </p>
+          <p className="account-helper">
+            By registering, you agree to Crypto-Intel's{" "}
+            <span>Terms of services</span>
+            {" and "}
+            <span> Private Policy.</span>
+          </p>
         </div>
-        <form className="form-container" onSubmit={formik.handleSubmit}>
-          <Input
-            id="email"
-            name="email"
-            type="email"
-            label="EMAIL"
-            formik={formik}
-          />
-          <Input
-            id="username"
-            name="username"
-            type="text"
-            label="USERNAME"
-            formik={formik}
-          />
-          <Input
-            id="password"
-            name="password"
-            type="password"
-            label="PASSWORD"
-            formik={formik}
-          />
-          <Input
-            id="confirmPassword"
-            name="confirmPassword"
-            type="password"
-            label="CONFIRM PASSWORD"
-            formik={formik}
-          />
-          <Button
-            type="submit"
-            Content="Sign Up"
-            classes="btn-signin"
-            // onClick={() => navigate("/")}
-          />
-        </form>
-        <p className="account-helper">
-          <span onClick={() => navigate("/login")}>
-            Already have an account?
-          </span>
-        </p>
-        <p className="account-helper">
-          By registering, you agree to Crypto-Intel's{" "}
-          <span>Terms of services</span>
-          {" and "}
-          <span> Private Policy.</span>
-        </p>
+      </div>
+      <div className="register-img-container">
+        <img className="" src={cryptocurrency} alt="" />
       </div>
     </div>
   );

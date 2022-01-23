@@ -1,20 +1,23 @@
 .sidebar-container {
   min-height: 100vh;
   min-width: clamp(20vw, 400px, 100vw);
-  background: white;
-  box-shadow: 0 5px 10px black;
-  color: black;
+
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  color: white;
   position: fixed;
   inset: 0 0 0 auto;
   z-index: 10000;
   display: flex;
   flex-direction: column;
-  animation: sidebarAnimation 0.5s forwards;
   border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;
 
   .sidebar-close {
-    color: black;
+    color: white;
     font-size: 1.5rem;
     margin-left: auto;
     align-self: flex-start;
@@ -23,25 +26,36 @@
     margin-top: 1em;
     &:hover {
       cursor: pointer;
-      background: rgba(0, 0, 0, 0.1);
+      background: var(--primary-color-1);
     }
   }
 
   .nav-list {
     padding: 0;
+    padding-top: 1rem;
     li {
       list-style: none;
-      padding: 1.5em;
-      border-radius: 10px;
+      padding: 1em;
+      i {
+        padding-right: 1rem;
+      }
       &:hover {
         cursor: pointer;
-        background: rgba(218, 218, 218, 0.5);
+        background: var(--primary-color-1);
       }
     }
   }
 }
 
-@keyframes sidebarAnimation {
+.FadeIn {
+  animation: FadeIn 0.5s forwards;
+}
+
+.FadeOut {
+  animation: FadeOut 0.5s forwards;
+}
+
+@keyframes FadeIn {
   from {
     transform: translate(100%);
   }
@@ -50,8 +64,9 @@
   }
 }
 
-@keyframes sidebarFadeOff {
+@keyframes FadeOut {
   to {
     transform: translate(100%);
+    display: none;
   }
 }

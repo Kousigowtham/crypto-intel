@@ -51,12 +51,12 @@ const SignalsByChannel = ({
   return (
     <div className="h-100 position-relative">
       <i
-        className="bi bi-plus m-4 text-center rounded-circle position-absolute text-white bg-success plus"
+        className="bi bi-plus m-4 text-center rounded-circle position-fixed text-white bg-success plus"
         style={{
           height: "50px",
           width: "50px",
           fontSize: "50px",
-          bottom: "5%",
+          bottom: "0%",
           right: "5%",
           zIndex: "99",
         }}

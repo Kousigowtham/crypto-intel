@@ -30,7 +30,7 @@ const App = () => {
           onClick={() => setshowSidebar(true)}
         ></i>
       )}
-      {showSidebar && <Sidebar setshowSidebar={setshowSidebar} />}
+      <Sidebar showSidebar={showSidebar} setshowSidebar={setshowSidebar} />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/signals" element={<Signals />} />

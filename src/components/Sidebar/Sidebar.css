@@ -1,10 +1,13 @@
 .sidebar-container {
   min-height: 100vh;
   min-width: clamp(20vw, 400px, 100vw);
-  background: white;
-  -webkit-box-shadow: 0 5px 10px black;
-          box-shadow: 0 5px 10px black;
-  color: black;
+  background: rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: white;
   position: fixed;
   inset: 0 0 0 auto;
   z-index: 10000;
@@ -15,14 +18,12 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-animation: sidebarAnimation 0.5s forwards;
-          animation: sidebarAnimation 0.5s forwards;
   border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;
 }
 
 .sidebar-container .sidebar-close {
-  color: black;
+  color: white;
   font-size: 1.5rem;
   margin-left: auto;
   -ms-flex-item-align: start;
@@ -34,25 +35,39 @@
 
 .sidebar-container .sidebar-close:hover {
   cursor: pointer;
-  background: rgba(0, 0, 0, 0.1);
+  background: var(--primary-color-1);
 }
 
 .sidebar-container .nav-list {
   padding: 0;
+  padding-top: 1rem;
 }
 
 .sidebar-container .nav-list li {
   list-style: none;
-  padding: 1.5em;
-  border-radius: 10px;
+  padding: 1em;
+}
+
+.sidebar-container .nav-list li i {
+  padding-right: 1rem;
 }
 
 .sidebar-container .nav-list li:hover {
   cursor: pointer;
-  background: rgba(218, 218, 218, 0.5);
+  background: var(--primary-color-1);
 }
 
-@-webkit-keyframes sidebarAnimation {
+.FadeIn {
+  -webkit-animation: FadeIn 0.5s forwards;
+          animation: FadeIn 0.5s forwards;
+}
+
+.FadeOut {
+  -webkit-animation: FadeOut 0.5s forwards;
+          animation: FadeOut 0.5s forwards;
+}
+
+@-webkit-keyframes FadeIn {
   from {
     -webkit-transform: translate(100%);
             transform: translate(100%);
@@ -63,7 +78,7 @@
   }
 }
 
-@keyframes sidebarAnimation {
+@keyframes FadeIn {
   from {
     -webkit-transform: translate(100%);
             transform: translate(100%);
@@ -74,17 +89,19 @@
   }
 }
 
-@-webkit-keyframes sidebarFadeOff {
+@-webkit-keyframes FadeOut {
   to {
     -webkit-transform: translate(100%);
             transform: translate(100%);
+    display: none;
   }
 }
 
-@keyframes sidebarFadeOff {
+@keyframes FadeOut {
   to {
     -webkit-transform: translate(100%);
             transform: translate(100%);
+    display: none;
   }
 }
 /*# sourceMappingURL=Sidebar.css.map */
