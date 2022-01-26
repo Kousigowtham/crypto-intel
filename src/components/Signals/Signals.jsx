@@ -72,13 +72,20 @@ const Signals = ({ signalList, METADATA, coinList }) => {
         ].join(":"),
       ].join(" ");
     }
-    console.log("fsds");
     dispatch(fetchSignalList(formattedFromDate, formattedToDate, selected.id));
   };
 
   useEffect(() => {
-    dispatch(fetchSignalList());
-  }, [dispatch]);
+    dispatch(
+      fetchSignalList(
+        "",
+        "",
+        "",
+        METADATA.metaData?.channelList?.find((x) => x.name === selectedChannel)
+          ?.id
+      )
+    );
+  }, [dispatch, METADATA, selectedChannel]);
 
   console.log(signalList.signalList);
   return (
@@ -88,11 +95,11 @@ const Signals = ({ signalList, METADATA, coinList }) => {
       </div>
       <div className="col-8 signals-column-container ">
         {!signalList.loading &&
-          signalList.signalList.filter(
+          signalList?.signalList?.filter(
             (x) =>
-              x.signal.channelDetail.name === selectedChannel &&
-              x.signal.active === true
-          ).length > 0 && (
+              x.signal?.channelDetail?.name === selectedChannel &&
+              x.signal?.active === true
+          )?.length > 0 && (
             <div className="d-flex py-2  ms-5">
               <form className="d-flex  flex-wrap" onSubmit={searchHandler}>
                 <div className="me-4">
@@ -193,10 +200,10 @@ const Signals = ({ signalList, METADATA, coinList }) => {
         {!signalList.loading ? (
           <SignalsByChannel
             channel={selectedChannel}
-            signalListByChannel={signalList.signalList.filter(
+            signalListByChannel={signalList?.signalList?.filter(
               (x) =>
-                x.signal.channelDetail.name === selectedChannel &&
-                x.signal.active === true
+                x.signal?.channelDetail?.name === selectedChannel &&
+                x.signal?.active === true
             )}
           />
         ) : (

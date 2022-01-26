@@ -24,8 +24,13 @@ const signalListReducer = (state = initialState, action) => {
   }
 };
 
-export const fetchSignalList = (startDate = "", endDate = "", coinId = "") => {
-  const body = { startDate, endDate, coinId };
+export const fetchSignalList = (
+  startDate = "",
+  endDate = "",
+  coinId = "",
+  channelId = ""
+) => {
+  const body = { startDate, endDate, coinId, channelId };
   console.log(body);
   return (dispatch) => {
     dispatch(getSignalListRequest());
