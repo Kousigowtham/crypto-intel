@@ -488,6 +488,10 @@ footer .grid .grid-col-4 h4 {
   margin-top: 2rem;
 }
 
+.subscribe-container .newsletter-sub p {
+  margin-bottom: 1rem;
+}
+
 .subscribe-container .newsletter-sub p:nth-child(1) {
   margin-bottom: 0%;
 }

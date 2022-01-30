@@ -12,28 +12,58 @@
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 0, 0, 0.3);
 }
-.channel-list-container {
-  color: whitesmoke;
-}
+
 .accordion-container {
-  &:hover {
-    cursor: pointer;
+  margin: 2rem 0 1rem 1rem;
+  .accordion {
+    font-size: 0.75rem;
+    &.accordion-open {
+      display: inline-block;
+      transform: rotate(-90deg);
+    }
+  }
+
+  .channel-header {
+    padding-left: 0.5rem;
+    text-transform: uppercase;
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
-.active-channel {
-  cursor: pointer;
-  color: black !important;
-  background: rgba($color: rgb(5, 4, 51), $alpha: 0.1);
-  border-radius: 15px;
+.display-none {
+  display: none;
 }
+.channel--container {
+  position: relative;
 
-.channel-main-container {
-  margin-top: 1rem;
-}
-.channel-container {
+  &.active {
+    &::before {
+      transform: scale(1);
+    }
+  }
+
+  &::before {
+    width: 0.25rem;
+    content: "";
+    position: absolute;
+    left: 0;
+    background-color: white;
+    border-radius: 0 10px 10px 0;
+    height: 50%;
+    transform: scale(0);
+  }
+
   &:hover {
     cursor: pointer;
-    background: rgba(66, 63, 62, 0.5);
-    border-radius: 15px;
+    &::before {
+      animation: channelHover 0.5s 1 forwards;
+    }
+  }
+}
+
+@keyframes channelHover {
+  to {
+    transform: scale(1);
   }
 }

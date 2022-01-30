@@ -1,23 +1,30 @@
 body {
   overflow-x: hidden;
-}
-.sidebar-menu {
-  font-size: 2rem;
-  color: white;
-  position: fixed;
-  inset: 0 0 auto auto;
-  background: var(--primary-color-5);
-  border-radius: 50%;
-  padding: 0.5rem;
-  margin: 1rem 1rem 0 0;
-  z-index: 999;
-}
-.sidebar-menu:hover {
-  cursor: pointer;
+  position: relative;
 }
 
-@media screen and (max-width: 900px) {
-  .sidebar-menu {
-    inset: auto 0 0 auto;
-  }
+.sidemenu-main-container {
+  position: absolute;
+  display: flex;
+  inset: 0 0 auto auto;
+  z-index: 9999;
+}
+.sidebar-menu {
+  font-size: 1.5rem;
+  color: white;
+  width: fit-content;
+  height: fit-content;
+  padding: 0.5rem;
+  margin-top: 2rem;
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-right: none;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.sidebar-menu:hover {
+  cursor: pointer;
 }

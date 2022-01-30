@@ -3,4 +3,13 @@
   border: 1px solid black;
   color: whitesmoke;
 }
+
+.label-style {
+  margin-bottom: 0.5rem;
+}
+
+.target-details {
+  max-height: 300px;
+  overflow-y: auto;
+}
 /*# sourceMappingURL=SignalForm.css.map */

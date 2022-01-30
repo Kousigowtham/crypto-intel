@@ -1,0 +1,48 @@
+.FadeIn {
+  -webkit-animation: FadeIn 0.5s forwards;
+          animation: FadeIn 0.5s forwards;
+}
+
+.FadeOut {
+  -webkit-animation: FadeOut 0.5s forwards;
+          animation: FadeOut 0.5s forwards;
+}
+
+@-webkit-keyframes FadeIn {
+  from {
+    -webkit-transform: translate(100%);
+            transform: translate(100%);
+  }
+  to {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+}
+
+@keyframes FadeIn {
+  from {
+    -webkit-transform: translate(100%);
+            transform: translate(100%);
+  }
+  to {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+}
+
+@-webkit-keyframes FadeOut {
+  to {
+    -webkit-transform: translate(90%);
+            transform: translate(90%);
+    display: none;
+  }
+}
+
+@keyframes FadeOut {
+  to {
+    -webkit-transform: translate(90%);
+            transform: translate(90%);
+    display: none;
+  }
+}
+/*# sourceMappingURL=FadeIn.css.map */

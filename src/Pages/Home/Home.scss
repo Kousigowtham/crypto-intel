@@ -346,6 +346,9 @@ footer {
   }
   .newsletter-sub {
     margin-top: 2rem;
+    p {
+      margin-bottom: 1rem;
+    }
     p:nth-child(1) {
       margin-bottom: 0%;
     }

@@ -1,19 +1,53 @@
+@import "../../mixins";
+
 .card-container {
   &:hover {
     cursor: pointer;
   }
 }
-.channel-container {
-  margin: 0 2rem;
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.2) !important;
-  }
+.fab-container {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  right: 0;
+  bottom: 0vh;
+  z-index: 999;
+  .create-signal-fab {
+    position: fixed;
+    background-color: var(--primary-color-5) !important;
+    font-size: 3rem;
+    color: white;
 
-  .channel-signal-container {
-    padding: 1rem;
+    &::before {
+      border-radius: 50%;
+      background-color: var(--primary-color-5);
+    }
+  }
+}
+
+.price-tag-btn-grp {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 0.8rem;
+  column-gap: 2rem;
+  row-gap: 1rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  color: black;
+  .btn-gain {
+    background: #1fc422 !important;
+  }
+}
+
+.channel-signal-container {
+  padding: 2rem;
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.2) !important;
   }
 }
 .no-content-container {
-  left: 35%;
-  bottom: 0%;
+  @include flexCenter(column);
+  height: 100%;
 }

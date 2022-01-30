@@ -15,7 +15,9 @@ const SignalForm = ({
     <div className="d-flex flex-column gap-4">
       <div className="d-flex mb-2 flex-wrap justify-content-between">
         <div className="me-2 flex-fill">
-          <label htmlFor="channel">Channel</label>
+          <label className="label-style" htmlFor="channel">
+            Channel
+          </label>
           <Field
             as="select"
             className="form-select "
@@ -35,14 +37,14 @@ const SignalForm = ({
           </Field>
           <ErrorMessage name="channel">
             {(error) => (
-              <div className="text-danger" style={{ fontSize: "0.7rem" }}>
-                {error}
-              </div>
+              <div style={{ fontSize: "0.7rem", color: "red" }}>{error}</div>
             )}
           </ErrorMessage>
         </div>
         <div className="flex-fill">
-          <label htmlFor="leverage">Leverage</label>
+          <label className="label-style" htmlFor="leverage">
+            Leverage
+          </label>
           <Field
             className="form-control "
             id="leverage"
@@ -51,16 +53,16 @@ const SignalForm = ({
           />
           <ErrorMessage name="leverage">
             {(error) => (
-              <div className="text-danger" style={{ fontSize: "0.7rem" }}>
-                {error}
-              </div>
+              <div style={{ fontSize: "0.7rem", color: "red" }}>{error}</div>
             )}
           </ErrorMessage>
         </div>
       </div>
       <div className="d-flex flex-wrap mb-2 justify-content-between">
         <div className="me-2 flex-fill">
-          <label htmlFor="Market">Market</label>
+          <label className="label-style" htmlFor="Market">
+            Market
+          </label>
           <Field
             as="select"
             className="form-select "
@@ -81,14 +83,14 @@ const SignalForm = ({
           </Field>
           <ErrorMessage name="market">
             {(error) => (
-              <div className="text-danger" style={{ fontSize: "0.7rem" }}>
-                {error}
-              </div>
+              <div style={{ fontSize: "0.7rem", color: "red" }}>{error}</div>
             )}
           </ErrorMessage>
         </div>
         <div className="d-flex flex-column">
-          <label htmlFor="coin">Coin</label>
+          <label className="label-style" htmlFor="coin">
+            Coin
+          </label>
           {/* <Field
             as="select"
             className="form-select"
@@ -102,7 +104,7 @@ const SignalForm = ({
             <option value="dsds">dsds</option>
             <ErrorMessage name="coin">
               {(error) => (
-                <div className="text-danger" style={{ fontSize: "0.7rem" }}>
+                <div  style={{ fontSize: "0.7rem",backgroundColor:"red" }}>
                   {error}
                 </div>
               )}
@@ -116,24 +118,45 @@ const SignalForm = ({
           />
         </div>
       </div>
-      <div className="mb-2">
-        <label htmlFor="buyPrice">BuyPrice</label>
-        <Field
-          id="buyPrice"
-          className="form-control "
-          name="buyPrice"
-          type="number"
-        />
-        <ErrorMessage name="buyPrice">
-          {(error) => (
-            <div className="text-danger" style={{ fontSize: "0.7rem" }}>
-              {error}
-            </div>
-          )}
-        </ErrorMessage>
+      <div className="d-flex flex-wrap justify-content-between">
+        <div className="mb-2 me-2 flex-grow-1">
+          <label className="label-style" htmlFor="buyPrice">
+            BuyPrice
+          </label>
+          <Field
+            id="buyPrice"
+            className="form-control "
+            name="buyPrice"
+            type="number"
+          />
+          <ErrorMessage name="buyPrice">
+            {(error) => (
+              <div style={{ fontSize: "0.7rem", color: "red" }}>{error}</div>
+            )}
+          </ErrorMessage>
+        </div>
+        <div className="mb-2 flex-grow-1">
+          <label className="label-style" htmlFor="date">
+            Signal Date
+          </label>
+          <Field
+            className="form-control "
+            id="date"
+            name="date"
+            format="DD-MM-YYYYThh:mm"
+            type="datetime-local"
+          />
+          <ErrorMessage name="date">
+            {(error) => (
+              <div style={{ fontSize: "0.7rem", color: "red" }}>{error}</div>
+            )}
+          </ErrorMessage>
+        </div>
       </div>
-      <div className="bg-light text-black p-4 position-relative">
-        <label htmlFor="targetDetails">Target Details</label>
+      <div className="bg-light text-black p-4 position-relative target-details">
+        <label className="label-style" htmlFor="targetDetails">
+          Target Details
+        </label>
         <FieldArray name="targetDetails" id="targetDetails">
           {(fieldArrayProps) => {
             const { form, remove, push } = fieldArrayProps;
@@ -161,7 +184,11 @@ const SignalForm = ({
                     className="d-flex mb-2  justify-content-between align-items-end"
                   >
                     <div className="me-2 flex-grow-1">
-                      <label htmlFor="targetType" style={{ fontSize: "10px" }}>
+                      <label
+                        className="label-style"
+                        htmlFor="targetType"
+                        style={{ fontSize: "10px" }}
+                      >
                         TargetType
                       </label>
 
@@ -187,7 +214,11 @@ const SignalForm = ({
                       </Field>
                     </div>
                     <div className="me-2">
-                      <label htmlFor="targetValue" style={{ fontSize: "10px" }}>
+                      <label
+                        className="label-style"
+                        htmlFor="targetValue"
+                        style={{ fontSize: "10px" }}
+                      >
                         TargetValue
                       </label>
                       <Field
@@ -200,6 +231,7 @@ const SignalForm = ({
                     </div>
                     <div className="me-2">
                       <label
+                        className="label-style"
                         htmlFor="targetValueUnit"
                         style={{ fontSize: "10px" }}
                       >
@@ -230,23 +262,6 @@ const SignalForm = ({
             );
           }}
         </FieldArray>
-      </div>
-      <div className="mb-2 ">
-        <label htmlFor="date">Signal Date</label>
-        <Field
-          className="form-control "
-          id="date"
-          name="date"
-          format="DD-MM-YYYYThh:mm"
-          type="datetime-local"
-        />
-        <ErrorMessage name="date">
-          {(error) => (
-            <div className="text-danger" style={{ fontSize: "0.7rem" }}>
-              {error}
-            </div>
-          )}
-        </ErrorMessage>
       </div>
     </div>
   );

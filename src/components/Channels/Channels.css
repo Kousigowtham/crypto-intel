@@ -16,28 +16,74 @@
   background: rgba(0, 0, 0, 0.3);
 }
 
-.channel-list-container {
-  color: whitesmoke;
+.accordion-container {
+  margin: 2rem 0 1rem 1rem;
 }
 
-.accordion-container:hover {
+.accordion-container .accordion {
+  font-size: 0.75rem;
+}
+
+.accordion-container .accordion.accordion-open {
+  display: inline-block;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+}
+
+.accordion-container .channel-header {
+  padding-left: 0.5rem;
+  text-transform: uppercase;
+}
+
+.accordion-container .channel-header:hover {
   cursor: pointer;
 }
 
-.active-channel {
-  cursor: pointer;
-  color: black !important;
-  background: rgba(5, 4, 51, 0.1);
-  border-radius: 15px;
+.display-none {
+  display: none;
 }
 
-.channel-main-container {
-  margin-top: 1rem;
+.channel--container {
+  position: relative;
 }
 
-.channel-container:hover {
+.channel--container.active::before {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.channel--container::before {
+  width: 0.25rem;
+  content: "";
+  position: absolute;
+  left: 0;
+  background-color: white;
+  border-radius: 0 10px 10px 0;
+  height: 50%;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+}
+
+.channel--container:hover {
   cursor: pointer;
-  background: rgba(66, 63, 62, 0.5);
-  border-radius: 15px;
+}
+
+.channel--container:hover::before {
+  -webkit-animation: channelHover 0.5s 1 forwards;
+          animation: channelHover 0.5s 1 forwards;
+}
+
+@-webkit-keyframes channelHover {
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes channelHover {
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
 }
 /*# sourceMappingURL=Channels.css.map */

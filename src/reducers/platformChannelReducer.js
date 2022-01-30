@@ -40,7 +40,6 @@ export const fetchPlatformChannel = () => {
         }
       )
       .then((res) => {
-        console.log(res.data.data);
         dispatch(getPlatformChannelSuccess(res.data.data));
       })
       .catch((error) => dispatch(getPlatformChannelFailure(error)));

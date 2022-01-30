@@ -81,7 +81,7 @@ const Home = () => {
           />
         </Wrapper>
         <Wrapper className="home-section-2">
-          <div style={{ position: "relative" }}>
+          <div style={{ position: "relative", marginBottom: "2rem" }}>
             <h2>Packet full of Features</h2>
           </div>
           <div className="sec-2-features">

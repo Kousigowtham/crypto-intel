@@ -16,9 +16,17 @@ const signalListReducer = (state = initialState, action) => {
     case "SIGNALLIST_REQUEST":
       return { ...state, loading: true };
     case "SIGNALLIST_SUCCESS":
-      return { ...state, signalList: action.payload, loading: false };
+      return {
+        signalList: action.payload,
+        error: "",
+        loading: false,
+      };
     case "SIGNALLIST_FAILURE":
-      return { ...state, error: action.payload, loading: false };
+      return {
+        signalList: [],
+        error: action.payload,
+        loading: false,
+      };
     default:
       return state;
   }
@@ -41,9 +49,12 @@ export const fetchSignalList = (
         },
       })
       .then((res) => {
-        console.log("fetching...");
-        console.log(res.data.data.data);
-        dispatch(getSignalListSuccess(res.data.data.data));
+        console.log(res.data.success, "dsdsds");
+        if (res.data.success)
+          dispatch(getSignalListSuccess(res.data.data.data));
+        else {
+          dispatch(getSignalListFailure(res.data.data.message));
+        }
       })
       .catch((error) => {
         dispatch(getSignalListFailure(error));

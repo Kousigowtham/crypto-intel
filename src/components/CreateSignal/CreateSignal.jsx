@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 import { SET_SIGNALDATA_ACTION, UPDATE_SIGNAL_ACTION } from "../../actions";
 import { useDispatch } from "react-redux";
 import { fetchSignalList } from "../../reducers/signalListReducer";
-import { useNavigate } from "react-router-dom";
 import Divider from "../Divider/Divider";
 import "./CreateSignal.css";
 
@@ -42,9 +41,10 @@ const CreateSignal = ({
   METADATA,
   SIGNALDATA,
   UPDATESIGNAL,
+  setShowCreateSignal,
+  setIsFormEditted,
 }) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [selected, setselected] = useState(() => ({
     name: "Select Coin",
     id: "",
@@ -154,7 +154,8 @@ const CreateSignal = ({
     });
     updateSignalDispatch(UPDATE_SIGNAL_ACTION(false));
     setSignalDispatch(SET_SIGNALDATA_ACTION({ ...initialValues }));
-    navigate("/signals");
+    setIsFormEditted(true);
+    setShowCreateSignal(false);
   };
 
   const deletehandler = (formik) => {
@@ -168,6 +169,7 @@ const CreateSignal = ({
       name: "Select Coin",
       id: "",
     });
+    setIsFormEditted(true);
   };
 
   return (
@@ -198,7 +200,7 @@ const CreateSignal = ({
                       (x) => x.market === formik.values.market
                     )}
                   />
-                  <div className="mt-5">
+                  <div className="mt-5 d-flex justify-content-end">
                     <button
                       type="reset"
                       className="btn btn-outline-secondary px-4 me-4"
@@ -213,7 +215,7 @@ const CreateSignal = ({
                           name: "Select Coin",
                           id: "",
                         });
-                        navigate("/signals");
+                        setShowCreateSignal(false);
                       }}
                     >
                       Close

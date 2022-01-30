@@ -1,52 +1,65 @@
 import React from "react";
+import { useRef } from "react";
 import { connect } from "react-redux";
+import no_data from "../../Assets/Messages/no_data.svg";
+import "./messagesByPlatformChannels.css";
+import { TailSpin } from "react-loader-spinner";
 
 const MessagesByPlatformChannels = ({
   platformChannelMessages,
-  selectedPlatformChannel,
+  scrollHandler,
+  showLoadmoreLabel,
 }) => {
-  console.log(platformChannelMessages, selectedPlatformChannel);
+  const messageContainerRef = useRef();
 
   return (
     <>
-      {!platformChannelMessages.loading &&
-      platformChannelMessages.platformChannelMessages !== null ? (
-        <>
-          {platformChannelMessages?.platformChannelMessages?.data?.map(
-            (msg, index) => {
-              return (
-                <>
-                  <div className="container">
-                    <div className="my-3 ms-5">
-                      <div>
-                        <div className="d-flex flex-wrap mb-2 align-items-baseline">
-                          <div
-                            className=" mb-0 flex-grow-1"
-                            style={{ whiteSpace: "break-spaces" }}
-                          >
-                            {msg.messageContent}
-                          </div>
-                          <div className="text-muted">
-                            {new Date(msg.date).toUTCString()}
-                          </div>
+      {platformChannelMessages.length > 0 ? (
+        <div
+          onScroll={scrollHandler}
+          ref={messageContainerRef}
+          className="message-container"
+        >
+          {platformChannelMessages?.map((msg, index) => {
+            return (
+              <>
+                <div className="container">
+                  <div className="my-3 ms-5">
+                    <div>
+                      <div className="d-flex flex-wrap mb-2 align-items-baseline">
+                        <div
+                          className=" mb-0 flex-grow-1"
+                          style={{ whiteSpace: "break-spaces" }}
+                        >
+                          {msg.messageContent}
+                        </div>
+                        <div className="text-muted">
+                          {new Date(msg.date).toUTCString()}
                         </div>
                       </div>
                     </div>
-                    <hr />
                   </div>
-                </>
-              );
-            }
-          )}
-        </>
+                  <hr />
+                </div>
+              </>
+            );
+          })}
+          <div
+            className={`m-auto px-3 py-2 loading-label ${
+              showLoadmoreLabel ? "show" : ""
+            }`}
+          >
+            Loading...
+            {showLoadmoreLabel && (
+              <TailSpin color="#73fbd3" height={15} width={15} />
+            )}
+          </div>
+        </div>
       ) : (
         <div className="d-flex flex-column justify-content-center align-items-center h-100">
+          <img src={no_data} alt="no_data" width="150px" height="200px" />
           <i className="bi bi-chat-left-text-fill"></i>
-          <p>{`${
-            selectedPlatformChannel === ""
-              ? "Select a channel to view the signals belong to that channel"
-              : "There is no signals in the selected channel"
-          }`}</p>
+          <p>There is no signals in the selected channel</p>
         </div>
       )}
     </>

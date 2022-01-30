@@ -1,16 +1,15 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import "./SignalsByChannel.css";
 import { SET_SIGNALDATA_ACTION, UPDATE_SIGNAL_ACTION } from "../../actions";
-import { useNavigate } from "react-router-dom";
+import no_data from "../../Assets/Messages/no_data.svg";
 
 const SignalsByChannel = ({
-  setSignalDispatch,
   signalListByChannel,
-  updateSignalDispatch,
   channel,
+  setShowCreateSignal,
 }) => {
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const clickHandler = (signal) => {
     const date = signal.signalDate.substring(0, signal.signalDate.indexOf(" "));
@@ -23,7 +22,7 @@ const SignalsByChannel = ({
 
     const FinalDate = reversedDate + "T" + time;
 
-    setSignalDispatch(
+    dispatch(
       SET_SIGNALDATA_ACTION({
         ...signal,
         channel: signal.channelDetail.name,
@@ -44,25 +43,18 @@ const SignalsByChannel = ({
           })),
       })
     );
-    updateSignalDispatch(UPDATE_SIGNAL_ACTION(true));
-    navigate("/createSignal");
+    dispatch(UPDATE_SIGNAL_ACTION(true));
+    setShowCreateSignal(true);
   };
 
   return (
-    <div className="h-100 position-relative">
-      <i
-        className="bi bi-plus m-4 text-center rounded-circle position-fixed text-white plus"
-        style={{
-          height: "50px",
-          width: "50px",
-          fontSize: "50px",
-          bottom: "0%",
-          right: "5%",
-          zIndex: "99",
-        }}
-        onClick={() => navigate("/createSignal")}
-      ></i>
-
+    <>
+      <div className="fab-container">
+        <i
+          className="bi bi-plus create-signal-fab"
+          onClick={() => setShowCreateSignal(true)}
+        ></i>
+      </div>
       {signalListByChannel.length > 0 ? (
         signalListByChannel.map((signals, index) => {
           const channelTargetSignals =
@@ -101,67 +93,48 @@ const SignalsByChannel = ({
           } else orderedChannelTargets = [...channelTargetSignals];
           return (
             <>
-              <div className="channel-container">
-                <div
-                  className=" channel-signal-container ms-5"
-                  onClick={() => {
-                    clickHandler(signals.signal);
-                  }}
-                >
-                  <div>
-                    <div className="d-flex flex-wrap mb-2 align-items-baseline">
-                      <div className="h5 mb-0 flex-grow-1">
-                        {signals.signal.coinDetail.symbol}
-                        <span
-                          className="text-muted ms-2"
-                          style={{ fontSize: "10px" }}
-                        >
-                          {channel}
-                        </span>
+              <div
+                className="channel-signal-container"
+                onClick={() => {
+                  clickHandler(signals.signal);
+                }}
+              >
+                <div className="d-flex flex-wrap mb-2 align-items-baseline">
+                  <div className="h5">
+                    {signals.signal.coinDetail.symbol}
+                    <span
+                      className="text-muted ms-2"
+                      style={{ fontSize: "10px" }}
+                    >
+                      {channel}
+                    </span>
+                  </div>
+                  <div className="text-muted ms-auto">
+                    {signals.signal.signalDate}
+                  </div>
+                </div>
+                <div className="price-tag-btn-grp">
+                  <div className="px-2 py-1 btn-gain">
+                    Buy price: {` $  ${signals.signal.buyPrice.toFixed(2)}`}
+                  </div>
+                  <div className="px-2 py-1 bg-warning">
+                    Current price:
+                    {` $  ${signals.signal.buyPrice.toFixed(2)}`}
+                  </div>
+                  {stopLoss.map((sl) => {
+                    return (
+                      <div className="px-2 py-1 bg-danger">
+                        Stop Loss:
+                        {` $  ${sl.targetValue.toFixed(2)}`}
                       </div>
-                      <div className="text-muted">
-                        {signals.signal.signalDate}
-                      </div>
-                    </div>
-                    <div className="d-flex flex-wrap">
+                    );
+                  })}
+                </div>
+                <div className="d-flex flex-wrap gap-2">
+                  {orderedChannelTargets.map((signaltargets, index) => {
+                    return (
                       <div
-                        className="me-5 mb-2 px-2 py-1"
-                        style={{
-                          backgroundColor: "#1fc422",
-                          fontSize: "0.8rem",
-                        }}
-                      >
-                        Buy price: {`  ${signals.signal.buyPrice.toFixed(2)}`}
-                      </div>
-                      <div
-                        className="me-5 mb-2 px-2 py-1 bg-warning"
-                        style={{
-                          fontSize: "0.8rem",
-                        }}
-                      >
-                        Current price:{" "}
-                        {`  ${signals.signal.buyPrice.toFixed(2)}`}
-                      </div>
-                      {stopLoss.map((sl) => {
-                        return (
-                          <div
-                            className="me-5 mb-2 px-2 py-1 bg-danger text-white"
-                            style={{
-                              fontSize: "0.8rem",
-                            }}
-                          >
-                            {" "}
-                            Stop Loss:
-                            {`  ${sl.targetValue.toFixed(2)}`}
-                          </div>
-                        );
-                      })}
-                    </div>
-                    <div className="d-flex flex-wrap">
-                      {orderedChannelTargets.map((signaltargets, index) => {
-                        return (
-                          <div
-                            className={`pe-2
+                        className={`pe-2
                               ${
                                 signaltargets.reached
                                   ? signaltargets.targetType === "TAKE_PROFIT"
@@ -169,58 +142,48 @@ const SignalsByChannel = ({
                                     : "text-danger"
                                   : "text-muted"
                               }`}
-                            style={{
-                              fontSize: "0.95rem",
-                            }}
-                          >
-                            {signaltargets.targetType === "TAKE_PROFIT"
-                              ? `TP${
-                                  takeProfit.findIndex(
-                                    (x) => x.id === signaltargets.id
-                                  ) + 1
-                                }: ${signaltargets.targetValue.toFixed(
-                                  2
-                                )} (${signaltargets.percentage.toFixed(2)}%)`
-                              : `SL${
-                                  stopLoss.findIndex(
-                                    (x) => x.id === signaltargets.id
-                                  ) + 1
-                                }: ${signaltargets.targetValue.toFixed(
-                                  2
-                                )} (${signaltargets.percentage
-                                  .toFixed(2)
-                                  .replace("-", "")}%)`}
-                            {orderedChannelTargets.length - 1 > index ? (
-                              <span className="ps-2">{"-->"}</span>
-                            ) : null}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
+                        style={{
+                          fontSize: "0.95rem",
+                        }}
+                      >
+                        {signaltargets.targetType === "TAKE_PROFIT"
+                          ? `TP${
+                              takeProfit.findIndex(
+                                (x) => x.id === signaltargets.id
+                              ) + 1
+                            }: ${signaltargets.targetValue.toFixed(
+                              2
+                            )} (${signaltargets.percentage.toFixed(2)}%)`
+                          : `SL${
+                              stopLoss.findIndex(
+                                (x) => x.id === signaltargets.id
+                              ) + 1
+                            }: ${signaltargets.targetValue.toFixed(
+                              2
+                            )} (${signaltargets.percentage
+                              .toFixed(2)
+                              .replace("-", "")}%)`}
+                        {orderedChannelTargets.length - 1 > index ? (
+                          <span className="ps-2">{"-->"}</span>
+                        ) : null}
+                      </div>
+                    );
+                  })}
                 </div>
-                <hr className="m-0" />
               </div>
+              <hr className="m-0" />
             </>
           );
         })
       ) : (
-        <div className="d-flex flex-column justify-content-center align-items-center h-100">
+        <div className="no-content-container">
+          <img src={no_data} alt="no_data" width="150px" height="200px" />
           <i className="bi bi-chat-left-text-fill"></i>
-          <p>{`${
-            channel === ""
-              ? "Select a channel to view the signals belong to that channel"
-              : "There is no signals in the selected channel"
-          }`}</p>
+          <p>There is no signals in the selected channel</p>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  setSignalDispatch: (setSignalAction) => dispatch(setSignalAction),
-  updateSignalDispatch: (updateSignalAction) => dispatch(updateSignalAction),
-});
-
-export default connect(null, mapDispatchToProps)(SignalsByChannel);
+export default SignalsByChannel;

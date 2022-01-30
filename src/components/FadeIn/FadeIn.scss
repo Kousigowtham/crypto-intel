@@ -1,0 +1,23 @@
+.FadeIn {
+  animation: FadeIn 0.5s forwards;
+}
+
+.FadeOut {
+  animation: FadeOut 0.5s forwards;
+}
+
+@keyframes FadeIn {
+  from {
+    transform: translate(100%);
+  }
+  to {
+    transform: translate(0);
+  }
+}
+
+@keyframes FadeOut {
+  to {
+    transform: translate(90%);
+    display: none;
+  }
+}

@@ -8,13 +8,13 @@
   border: 1px solid rgba(255, 255, 255, 0.18);
 
   color: white;
-  position: fixed;
-  inset: 0 0 0 auto;
-  z-index: 10000;
+  z-index: 1000;
   display: flex;
   flex-direction: column;
   border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;
+
+  overflow-y: auto;
 
   .sidebar-close {
     color: white;
