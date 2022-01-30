@@ -29,7 +29,10 @@ const MessagesByPlatformChannels = ({
                       <div className="d-flex flex-wrap mb-2 align-items-baseline">
                         <div
                           className=" mb-0 flex-grow-1"
-                          style={{ whiteSpace: "break-spaces" }}
+                          style={{
+                            whiteSpace: "break-spaces",
+                            lineHeight: "30px",
+                          }}
                         >
                           {msg.messageContent}
                         </div>
