@@ -2,7 +2,6 @@ import React from "react";
 import { Formik, Form } from "formik";
 import FormikController from "../FormikController";
 import * as Yup from "yup";
-import Dropdown from "../../Drop_down/Dropdown";
 import "./FilterForm.css";
 import CreatePortal from "../../CreatePortal/CreatePortal";
 import Button from "../../Button/Button";

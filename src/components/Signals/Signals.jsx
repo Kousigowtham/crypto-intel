@@ -5,7 +5,6 @@ import "./Signals.css";
 import SkeletonSignal from "../Skeleton/SkeletonSignal";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSignalList } from "../../reducers/signalListReducer";
-import Dropdown from "../Dropdown/Dropdown";
 import select from "../../Assets/Messages/select.svg";
 import CreateSignal from "../CreateSignal/CreateSignal";
 import FilterForm from "../Formik/FilterForm/FilterForm";
