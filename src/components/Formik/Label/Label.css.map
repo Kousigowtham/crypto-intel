@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,YAAY,CAAC;EACX,cAAc,EAAE,MAAM;EACtB,KAAK,EAAE,UAAU;CAClB",
+    "sources": [
+        "Label.scss"
+    ],
+    "names": [],
+    "file": "Label.css"
+}

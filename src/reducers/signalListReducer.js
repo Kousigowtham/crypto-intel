@@ -49,7 +49,6 @@ export const fetchSignalList = (
         },
       })
       .then((res) => {
-        console.log(res.data.success, "dsdsds");
         if (res.data.success)
           dispatch(getSignalListSuccess(res.data.data.data));
         else {

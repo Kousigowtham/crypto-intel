@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,iBAAiB,CAAC;EAChB,QAAQ,EAAE,QAAQ;ECFlB,OAAO,EAAE,IAAI;EACb,cAAc,EDEM,GAAG;ECDvB,eAAe,EAAE,MAAM;EACvB,WAAW,EAAE,MAAM;EDCnB,KAAK,EAAE,OAAO;EACd,gBAAgB,EAAE,kBAAkB;CACrC",
+    "sources": [
+        "createPortal.scss",
+        "../../_mixins.scss"
+    ],
+    "names": [],
+    "file": "createPortal.css"
+}

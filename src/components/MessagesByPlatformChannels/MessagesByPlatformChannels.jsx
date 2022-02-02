@@ -12,6 +12,7 @@ const MessagesByPlatformChannels = ({
 }) => {
   const messageContainerRef = useRef();
 
+  console.log(platformChannelMessages);
   return (
     <>
       {platformChannelMessages.length > 0 ? (
@@ -36,9 +37,7 @@ const MessagesByPlatformChannels = ({
                         >
                           {msg.messageContent}
                         </div>
-                        <div className="text-muted">
-                          {new Date(msg.date).toUTCString()}
-                        </div>
+                        <div className="text-muted">{msg.date}</div>
                       </div>
                     </div>
                   </div>

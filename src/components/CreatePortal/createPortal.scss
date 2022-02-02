@@ -1,0 +1,8 @@
+@import "../../mixins";
+
+.portal-container {
+  position: absolute;
+  @include flexCenter(row);
+  inset: 0 0 0 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}

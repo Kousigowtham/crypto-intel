@@ -1,0 +1,95 @@
+@import "../../variables";
+
+.dropdown-container {
+  position: relative;
+
+  .dropdown-input-hidden {
+    position: absolute;
+    visibility: hidden;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+  }
+
+  .dropdown-btn {
+    width: 100%;
+    background-color: $primary-color;
+    color: white;
+    padding: 0.5em 0.3em;
+    border-radius: 5px;
+    padding-right: 3rem;
+
+    &.disabled {
+      background-color: rgba(88, 101, 242, 0.6) !important;
+      color: rgba(245, 245, 245, 0.6);
+      &::after {
+        border-top: 0.5rem solid rgba(245, 245, 245, 0.6);
+      }
+    }
+    &::after {
+      position: absolute;
+      right: 0%;
+      margin-right: 1rem;
+      margin-top: 0.5rem;
+      content: "";
+      border: 0.5rem solid transparent;
+      border-top: 0.5rem solid white;
+    }
+
+    &:hover {
+      background-color: rgba(88, 101, 242, 0.9);
+    }
+  }
+  .ZoomIn-container {
+    position: relative;
+    z-index: 999;
+  }
+  .dropdown-options-container {
+    background-color: white;
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    left: 0%;
+    overflow-x: hidden;
+    color: black;
+    margin-top: 0.5rem;
+    border-radius: 5px;
+    max-height: 200px;
+    overflow-y: auto;
+
+    .dropdown-options {
+      display: block;
+      padding: 0.5em;
+      border-radius: 5px;
+
+      &:hover {
+        background-color: whitesmoke;
+        cursor: pointer;
+      }
+    }
+
+    .dropdown-search-container {
+      width: 95%;
+      border-bottom: 1px solid black;
+      margin: 0.4rem 0.5rem;
+
+      input {
+        width: 90%;
+        border: none;
+        padding: 0 0.5em;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      .search-close {
+        cursor: pointer;
+      }
+    }
+  }
+}

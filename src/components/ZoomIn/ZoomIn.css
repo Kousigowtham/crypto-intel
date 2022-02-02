@@ -1,0 +1,54 @@
+.ZoomIn {
+  -webkit-animation: ZoomIn 0.5s forwards;
+          animation: ZoomIn 0.5s forwards;
+}
+
+.ZoomOut {
+  -webkit-animation: ZoomOut 0.5s forwards;
+          animation: ZoomOut 0.5s forwards;
+}
+
+@-webkit-keyframes ZoomIn {
+  from {
+    -webkit-transform: skew(0);
+            transform: skew(0);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: skew(1);
+            transform: skew(1);
+    opacity: 1;
+  }
+}
+
+@keyframes ZoomIn {
+  from {
+    -webkit-transform: skew(0);
+            transform: skew(0);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: skew(1);
+            transform: skew(1);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes ZoomOut {
+  to {
+    -webkit-transform: skew(0);
+            transform: skew(0);
+    opacity: 0;
+    display: none;
+  }
+}
+
+@keyframes ZoomOut {
+  to {
+    -webkit-transform: skew(0);
+            transform: skew(0);
+    opacity: 0;
+    display: none;
+  }
+}
+/*# sourceMappingURL=ZoomIn.css.map */

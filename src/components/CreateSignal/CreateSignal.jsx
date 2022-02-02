@@ -201,6 +201,15 @@ const CreateSignal = ({
                     )}
                   />
                   <div className="mt-5 d-flex justify-content-end">
+                    {UPDATESIGNAL === true ? (
+                      <button
+                        type="submit"
+                        className="btn btn-danger px-4 me-auto"
+                        onClick={() => deletehandler(formik)}
+                      >
+                        Delete
+                      </button>
+                    ) : null}
                     <button
                       type="reset"
                       className="btn btn-outline-secondary px-4 me-4"
@@ -220,15 +229,6 @@ const CreateSignal = ({
                     >
                       Close
                     </button>
-                    {UPDATESIGNAL === true ? (
-                      <button
-                        type="submit"
-                        className="btn btn-danger me-4 px-4"
-                        onClick={() => deletehandler(formik)}
-                      >
-                        Delete
-                      </button>
-                    ) : null}
                     <button
                       type="submit"
                       disabled={!formik.isValid}

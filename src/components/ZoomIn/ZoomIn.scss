@@ -1,0 +1,26 @@
+.ZoomIn {
+  animation: ZoomIn 0.5s forwards;
+}
+
+.ZoomOut {
+  animation: ZoomOut 0.5s forwards;
+}
+
+@keyframes ZoomIn {
+  from {
+    transform: skew(0);
+    opacity: 0;
+  }
+  to {
+    transform: skew(1);
+    opacity: 1;
+  }
+}
+
+@keyframes ZoomOut {
+  to {
+    transform: skew(0);
+    opacity: 0;
+    display: none;
+  }
+}
