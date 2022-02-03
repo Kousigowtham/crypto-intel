@@ -1,0 +1,87 @@
+@import "../../../variables";
+@import "../../../mixins";
+
+.signal-form-container {
+  position: relative;
+  background-color: $background-terinary-color;
+  box-shadow: -2px 5px 10px -1px rgba(0, 0, 0, 0.58);
+  padding: 3rem 2rem;
+  width: 50%;
+  min-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  .signal-input-container {
+    display: flex;
+    gap: 1rem;
+    .input-class {
+      width: 50%;
+    }
+    .targetValueUnit-class {
+      width: 50px;
+    }
+  }
+
+  .signal-tagert-add {
+    cursor: pointer;
+    &::before {
+      position: absolute;
+      right: 0%;
+      background-color: $secondary-color;
+      color: white;
+      border: 0.75rem solid $secondary-color;
+      border-radius: 5px;
+      width: fit-content;
+      margin-left: auto;
+    }
+  }
+
+  .signal-tagert-dash {
+    cursor: pointer;
+    &::before {
+      background-color: $terinary-color;
+      color: white;
+      border: 0.75rem solid $terinary-color;
+      border-radius: 5px;
+      width: fit-content;
+      margin-left: auto;
+    }
+
+    &.disabled {
+      pointer-events: none;
+      &::before {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  .targetDetails-container {
+    background-color: $background-primary-color;
+    padding: 1rem;
+    max-height: 300px;
+    overflow-y: auto;
+    color: whitesmoke;
+  }
+  .target-label-container {
+    height: 2.5rem;
+  }
+  .signal-btn-grp {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+    .signal-btn {
+      @include ButtonFilled($secondary-color);
+    }
+    .signal-btn-delete {
+      @include ButtonFilled($terinary-color);
+    }
+
+    .signal-btn-close {
+      @include ButtonOutlined(#fff);
+      margin-left: auto;
+    }
+  }
+}
+.target-label {
+  font-size: 0.75rem;
+}

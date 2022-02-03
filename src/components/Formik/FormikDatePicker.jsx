@@ -21,7 +21,7 @@ const FormikDatePicker = ({
         {({ form, field }) => {
           const { setFieldValue } = form;
           const { value } = field;
-
+          console.log(value);
           return (
             <Datetime
               id={name}

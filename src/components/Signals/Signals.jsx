@@ -8,6 +8,7 @@ import { fetchSignalList } from "../../reducers/signalListReducer";
 import select from "../../Assets/Messages/select.svg";
 import CreateSignal from "../CreateSignal/CreateSignal";
 import FilterForm from "../Formik/FilterForm/FilterForm";
+import CreatesignalForm from "../Formik/CreateSignalForm/CreatesignalForm";
 
 const Signals = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const Signals = () => {
   };
 
   const [showCreateSignal, setShowCreateSignal] = useState(false);
-  const [isformEditted, setIsFormEditted] = useState(true);
+  const [isformEdited, setIsFormEdited] = useState(true);
   useEffect(() => {
     if (selectedChannel) {
       setShowFilter(false);
@@ -32,11 +33,11 @@ const Signals = () => {
   }, [dispatch, selectedChannel]);
 
   useEffect(() => {
-    if (selectedChannel && isformEditted) {
+    if (selectedChannel && isformEdited) {
       setShowFilter(false);
       dispatch(fetchSignalList("", "", "", selectedChannel?.id));
     }
-  }, [dispatch, setShowFilter, selectedChannel, isformEditted]);
+  }, [dispatch, setShowFilter, selectedChannel, isformEdited]);
 
   return (
     <div className="signal-container">
@@ -93,9 +94,14 @@ const Signals = () => {
         )}
       </div>
       {showCreateSignal && (
-        <CreateSignal
+        // <CreateSignal
+        //   setShowCreateSignal={setShowCreateSignal}
+        //   setIsFormEdited={setIsFormEdited}
+        // />
+        <CreatesignalForm
+          METADATA={METADATA}
+          coinList={coinList?.coinList}
           setShowCreateSignal={setShowCreateSignal}
-          setIsFormEditted={setIsFormEditted}
         />
       )}
     </div>

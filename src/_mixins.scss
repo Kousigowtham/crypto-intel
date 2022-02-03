@@ -4,3 +4,22 @@
   justify-content: center;
   align-items: center;
 }
+
+@mixin ButtonFilled($backgroundColor) {
+  background-color: $backgroundColor;
+  border: 1px solid $backgroundColor;
+  border-radius: 5px;
+  text-transform: uppercase;
+
+  &:hover {
+    background-color: rgba($backgroundColor, 0.6);
+    color: whitesmoke;
+  }
+}
+
+@mixin ButtonOutlined($borderColor) {
+  background-color: transparent;
+  border: 1px solid $borderColor;
+  border-radius: 5px;
+  color: $borderColor;
+}

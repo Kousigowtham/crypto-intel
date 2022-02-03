@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import "./SignalsByChannel.css";
 import { SET_SIGNALDATA_ACTION, UPDATE_SIGNAL_ACTION } from "../../actions";
 import no_data from "../../Assets/Messages/no_data.svg";
+import { useSelector } from "react-redux";
+import { validateYupSchema } from "formik";
 
 const SignalsByChannel = ({
   signalListByChannel,
@@ -10,36 +12,32 @@ const SignalsByChannel = ({
   setShowCreateSignal,
 }) => {
   const dispatch = useDispatch();
+  const { METADATA, coinList } = useSelector((state) => ({
+    METADATA: state.metaData,
+    coinList: state.coinList,
+  }));
 
   const clickHandler = (signal) => {
-    const date = signal.signalDate.substring(0, signal.signalDate.indexOf(" "));
-    const time = signal.signalDate.substring(
-      signal.signalDate.indexOf(" ") + 1,
-      signal.signalDate.length
-    );
-    const formattedDate = date.split("-");
-    const reversedDate = formattedDate.reverse().join("-");
-
-    const FinalDate = reversedDate + "T" + time;
-
     dispatch(
       SET_SIGNALDATA_ACTION({
         ...signal,
-        channel: signal.channelDetail.name,
-        leverage: "",
-        market: signal.coinDetail.market,
-        buyPrice: signal.buyPrice,
-        coinDetail: {
-          name: signal.coinDetail.name,
-          id: signal.coinDetail.id,
-        },
-        date: FinalDate,
+        channel: METADATA?.metaData?.channelList.find(
+          (x) => x.name === signal.channelDetail.name
+        ),
+        leverage: validateYupSchema.leverage,
+        market: METADATA?.metaData?.marketList.find(
+          (x) => x.name === signal.coinDetail.market
+        ),
+        buyprice: signal.buyPrice,
+        coin: coinList?.coinList?.find((x) => x.id === signal.coinId),
+        signaldate: signal?.signalDate,
         targetDetails: signal?.signalTargetDetails
           ?.filter((x) => x.targetMode === "CHANNEL_TARGET")
           .map((target) => ({
             ...target,
             targetValue: target.targetValue,
             targetType: target.targetType,
+            targetValueUnit: "%",
           })),
       })
     );

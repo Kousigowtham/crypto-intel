@@ -26,7 +26,7 @@ const App = () => {
   const FadeOutComponent = () => {
     return (
       <i
-        class="bi bi-chevron-left sidebar-menu"
+        className="bi bi-chevron-left sidebar-menu"
         onClick={() => setshowSidebar(true)}
       ></i>
     );

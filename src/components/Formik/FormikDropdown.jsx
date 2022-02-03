@@ -9,15 +9,18 @@ const FormikDropdown = ({
   classes,
   name,
   options,
+  LabelClassName,
   disabled,
   ...otherProps
 }) => {
   return (
     <div className={classes}>
-      <Label labelFor={name}> {label}</Label>
+      <Label classes={LabelClassName} labelFor={name}>
+        {label}
+      </Label>
 
       <Field name={name}>
-        {({ form }) => {
+        {({ form, field }) => {
           const { setFieldValue } = form;
 
           return (
@@ -27,6 +30,7 @@ const FormikDropdown = ({
               options={options}
               setFieldValue={setFieldValue}
               disabled={disabled}
+              field={field}
               {...otherProps}
             />
           );

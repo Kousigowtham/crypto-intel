@@ -1,0 +1,129 @@
+.signal-form-container {
+  position: relative;
+  background-color: #36393f;
+  -webkit-box-shadow: -2px 5px 10px -1px rgba(0, 0, 0, 0.58);
+          box-shadow: -2px 5px 10px -1px rgba(0, 0, 0, 0.58);
+  padding: 3rem 2rem;
+  width: 50%;
+  min-width: 400px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1rem;
+}
+
+.signal-form-container .signal-input-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+}
+
+.signal-form-container .signal-input-container .input-class {
+  width: 50%;
+}
+
+.signal-form-container .signal-input-container .targetValueUnit-class {
+  width: 50px;
+}
+
+.signal-form-container .signal-tagert-add {
+  cursor: pointer;
+}
+
+.signal-form-container .signal-tagert-add::before {
+  position: absolute;
+  right: 0%;
+  background-color: #3ca45c;
+  color: white;
+  border: 0.75rem solid #3ca45c;
+  border-radius: 5px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-left: auto;
+}
+
+.signal-form-container .signal-tagert-dash {
+  cursor: pointer;
+}
+
+.signal-form-container .signal-tagert-dash::before {
+  background-color: #ed4245;
+  color: white;
+  border: 0.75rem solid #ed4245;
+  border-radius: 5px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-left: auto;
+}
+
+.signal-form-container .signal-tagert-dash.disabled {
+  pointer-events: none;
+}
+
+.signal-form-container .signal-tagert-dash.disabled::before {
+  opacity: 0.5;
+}
+
+.signal-form-container .targetDetails-container {
+  background-color: #202225;
+  padding: 1rem;
+  max-height: 300px;
+  overflow-y: auto;
+  color: whitesmoke;
+}
+
+.signal-form-container .target-label-container {
+  height: 2.5rem;
+}
+
+.signal-form-container .signal-btn-grp {
+  margin-top: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+}
+
+.signal-form-container .signal-btn-grp .signal-btn {
+  background-color: #3ca45c;
+  border: 1px solid #3ca45c;
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+
+.signal-form-container .signal-btn-grp .signal-btn:hover {
+  background-color: rgba(60, 164, 92, 0.6);
+  color: whitesmoke;
+}
+
+.signal-form-container .signal-btn-grp .signal-btn-delete {
+  background-color: #ed4245;
+  border: 1px solid #ed4245;
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+
+.signal-form-container .signal-btn-grp .signal-btn-delete:hover {
+  background-color: rgba(237, 66, 69, 0.6);
+  color: whitesmoke;
+}
+
+.signal-form-container .signal-btn-grp .signal-btn-close {
+  background-color: transparent;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  color: #fff;
+  margin-left: auto;
+}
+
+.target-label {
+  font-size: 0.75rem;
+}
+/*# sourceMappingURL=CreatesignalForm.css.map */
