@@ -6,7 +6,6 @@ import SkeletonSignal from "../Skeleton/SkeletonSignal";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSignalList } from "../../reducers/signalListReducer";
 import select from "../../Assets/Messages/select.svg";
-import CreateSignal from "../CreateSignal/CreateSignal";
 import FilterForm from "../Formik/FilterForm/FilterForm";
 import CreatesignalForm from "../Formik/CreateSignalForm/CreatesignalForm";
 
@@ -24,6 +23,7 @@ const Signals = () => {
   };
 
   const [showCreateSignal, setShowCreateSignal] = useState(false);
+  // eslint-disable-next-line
   const [isformEdited, setIsFormEdited] = useState(true);
   useEffect(() => {
     if (selectedChannel) {

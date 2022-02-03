@@ -1,6 +1,4 @@
 import React, { useEffect, useState, useRef } from "react";
-import { string } from "yup";
-import { object } from "yup";
 import ZoomIn from "../ZoomIn/ZoomIn";
 import "./Dropdown.css";
 
@@ -30,16 +28,16 @@ const Dropdown = ({
     )
       setShowList(false);
   };
-
   useEffect(() => {
     window.addEventListener("mousedown", dropdownCloseHandler);
-    if (field.value === null) return;
+    if (field?.value === null) return;
     if (typeof field?.value === "object") setSelected(field?.value?.name);
     else if (typeof field?.value === "string") setSelected(field?.value);
 
     return () => {
       window.removeEventListener("mousedown", dropdownCloseHandler);
     };
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
