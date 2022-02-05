@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "https://cryptointelligence.herokuapp.com/institute",
+  baseURL: "http://ec2-35-175-145-167.compute-1.amazonaws.com:8080/institute",
 });
