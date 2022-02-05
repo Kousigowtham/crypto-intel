@@ -2,7 +2,6 @@ header {
   position: fixed;
   display: flex;
   gap: 5rem;
-  color: white;
   inset: auto 0 auto 0;
   z-index: 9998;
   padding: var(--wrapper-lg-side-padding);
@@ -17,6 +16,7 @@ header {
     .nav-items {
       display: flex;
       align-items: flex-end;
+      list-style: none;
       gap: 2rem;
       .nav-item {
         cursor: pointer;

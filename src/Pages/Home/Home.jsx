@@ -1,25 +1,21 @@
-import React, { useEffect } from "react";
-import business_man from "../../Assets/business-man.png";
-import crypto_bg from "../../Assets/crypto-bg.png";
-import support from "../../Assets/7.png";
-import decision from "../../Assets/decision.png";
-import noexp from "../../Assets/noexp.png";
-import record from "../../Assets/record.png";
+import React, { useEffect, useState } from "react";
 import pad from "../../Assets/pad.png";
 import green_box from "../../Assets/greenBox.png";
-import co_workers from "../../Assets/co-workers.png";
 import rightIcon from "../../Assets/rightIcon.png";
-import Bitcoin from "../../Assets/Bitcoin.png";
 import lg_pad from "../../Assets/lg-pad.png";
-import graph from "../../Assets/graph.png";
-import cryptoTab from "../../Assets/cryptoTab.png";
-import Sanstitre from "../../Assets/Sans-titre.png";
 import "./Home.css";
 import "../../components/NavBar/Navbar.css";
 import { Wrapper } from "../../components/components.styles";
 import Button from "../../components/Button/Button";
-import { motion } from "framer-motion/dist/framer-motion";
 import Navbar from "../../components/NavBar/Navbar";
+import CRYPTO_HOME_DESIGN from "../../Assets/Home/CRYPTO_HOME_DESIGN.svg";
+import digital_currency from "../../Assets/Home/digital_currency.svg";
+import Bitcoin_Isometric from "../../Assets/Home/Bitcoin _Isometric.svg";
+import customer_service from "../../Assets/Home/Customer service.svg";
+import crypto_portfolio from "../../Assets/Home/crypto_portfolio.svg";
+import Decision from "../../Assets/Home/Decision.svg";
+import Report_analysis from "../../Assets/Home/Report_analysis.svg";
+import Experience from "../../Assets/Home/Experience.svg";
 
 const ImgAnimationHamdler = (e) => {
   document.getElementById("green1").style.top = e.x / 1000 - 10 + "%";
@@ -37,48 +33,50 @@ const ImgAnimationHamdler = (e) => {
 };
 
 const Home = () => {
+  // eslint-disable-next-line
+  const [scrollPosition, setScrollPosition] = useState(true);
   useEffect(() => {
     window.addEventListener("mousemove", ImgAnimationHamdler);
+    window.addEventListener("scroll", () => {
+      setScrollPosition(
+        window.document.body.clientHeight - window.scrollY > window.innerHeight
+      );
+    });
 
     return () => {
       window.removeEventListener("mousemove", ImgAnimationHamdler);
     };
   }, []);
 
+  const ScrollDownHandler = () => {
+    window.scrollTo(0, window.scrollY + 500);
+  };
+
   return (
     <>
       <Navbar />
       <main className="home-container">
-        <Wrapper className="home-section-1">
+        <Wrapper className="home-section-1" id="home-container-section-1">
           <div className="section-1-container">
-            <h1 id="home-container-section-1">
-              SIGNALS THAT HIT THE BULLS EYE
-            </h1>
+            <h1>Lift up with Signals, Worry Free!</h1>
             <p>
               The signals will be always analysed before we getting into the
               stage and we have experienced professionals for that from around
-              the world! What’s more, a lifetime access for subscribed signals.
-              Our group gives you access that will forever change your
-              definition of the crypto signals service.
+              the world! Our group gives you access that will forever change
+              your definition of the crypto signals service.
             </p>
-
-            <div className="business_man_container">
-              <Button
-                classes="button"
-                Content="GET SIGNALS WITH LIFETIME ACCESS!"
-              />
-              <img
-                src={business_man}
-                alt={"business_man"}
-                className="business-man"
-              />
-            </div>
+            <Button
+              classes="button"
+              Content="GET SIGNALS WITH LIFETIME ACCESS!"
+            />
           </div>
-          <img
-            src={crypto_bg}
-            alt={"home_1_bg_crypto"}
-            className="crypto-bg crypto-bg-image-hidden"
-          />
+          <div className="section-1-img">
+            <img
+              src={CRYPTO_HOME_DESIGN}
+              alt="CRYPTO_HOME_DESIGN"
+              className="crypto-bg crypto-bg-image-hidden"
+            />
+          </div>
         </Wrapper>
         <Wrapper className="home-section-2">
           <div style={{ position: "relative", marginBottom: "2rem" }}>
@@ -86,19 +84,19 @@ const Home = () => {
           </div>
           <div className="sec-2-features">
             <div>
-              <img src={support} alt="support" width="130px" />
+              <img src={customer_service} alt="support" width="130px" />
               <p>Money never sleeps, neither do our signals</p>
             </div>
             <div>
-              <img src={decision} alt="support" width="130px" />
+              <img src={Decision} alt="Decision" width="200px" height="100px" />
               <p>Make calculated decisions</p>
             </div>
             <div>
-              <img src={record} alt="support" width="130px" />
+              <img src={Report_analysis} alt="Report_analysis" width="130px" />
               <p>Proven track record</p>
             </div>
             <div>
-              <img src={noexp} alt="support" width="100px" />
+              <img src={Experience} alt="Experience" width="130px" />
               <p>No experience needed</p>
             </div>
           </div>
@@ -106,20 +104,18 @@ const Home = () => {
         <Wrapper>
           <div className="features-container">
             <div className="features-img-container">
-              <img className="co-workers" src={co_workers} alt="co-workers" />
+              <img
+                className="digital_currency"
+                src={digital_currency}
+                alt="digital_currency"
+                width="500px"
+              />
               <img className="pad" id="pad" src={pad} alt="pad" />
               <img
                 className="greenbox"
                 id="green1"
                 src={green_box}
                 alt="greenbox"
-              />
-              <motion.img
-                animate={{ x: 100 }}
-                className="bitcoin"
-                id="green1"
-                src={Bitcoin}
-                alt="bitcoin"
               />
             </div>
             <div className="features-content-container">
@@ -208,7 +204,11 @@ const Home = () => {
               </div>
             </div>
             <div className="features-img-container">
-              <img src={Sanstitre} className="sanstitre" alt="sanstitre" />
+              <img
+                src={Bitcoin_Isometric}
+                className="Bitcoin_Isometric"
+                alt="Bitcoin_Isometric"
+              />
               <img
                 src={lg_pad}
                 className="lg-pad1"
@@ -221,19 +221,18 @@ const Home = () => {
                 id="lg-pad2"
                 alt="lg-pad2"
               />
-              <motion.img
-                animate={{ x: 100 }}
-                className="graph"
-                src={graph}
-                alt="graph"
-              />
             </div>
           </div>
         </Wrapper>
         <Wrapper>
           <div className="features-container">
             <div className="features-img-container">
-              <img className="co-workers" src={cryptoTab} alt="co-workers" />
+              <img
+                className="crypto_portfolio"
+                src={crypto_portfolio}
+                alt="crypto_portfolio"
+                width="400px"
+              />
               <img className="pad" id="pad3" src={pad} alt="pad3" />
             </div>
             <div className="features-content-container">
@@ -364,6 +363,9 @@ const Home = () => {
           copyrights &copy; 2021 ALL RIGHTS RESERVED
         </div>
       </footer>
+      <div className="scroll-container" onClick={ScrollDownHandler}>
+        <i className="bi bi-arrow-down"></i>
+      </div>
     </>
   );
 };
