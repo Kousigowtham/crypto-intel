@@ -1,0 +1,59 @@
+#image0_118_140 {
+  animation: humanAnimation 20s 1 linear;
+}
+
+@keyframes humanAnimation {
+  0% {
+    transform: translateX(-50%) rotateZ(45deg) scale(0.35);
+    width: 10%;
+  }
+  15% {
+    transform: translateX(-25%) rotateZ(25deg) scale(0.75);
+    width: 100%;
+  }
+  30% {
+    transform: rotateZ(0deg) translateY(-20%) scale(1);
+  }
+  35% {
+    transform: translateY(0%);
+  }
+  40% {
+    transform: translateY(20%);
+  }
+  45% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(-20%);
+  }
+  55% {
+    transform: translateY(0%);
+  }
+  60% {
+    transform: translateY(20%);
+  }
+  65% {
+    transform: translateY(-20%);
+  }
+  70% {
+    transform: translateY(0%);
+  }
+  75% {
+    transform: translateY(20%);
+  }
+  80% {
+    transform: translateY(0%);
+  }
+  85% {
+    transform: translateY(20%);
+  }
+  90% {
+    transform: translateY(-20%);
+  }
+  95% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(20%);
+  }
+}

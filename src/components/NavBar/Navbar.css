@@ -8,7 +8,10 @@ header {
   z-index: 9998;
   padding: var(--wrapper-lg-side-padding);
   padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 header .logo {

@@ -74,7 +74,7 @@ const Navbar = () => {
   return (
     <>
       <header id="navBar-header" ref={navRef}>
-        <h2 className="logo">CRYPTO-INTEL</h2>
+        <h4 className="logo">CRYPTO-INTEL</h4>
         <nav className="nav-container">
           <ul className="nav-items">
             <li
