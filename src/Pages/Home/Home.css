@@ -1,5 +1,8 @@
 .home-container {
   position: relative;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 .home-container .home-section-1 .section-1-title {
@@ -13,6 +16,12 @@
   color: #070d57;
   background-color: rgba(88, 101, 242, 0.2);
   width: 1700px;
+}
+
+@media (max-width: 1300px) {
+  .home-container .home-section-1 .section-1-title {
+    position: relative;
+  }
 }
 
 .home-container .home-section-1 .section-1-title::before {
@@ -80,9 +89,20 @@
       -ms-flex-pack: end;
           justify-content: flex-end;
   max-width: 1000px;
+  min-height: 500px;
   margin-left: auto;
   padding: 3rem 0 2rem 0;
   background-color: rgba(88, 101, 242, 0.2);
+}
+
+@media (max-width: 1300px) {
+  .home-container .home-section-1 .section-1-img {
+    background-color: rgba(88, 101, 242, 0.05);
+    padding: 0%;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
 }
 
 .home-container .home-section-1 .section-1-img img {

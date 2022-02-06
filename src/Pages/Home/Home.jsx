@@ -18,6 +18,7 @@ import Report_analysis from "../../Assets/Home/Report_analysis.svg";
 import Experience from "../../Assets/Home/Experience.svg";
 import business_decisions from "../../Assets/Home/business_decisions.svg";
 import Svg from "./Component/Svg/Svg";
+import { motion } from "framer-motion";
 
 const ImgAnimationHamdler = (e) => {
   document.getElementById("green1").style.top = e.x / 1000 - 10 + "%";
@@ -61,9 +62,22 @@ const Home = () => {
       <Navbar />
       <main className="home-container">
         <Wrapper className="home-section-1" id="home-container-section-1">
-          <div className="section-1-title">CRYPTO-INTEL</div>
+          <motion.div
+            initial={{ rotateZ: -90, width: 0 }}
+            animate={{ y: 0, width: 1700 }}
+            transition={{ delay: 0.5, duration: 1 }}
+            className="section-1-title"
+          >
+            CRYPTO-INTEL
+          </motion.div>
           <div className="section-1-content-container">
-            <h1>Lift up with Signals, Worry Free!</h1>
+            <motion.h1
+              initial={{ x: "-100vw" }}
+              transition={{ duration: 0.5, type: "spring", stiffness: 200 }}
+              animate={{ x: 0 }}
+            >
+              Lift up with Signals, Worry Free!
+            </motion.h1>
             <p>
               The signals will be always analysed before we getting into the
               stage and we have experienced professionals for that from around

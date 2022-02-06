@@ -2,6 +2,7 @@
 
 .home-container {
   position: relative;
+  height: fit-content;
   .home-section-1 {
     .section-1-title {
       transform: rotatez(-90deg);
@@ -13,6 +14,10 @@
       color: $header-primary;
       background-color: rgba($primary-color, 0.2);
       width: 1700px;
+
+      @media (max-width: 1300px) {
+        position: relative;
+      }
 
       &::before {
         position: absolute;
@@ -62,10 +67,17 @@
       display: flex;
       justify-content: flex-end;
       max-width: 1000px;
+      min-height: 500px;
       margin-left: auto;
       padding: 3rem 0 2rem 0;
       // background: #98b8ba;
       background-color: rgba($primary-color, 0.2);
+      @media (max-width: 1300px) {
+        background-color: rgba($primary-color, 0.05);
+        padding: 0%;
+        align-items: flex-start;
+      }
+
       img {
         width: clamp(400px, 60%, 700px);
       }
