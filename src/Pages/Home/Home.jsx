@@ -17,7 +17,6 @@ import crypto_portfolio from "../../Assets/Home/crypto_portfolio.svg";
 import Report_analysis from "../../Assets/Home/Report_analysis.svg";
 import Experience from "../../Assets/Home/Experience.svg";
 import business_decisions from "../../Assets/Home/business_decisions.svg";
-import STARS from "../../Assets/Home/STARS.svg";
 import Svg from "./Component/Svg/Svg";
 import { motion } from "framer-motion";
 
