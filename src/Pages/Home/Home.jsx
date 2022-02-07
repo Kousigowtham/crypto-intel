@@ -17,6 +17,7 @@ import crypto_portfolio from "../../Assets/Home/crypto_portfolio.svg";
 import Report_analysis from "../../Assets/Home/Report_analysis.svg";
 import Experience from "../../Assets/Home/Experience.svg";
 import business_decisions from "../../Assets/Home/business_decisions.svg";
+import STARS from "../../Assets/Home/STARS.svg";
 import Svg from "./Component/Svg/Svg";
 import { motion } from "framer-motion";
 
@@ -62,28 +63,24 @@ const Home = () => {
       <Navbar />
       <main className="home-container">
         <Wrapper className="home-section-1" id="home-container-section-1">
-          <motion.div
-            initial={{ rotateZ: -90, width: 0 }}
-            animate={{ y: 0, width: 1700 }}
-            transition={{ delay: 0.5, duration: 1 }}
-            className="section-1-title"
-          >
-            CRYPTO-INTEL
-          </motion.div>
           <div className="section-1-content-container">
             <motion.h1
               initial={{ x: "-100vw" }}
-              transition={{ duration: 0.5, type: "spring", stiffness: 200 }}
+              transition={{ duration: 1, type: "spring", stiffness: 200 }}
               animate={{ x: 0 }}
             >
               Lift up with Signals, Worry Free!
             </motion.h1>
-            <p>
+            <motion.p
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+            >
               The signals will be always analysed before we getting into the
               stage and we have experienced professionals for that from around
               the world! Our group gives you access that will forever change
               your definition of the crypto signals service.
-            </p>
+            </motion.p>
             <Button
               classes="button"
               Content="GET SIGNALS WITH LIFETIME ACCESS!"
@@ -123,6 +120,7 @@ const Home = () => {
             </div>
           </div>
         </Wrapper>
+        <div className="divider" />
         <div className="features-container">
           <div className="features-img-container">
             <img
@@ -178,10 +176,8 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div
-          className="features-container col-reverse"
-          style={{ marginBottom: "4rem" }}
-        >
+        <div className="divider light" />
+        <div className="features-container col-reverse">
           <div className="features-content-container">
             <h3>Trade with our professional traders</h3>
             <p>
@@ -232,7 +228,8 @@ const Home = () => {
             <img src={lg_pad} className="lg-pad2" id="lg-pad2" alt="lg-pad2" />
           </div>
         </div>
-        <div className="features-container" style={{ marginTop: "0" }}>
+        <div className="divider light" />
+        <div className="features-container">
           <div className="features-img-container">
             <img
               className="crypto_portfolio"
@@ -287,17 +284,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <Wrapper className="xtra-section">
-          <div className="xtra-section-container">
-            <h3>Let's Start Earning</h3>
-            <p>
-              Take your trades to the next level by optimizing your portfolio to
-              achieve maximum profit.
-            </p>
-            <Button classes="btn-free" Content="Get started for Free!" />
-          </div>
-        </Wrapper>
-
+        /
         {/* <Wrapper className="home-goal-container">
           <p>
             Our goal is to create the best trading experience for you. We make
@@ -313,28 +300,26 @@ const Home = () => {
             cryptocurrency trading. Crypto Intel’s SMART Bots do just that!
           </p>
         </Wrapper> */}
-        <Wrapper>
-          <div className="subscribe-container">
-            <div className="sub-div">
-              <h2>Do you want to know more or need help?</h2>
-              <p>
-                Feel free to contact us via e-mail:{" "}
-                <span>support@cryptointel.com</span>
-              </p>
-              <div className="newsletter-sub">
-                <p>Join our exclusive newsletter</p>
-                <p>Subscribe to get our latest content by email.</p>
-              </div>
-              <input type="email" />
-              <Button classes="btn-subs" Content="subscribe" />
+        <div className="subscribe-container">
+          <div className="sub-div">
+            <h2>Do you want to know more or need help?</h2>
+            <p>
+              Feel free to contact us via e-mail:{" "}
+              <span>support@cryptointel.com</span>
+            </p>
+            <div className="newsletter-sub">
+              <p>Join our exclusive newsletter</p>
+              <p>Subscribe to get our latest content by email.</p>
             </div>
+            <input type="email" />
+            <Button classes="btn-subs" Content="subscribe" />
           </div>
-        </Wrapper>
+        </div>
       </main>
       <footer>
         <Wrapper className="grid">
           <div className="grid-col-1">
-            <h3>CRYTPTO_INTEL</h3>
+            <h3>CRYPTO-INTEL</h3>
           </div>
           <div className="grid-col-2">
             <li>Home</li>

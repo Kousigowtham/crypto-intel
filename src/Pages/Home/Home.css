@@ -1,36 +1,18 @@
 .home-container {
   position: relative;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
 }
 
-.home-container .home-section-1 .section-1-title {
-  -webkit-transform: rotatez(-90deg);
-          transform: rotatez(-90deg);
-  position: absolute;
-  font-size: 5rem;
-  font-weight: bolder;
-  margin-left: -56rem;
-  padding-left: 20rem;
-  color: #070d57;
+.home-container .divider {
+  height: 20px;
+  background-color: #212529;
+  margin: 0;
+  border: none;
+}
+
+.home-container .divider.light {
+  height: 10px;
+  border-radius: 20px;
   background-color: rgba(88, 101, 242, 0.2);
-  width: 1700px;
-}
-
-@media (max-width: 1300px) {
-  .home-container .home-section-1 .section-1-title {
-    position: relative;
-  }
-}
-
-.home-container .home-section-1 .section-1-title::before {
-  position: absolute;
-  left: 0%;
-  bottom: 0%;
-  content: "";
-  border: 6.5rem solid transparent;
-  border-bottom-color: white;
 }
 
 .home-container .home-section-1 .section-1-content-container {
@@ -118,6 +100,7 @@
       -ms-flex-direction: column;
           flex-direction: column;
   position: relative;
+  margin-bottom: 5rem;
 }
 
 @media (max-width: 40rem) {
@@ -192,11 +175,14 @@
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  padding: 0 5rem;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin: 5rem 0 10rem 0;
+  padding: 5rem 0 5rem 0;
+}
+
+.features-container.col-reverse {
+  background-color: rgba(255, 246, 246, 0.3);
 }
 
 @media (max-width: 1064px) {
@@ -262,6 +248,7 @@
   top: -20%;
   position: absolute;
   z-index: -1;
+  height: 450px;
 }
 
 .push-right {
@@ -446,10 +433,15 @@ footer .grid .grid-col-4 h4 {
 }
 
 .subscribe-container {
-  background: #212529;
-  color: white;
-  border-radius: 5px;
+  background-color: rgba(88, 101, 242, 0.2);
+  background-image: url("../../Assets/Home/STARS.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 10px;
   padding: 5rem 2rem;
+  margin: 0 2rem;
+  color: #070d57;
 }
 
 .subscribe-container .sub-div {
@@ -479,21 +471,22 @@ footer .grid .grid-col-4 h4 {
 .subscribe-container .btn-subs {
   font-size: 1rem;
   padding: 0.5rem 2rem;
-  background: var(--primary-color-1);
   border: none;
+  background-color: #5865f2;
 }
 
 .subscribe-container input[type="email"] {
-  background: white;
+  background: transparent;
   padding: 0.5rem;
   border: none;
+  border-bottom: 1px solid #202225;
   margin-bottom: 2rem;
   width: 100%;
 }
 
 .subscribe-container input[type="email"]:focus {
-  border: none;
-  outline: 2px solid var(--primary-color-3);
+  outline: none;
+  border-bottom-color: #5865f2;
 }
 
 .scroll-container {

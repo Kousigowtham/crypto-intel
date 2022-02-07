@@ -1,5 +1,5 @@
 #image0_118_140 {
-  animation: humanAnimation 5s 1 linear, flyAnimation 5s 5s infinite linear;
+  animation: flyAnimation 5s infinite linear;
 }
 
 .svg-home-crypto {
@@ -32,17 +32,5 @@
   }
   100% {
     transform: translateY(20%);
-  }
-}
-
-@keyframes humanAnimation {
-  0% {
-    transform: translateX(-50%) rotateZ(45deg) scale(0.35);
-  }
-  50% {
-    transform: translateX(-25%) rotateZ(25deg) scale(0.75);
-  }
-  100% {
-    transform: translateX(0%) rotateZ(0deg) translateY(20%) scale(1);
   }
 }

@@ -2,33 +2,19 @@
 
 .home-container {
   position: relative;
-  height: fit-content;
-  .home-section-1 {
-    .section-1-title {
-      transform: rotatez(-90deg);
-      position: absolute;
-      font-size: 5rem;
-      font-weight: bolder;
-      margin-left: -56rem;
-      padding-left: 20rem;
-      color: $header-primary;
+
+  .divider {
+    height: 20px;
+    background-color: #212529;
+    margin: 0;
+    border: none;
+    &.light {
+      height: 10px;
+      border-radius: 20px;
       background-color: rgba($primary-color, 0.2);
-      width: 1700px;
-
-      @media (max-width: 1300px) {
-        position: relative;
-      }
-
-      &::before {
-        position: absolute;
-        left: 0%;
-        bottom: 0%;
-        content: "";
-        border: 6.5rem solid transparent;
-        border-bottom-color: white;
-      }
     }
-
+  }
+  .home-section-1 {
     .section-1-content-container {
       display: flex;
       flex-direction: column;
@@ -88,6 +74,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    margin-bottom: 5rem;
     @media (max-width: 40rem) {
       justify-content: flex-start;
       align-items: flex-start;
@@ -135,9 +122,12 @@
 .features-container {
   display: flex;
   justify-content: space-around;
-  padding: 0 5rem;
   align-items: center;
-  margin: 5rem 0 10rem 0;
+  padding: 5rem 0 5rem 0;
+
+  &.col-reverse {
+    background-color: rgba(255, 246, 246, 0.3);
+  }
   @media (max-width: 1064px) {
     flex-direction: column;
     gap: 5rem;
@@ -183,6 +173,7 @@
       top: -20%;
       position: absolute;
       z-index: -1;
+      height: 450px;
     }
   }
 }
@@ -327,10 +318,15 @@ footer {
 }
 
 .subscribe-container {
-  background: #212529;
-  color: white;
-  border-radius: 5px;
+  background-color: rgba($primary-color, 0.2);
+  background-image: url("../../Assets/Home/STARS.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 10px;
   padding: 5rem 2rem;
+  margin: 0 2rem;
+  color: $header-primary;
   .sub-div {
     width: fit-content;
     margin: 0 auto;
@@ -352,19 +348,20 @@ footer {
   .btn-subs {
     font-size: 1rem;
     padding: 0.5rem 2rem;
-    background: var(--primary-color-1);
     border: none;
+    background-color: $primary-color;
   }
   input[type="email"] {
-    background: white;
+    background: transparent;
     padding: 0.5rem;
     border: none;
+    border-bottom: 1px solid $background-primary-color;
     margin-bottom: 2rem;
     width: 100%;
 
     &:focus {
-      border: none;
-      outline: 2px solid var(--primary-color-3);
+      outline: none;
+      border-bottom-color: $primary-color;
     }
   }
 }
