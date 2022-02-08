@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import { fetchCoinList } from "./reducers/coinListReducer";
 import { Route, Routes } from "react-router-dom";
-import Signals from "./components/Signals/Signals";
 import { useDispatch } from "react-redux";
 import { fetchMetaData } from "./reducers/metaDataReducer";
 import CreateSignal from "./components/CreateSignal/CreateSignal";
@@ -12,6 +11,7 @@ import Home from "./Pages/Home/Home";
 import { Login, Signup } from "./Pages/Account/Account";
 import Sidebar from "./components/Sidebar/Sidebar";
 import FadeIn from "./components/FadeIn/FadeIn";
+import Signals from "./Pages/Signals/Signals";
 
 const App = () => {
   const dispatch = useDispatch();

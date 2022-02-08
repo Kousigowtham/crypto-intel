@@ -3,6 +3,7 @@
 }
 
 .svg-home-crypto {
+  width: clamp(400px, 60%, 700px);
 }
 
 @keyframes flyAnimation {

@@ -1,56 +1,139 @@
 import React, { useEffect, useState } from "react";
 import pad from "../../Assets/pad.png";
 import green_box from "../../Assets/greenBox.png";
-import rightIcon from "../../Assets/rightIcon.png";
 import lg_pad from "../../Assets/lg-pad.png";
 import "./Home.css";
 import "../../components/NavBar/Navbar.css";
 import { Wrapper } from "../../components/components.styles";
 import Button from "../../components/Button/Button";
 import Navbar from "../../components/NavBar/Navbar";
-// import CRYPTO_HOME_DESIGN from "../../Assets/Home/CRYPTO_HOME_DESIGN.svg";
 import digital_currency from "../../Assets/Home/digital_currency.svg";
 import Bitcoin_Isometric from "../../Assets/Home/Bitcoin _Isometric.svg";
 import customer_service from "../../Assets/Home/Customer service.svg";
 import crypto_portfolio from "../../Assets/Home/crypto_portfolio.svg";
-// import Decision from "../../Assets/Home/Decision.svg";
 import Report_analysis from "../../Assets/Home/Report_analysis.svg";
 import Experience from "../../Assets/Home/Experience.svg";
 import business_decisions from "../../Assets/Home/business_decisions.svg";
 import Svg from "./Component/Svg/Svg";
 import { motion } from "framer-motion";
+import { HOME_LABELS } from "../../strings";
+import Features from "./Component/Features/Features";
+import Footer from "./Component/Footer/Footer";
 
-const ImgAnimationHamdler = (e) => {
-  document.getElementById("green1").style.top = e.x / 1000 - 10 + "%";
-  document.getElementById("green1").style.left = e.y / 100 - 10 + "%";
-  document.getElementById("pad").style.right = e.x / 100 - 10 + "%";
-  document.getElementById("pad").style.top = e.y / 100 - 10 + "%";
+// const ImgAnimationHamdler = (e) => {
+//   document.getElementById("green1").style.top = e.x / 1000 - 10 + "%";
+//   document.getElementById("green1").style.left = e.y / 100 - 10 + "%";
+//   document.getElementById("pad").style.right = e.x / 100 - 10 + "%";
+//   document.getElementById("pad").style.top = e.y / 100 - 10 + "%";
 
-  document.getElementById("lg-pad1").style.top = e.x / 1000 - 10 + "%";
-  document.getElementById("lg-pad1").style.right = e.y / 100 - 10 + "%";
-  document.getElementById("lg-pad2").style.left = e.x / 100 - 20 + "%";
-  document.getElementById("lg-pad2").style.bottom = e.y / 100 - 10 + "%";
+//   document.getElementById("lg-pad1").style.top = e.x / 1000 - 10 + "%";
+//   document.getElementById("lg-pad1").style.right = e.y / 100 - 10 + "%";
+//   document.getElementById("lg-pad2").style.left = e.x / 100 - 20 + "%";
+//   document.getElementById("lg-pad2").style.bottom = e.y / 100 - 10 + "%";
 
-  document.getElementById("pad3").style.top = e.x / 1000 - 10 + "%";
-  document.getElementById("pad3").style.right = e.y / 100 - 10 + "%";
-};
+//   document.getElementById("pad3").style.top = e.x / 1000 - 10 + "%";
+//   document.getElementById("pad3").style.right = e.y / 100 - 10 + "%";
+// };
+
+const featuresList = [
+  {
+    imageList: [
+      {
+        src: digital_currency,
+        name: "digital_currency",
+        className: "digital_currency",
+      },
+      {
+        src: green_box,
+        name: "green_box",
+        className: "green_box",
+      },
+      {
+        src: pad,
+        name: "pad",
+        className: "pad",
+      },
+    ],
+    header: "SMART Bots The perfect Bots to trade Smart for successful trading",
+    description:
+      "Let The SMART Bot do the Smart work for you. We take care of the heavy lifting, so you can enjoy the profits.",
+    featuresList: [
+      "Trade on BTC, ETH & LINK",
+      "Works on Binance",
+      "Fully Automated",
+    ],
+    columnReverse: false,
+    isDividerPresent: true,
+  },
+  {
+    imageList: [
+      {
+        src: Bitcoin_Isometric,
+        name: "Bitcoin_Isometric",
+        className: "Bitcoin_Isometric",
+      },
+      {
+        src: lg_pad,
+        name: "lg_pad1",
+        className: "lg_pad1",
+      },
+      {
+        src: lg_pad,
+        name: "lg_pad2",
+        className: "lg_pad2",
+      },
+    ],
+    header: "Trade with our professional traders",
+    description:
+      "Enjoy a share and care trading community with 4Cs professional traders. The Trade Room aims to provide a relaxed, friendly environment with like-minded traders to discuss, learn and grow together.",
+    featuresList: [
+      "Daily BTC Update",
+      "Channel and Community Chat",
+      "On Demand Analysis",
+    ],
+    columnReverse: true,
+    isDividerPresent: true,
+  },
+  {
+    imageList: [
+      {
+        src: crypto_portfolio,
+        name: "crypto_portfolio",
+        className: "crypto_portfolio",
+      },
+      {
+        src: pad,
+        name: "pad3",
+        className: "pad",
+      },
+    ],
+    header: "Features that you will love",
+    description:
+      "Let The SMART Bot do the Smart work for you. We take care of the heavy lifting, so you can enjoy the profits.",
+    featuresList: [
+      "The perfect Bitcoin, Ethereum & LINK Algorithmic bots to grow your capital",
+      "The most accurate and precise margin signals on the market",
+      "A professional dashboard to manage all your trades and investments",
+    ],
+    columnReverse: false,
+    isDividerPresent: false,
+  },
+];
 
 const Home = () => {
   // eslint-disable-next-line
   const [scrollPosition, setScrollPosition] = useState(true);
   useEffect(() => {
-    window.addEventListener("mousemove", ImgAnimationHamdler);
+    // window.addEventListener("mousemove", ImgAnimationHamdler);
     window.addEventListener("scroll", () => {
       setScrollPosition(
         window.document.body.clientHeight - window.scrollY > window.innerHeight
       );
     });
 
-    console.log(document.getElementById("image0_118_140"));
-
-    return () => {
-      window.removeEventListener("mousemove", ImgAnimationHamdler);
-    };
+    // return () => {
+    //   window.removeEventListener("mousemove", ImgAnimationHamdler);
+    // };
   }, []);
 
   const ScrollDownHandler = () => {
@@ -61,291 +144,17 @@ const Home = () => {
     <>
       <Navbar />
       <main className="home-container">
-        <Wrapper className="home-section-1" id="home-container-section-1">
-          <div className="section-1-content-container">
-            <motion.h1
-              initial={{ x: "-100vw" }}
-              transition={{ duration: 1, type: "spring", stiffness: 200 }}
-              animate={{ x: 0 }}
-            >
-              Lift up with Signals, Worry Free!
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              The signals will be always analysed before we getting into the
-              stage and we have experienced professionals for that from around
-              the world! Our group gives you access that will forever change
-              your definition of the crypto signals service.
-            </motion.p>
-            <Button
-              classes="button"
-              Content="GET SIGNALS WITH LIFETIME ACCESS!"
-            />
-          </div>
-          <div className="section-1-img">
-            {/* <img src={CRYPTO_HOME_DESIGN} alt="CRYPTO_HOME_DESIGN" />
-             */}
-            <Svg width="600" />
-          </div>
-        </Wrapper>
-        <Wrapper className="home-section-2">
-          <div style={{ position: "relative", marginBottom: "2rem" }}>
-            <h2>Packet full of Features</h2>
-          </div>
-          <div className="section-2-content">
-            <div>
-              <img src={customer_service} alt="support" width="200px" />
-              <p>Money never sleeps, neither do our signals</p>
-            </div>
-            <div>
-              <img
-                src={business_decisions}
-                alt="Decision"
-                width="200px"
-                height="150px"
-              />
-              <p>Make calculated decisions</p>
-            </div>
-            <div>
-              <img src={Report_analysis} alt="Report_analysis" width="200px" />
-              <p>Proven track record</p>
-            </div>
-            <div>
-              <img src={Experience} alt="Experience" width="200px" />
-              <p>No experience needed</p>
-            </div>
-          </div>
-        </Wrapper>
-        <div className="divider" />
-        <div className="features-container">
-          <div className="features-img-container">
-            <img
-              className="digital_currency"
-              src={digital_currency}
-              alt="digital_currency"
-              width="500px"
-            />
-            <img className="pad" id="pad" src={pad} alt="pad" />
-            <img
-              className="greenbox"
-              id="green1"
-              src={green_box}
-              alt="greenbox"
-            />
-          </div>
-          <div className="features-content-container">
-            <h3>
-              SMART Bots The perfect Bots to trade Smart for successful trading
-            </h3>
-            <p>
-              Let The SMART Bot do the Smart work for you. We take care of the
-              heavy lifting, so you can enjoy the profits.
-            </p>
-            <div style={{ marginTop: "2rem" }}>
-              <div style={{ display: "flex" }}>
-                <img
-                  src={rightIcon}
-                  height="30px"
-                  width="30px"
-                  alt="rightIcon"
-                />
-                <p style={{ margin: "0 0 0 1rem" }}>Trade on BTC, ETH & LINK</p>
-              </div>
-              <div style={{ display: "flex", margin: "1rem 0" }}>
-                <img
-                  src={rightIcon}
-                  height="30px"
-                  width="30px"
-                  alt="rightIcon"
-                />
-                <p style={{ margin: "0 0 0 1rem" }}>Works on Binance</p>
-              </div>
-              <div style={{ display: "flex", margin: "1rem 0" }}>
-                <img
-                  src={rightIcon}
-                  height="30px"
-                  width="30px"
-                  alt="rightIcon"
-                />
-                <p style={{ margin: "0 0 0 1rem" }}>Fully Automated</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="divider light" />
-        <div className="features-container col-reverse">
-          <div className="features-content-container">
-            <h3>Trade with our professional traders</h3>
-            <p>
-              Enjoy a share and care trading community with 4Cs professional
-              traders. The Trade Room aims to provide a relaxed, friendly
-              environment with like-minded traders to discuss, learn and grow
-              together.
-            </p>
-            <div style={{ marginTop: "2rem" }}>
-              <div style={{ display: "flex" }}>
-                <img
-                  src={rightIcon}
-                  height="30px"
-                  width="30px"
-                  alt="rightIcon"
-                />
-                <p style={{ margin: "0 0 0 1rem" }}>Daily BTC Update</p>
-              </div>
-              <div style={{ display: "flex", margin: "1rem 0" }}>
-                <img
-                  src={rightIcon}
-                  height="30px"
-                  width="30px"
-                  alt="rightIcon"
-                />
-                <p style={{ margin: "0 0 0 1rem" }}>
-                  Channel and Community Chat
-                </p>
-              </div>
-              <div style={{ display: "flex", margin: "1rem 0" }}>
-                <img
-                  src={rightIcon}
-                  height="30px"
-                  width="30px"
-                  alt="rightIcon"
-                />
-                <p style={{ margin: "0 0 0 1rem" }}>On Demand Analysis</p>
-              </div>
-            </div>
-          </div>
-          <div className="features-img-container">
-            <img
-              src={Bitcoin_Isometric}
-              className="Bitcoin_Isometric"
-              alt="Bitcoin_Isometric"
-            />
-            <img src={lg_pad} className="lg-pad1" id="lg-pad1" alt="lg-pad1" />
-            <img src={lg_pad} className="lg-pad2" id="lg-pad2" alt="lg-pad2" />
-          </div>
-        </div>
-        <div className="divider light" />
-        <div className="features-container">
-          <div className="features-img-container">
-            <img
-              className="crypto_portfolio"
-              src={crypto_portfolio}
-              alt="crypto_portfolio"
-              width="400px"
-            />
-            <img className="pad" id="pad3" src={pad} alt="pad3" />
-          </div>
-          <div className="features-content-container">
-            <h3>Features that you will love</h3>
-            <p>
-              Let The SMART Bot do the Smart work for you. We take care of the
-              heavy lifting, so you can enjoy the profits.
-            </p>
-            <div style={{ marginTop: "2rem" }}>
-              <div style={{ display: "flex" }}>
-                <img
-                  src={rightIcon}
-                  height="30px"
-                  width="30px"
-                  alt="rightIcon"
-                />
-                <p style={{ margin: "0 0 0 1rem" }}>
-                  The perfect Bitcoin, Ethereum & LINK Algorithmic bots to grow
-                  your capital
-                </p>
-              </div>
-              <div style={{ display: "flex", margin: "1rem 0" }}>
-                <img
-                  src={rightIcon}
-                  height="30px"
-                  width="30px"
-                  alt="rightIcon"
-                />
-                <p style={{ margin: "0 0 0 1rem" }}>
-                  The most accurate and precise margin signals on the market
-                </p>
-              </div>
-              <div style={{ display: "flex", margin: "1rem 0" }}>
-                <img
-                  src={rightIcon}
-                  height="30px"
-                  width="30px"
-                  alt="rightIcon"
-                />
-                <p style={{ margin: "0 0 0 1rem" }}>
-                  A professional dashboard to manage all your trades and
-                  investments
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        /
-        {/* <Wrapper className="home-goal-container">
-          <p>
-            Our goal is to create the best trading experience for you. We make
-            use of our experience in the crypto world and strong ties with many
-            traders to offer you top-notch services such as automatic trades,
-            market analysis and monitoring of your account, price alerts,
-            investor visibility tools, training support and much more… The
-            Crypto Intel SMART Bots package offers a complete line of quality
-            services for investors. At the same time it gives you a small edge
-            on the market through automatic trading bots or professional
-            assistance with the settings of your Bots Dashboard. Perfecting an
-            optimal strategy is at all times the objective when dealing with
-            cryptocurrency trading. Crypto Intel’s SMART Bots do just that!
-          </p>
-        </Wrapper> */}
-        <div className="subscribe-container">
-          <div className="sub-div">
-            <h2>Do you want to know more or need help?</h2>
-            <p>
-              Feel free to contact us via e-mail:{" "}
-              <span>support@cryptointel.com</span>
-            </p>
-            <div className="newsletter-sub">
-              <p>Join our exclusive newsletter</p>
-              <p>Subscribe to get our latest content by email.</p>
-            </div>
-            <input type="email" />
-            <Button classes="btn-subs" Content="subscribe" />
-          </div>
-        </div>
+        <SectionOne />
+        <SectionTwo />
+        {featuresList.map((features, index) => (
+          <>
+            <Features {...features} />
+            {features.isDividerPresent && <div className="divider light" />}
+          </>
+        ))}
+        <SubsSection />
       </main>
-      <footer>
-        <Wrapper className="grid">
-          <div className="grid-col-1">
-            <h3>CRYPTO-INTEL</h3>
-          </div>
-          <div className="grid-col-2">
-            <li>Home</li>
-            <li>Signals</li>
-            <li>Signal Analysis</li>
-            <li>About us</li>
-          </div>
-          <div className="grid-col-3">
-            <h4>CONTACT</h4>
-            <p>support@cryptointel.com</p>
-          </div>
-          <div className="grid-col-4">
-            <h4>Legal Disclaimer</h4>
-            <p>
-              The above references are just an opinion meant for information
-              purposes only. They are not intended to be an investment advice.
-              Please seek a duly licensed professional for the investment
-              advice. Crypto-Intel won’t be liable for any losses you may incur
-              following our opinion.
-            </p>
-          </div>
-        </Wrapper>
-        <div className="divider" />
-        <div className="copyrights">
-          copyrights &copy; 2021 ALL RIGHTS RESERVED
-        </div>
-      </footer>
+      <Footer />
       <div className="scroll-container" onClick={ScrollDownHandler}>
         <i className="bi bi-arrow-down"></i>
       </div>
@@ -354,3 +163,80 @@ const Home = () => {
 };
 
 export default Home;
+
+export const SectionOne = () => {
+  return (
+    <Wrapper className="home-section-1" id="home-container-section-1">
+      <div className="section-1-content-container">
+        <motion.h1
+          initial={{ x: "-100vw" }}
+          transition={{ duration: 1, type: "spring", stiffness: 200 }}
+          animate={{ x: 0 }}
+        >
+          {HOME_LABELS.section1.header}
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          {HOME_LABELS.section1.description}
+        </motion.p>
+        <Button classes="button" Content={HOME_LABELS.section1.button} />
+      </div>
+      <div className="section-1-img">
+        <Svg />
+      </div>
+    </Wrapper>
+  );
+};
+
+export const SectionTwo = () => {
+  return (
+    <Wrapper className="home-section-2">
+      <h2>{HOME_LABELS.section2.header}</h2>
+      <div className="section-2-content-container">
+        <div>
+          <img src={customer_service} alt="support" width="200px" />
+          <p>{HOME_LABELS.section2.support}</p>
+        </div>
+        <div>
+          <img
+            src={business_decisions}
+            alt="Decision"
+            width="200px"
+            height="150px"
+          />
+          <p>{HOME_LABELS.section2.decisions}</p>
+        </div>
+        <div>
+          <img src={Report_analysis} alt="Report_analysis" width="200px" />
+          <p>{HOME_LABELS.section2.analysis}</p>
+        </div>
+        <div>
+          <img src={Experience} alt="Experience" width="200px" />
+          <p>{HOME_LABELS.section2.experience}</p>
+        </div>
+      </div>
+    </Wrapper>
+  );
+};
+export const SubsSection = () => {
+  return (
+    <div className="subscribe-container">
+      <div className="sub-div">
+        <h2>{HOME_LABELS.subscribe.header}</h2>
+        <p>
+          {HOME_LABELS.subscribe.text}
+          <span>{HOME_LABELS.subscribe.email}</span>
+        </p>
+        <div className="newsletter-sub">
+          <p>{HOME_LABELS.subscribe.newsletter}</p>
+          <p>{HOME_LABELS.subscribe.subtext}</p>
+        </div>
+        <input type="email" />
+        <Button classes="btn-subs" Content={HOME_LABELS.subscribe.button} />
+      </div>
+    </div>
+  );
+};

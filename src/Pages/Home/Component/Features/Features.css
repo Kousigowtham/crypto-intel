@@ -1,0 +1,124 @@
+.features-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 5rem;
+  gap: 5rem;
+}
+
+.features-container.reverse {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+}
+
+@media (max-width: 1180px) {
+  .features-container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .features-container.reverse {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.features-container .features-content-container {
+  -ms-flex-preferred-size: 500px;
+      flex-basis: 500px;
+}
+
+.features-container .features-content-container h3 {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  line-height: 1.25;
+  padding-bottom: 1.75rem;
+  font-weight: bold;
+  color: #070d57;
+}
+
+.features-container .features-content-container p {
+  font-size: clamp(0.8rem, 1.5vw, 1.1rem);
+  line-height: 1.75;
+  color: #717171;
+}
+
+.features-container .features-img-container {
+  position: relative;
+}
+
+.features-container .features-img-container .digital_currency {
+  width: 500px;
+}
+
+.features-container .features-img-container .pad {
+  position: absolute;
+  width: 100px;
+  right: -10%;
+  top: -10%;
+  z-index: -1;
+}
+
+.features-container .features-img-container .green_box {
+  position: absolute;
+  left: -10%;
+  top: -20%;
+  z-index: -1;
+  height: 450px;
+}
+
+.features-container .features-img-container .Bitcoin_Isometric {
+  width: 500px;
+}
+
+.features-container .features-img-container .lg_pad1 {
+  position: absolute;
+  width: 150px;
+  right: 0%;
+  top: 0%;
+  z-index: -1;
+}
+
+.features-container .features-img-container .lg_pad2 {
+  position: absolute;
+  width: 150px;
+  left: 0%;
+  bottom: 0%;
+  z-index: -1;
+}
+
+.features-container .features-img-container .crypto_portfolio {
+  width: 500px;
+}
+
+@media (max-width: 750px) {
+  .digital_currency,
+  .crypto_portfolio,
+  .Bitcoin_Isometric {
+    width: 300px !important;
+  }
+  .lg_pad1,
+  .lg_pad2,
+  .green_box {
+    display: none;
+  }
+}
+
+@media (max-width: 450px) {
+  .pad {
+    display: none;
+  }
+  .features-container {
+    padding: 2rem;
+  }
+}
+/*# sourceMappingURL=Features.css.map */

@@ -3,6 +3,10 @@
           animation: flyAnimation 5s infinite linear;
 }
 
+.svg-home-crypto {
+  width: clamp(400px, 60%, 700px);
+}
+
 @-webkit-keyframes flyAnimation {
   0% {
     -webkit-transform: translateY(20%);

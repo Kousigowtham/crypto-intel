@@ -1,0 +1,111 @@
+footer {
+  background: black;
+  margin-top: 2rem;
+  color: white;
+  padding-bottom: 3rem;
+}
+
+footer .copyrights {
+  margin: var(--wrapper-lg-side-padding);
+  margin-top: 1rem;
+}
+
+@media (max-width: 650px) {
+  footer .copyrights {
+    margin: var(--wrapper-sm-side-padding);
+  }
+}
+
+footer .divider {
+  margin: var(--wrapper-lg-side-padding);
+  margin-top: 2rem;
+  border-bottom: 1px solid white;
+  background: white;
+}
+
+@media (max-width: 650px) {
+  footer .divider {
+    margin: var(--wrapper-sm-side-padding);
+  }
+}
+
+footer .grid {
+  display: -ms-grid;
+  display: grid;
+  gap: 2rem;
+  -ms-grid-columns: (1fr)[9];
+      grid-template-columns: repeat(9, 1fr);
+      grid-template-areas: "grid-col-1 grid-col-1 grid-col-2 grid-col-3 grid-col-3 grid-col-4 grid-col-4 grid-col-4 grid-col-4";
+}
+
+@media (max-width: 1300px) {
+  footer .grid {
+    -ms-grid-columns: (1fr)[4];
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-areas: "grid-col-1 grid-col-1 grid-col-2 grid-col-3" "grid-col-4 grid-col-4 grid-col-4 grid-col-4";
+  }
+}
+
+@media (max-width: 950px) {
+  footer .grid {
+    -ms-grid-columns: (1fr)[4];
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-areas: "grid-col-1 grid-col-1 grid-col-2 grid-col-3" "grid-col-4 grid-col-4 grid-col-4 grid-col-4";
+  }
+}
+
+@media (max-width: 700px) {
+  footer .grid {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas: "grid-col-1 grid-col-1" "grid-col-2 grid-col-3" "grid-col-4 grid-col-4";
+  }
+}
+
+footer .grid .grid-col-1 {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: grid-col-1;
+  margin-top: 2.5rem;
+}
+
+footer .grid .grid-col-2 {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+  grid-area: grid-col-2;
+  margin-top: 2.5rem;
+}
+
+footer .grid .grid-col-2 li {
+  list-style: none;
+  padding-bottom: 0.5rem;
+}
+
+footer .grid .grid-col-2 li:hover {
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+footer .grid .grid-col-3 {
+  -ms-grid-row: 1;
+  -ms-grid-column: 4;
+  -ms-grid-column-span: 2;
+  grid-area: grid-col-3;
+}
+
+footer .grid .grid-col-3 h4 {
+  line-height: 1.5;
+}
+
+footer .grid .grid-col-4 {
+  -ms-grid-row: 1;
+  -ms-grid-column: 6;
+  -ms-grid-column-span: 4;
+  grid-area: grid-col-4;
+}
+
+footer .grid .grid-col-4 h4 {
+  line-height: 1.5;
+}
+/*# sourceMappingURL=Footer.css.map */
