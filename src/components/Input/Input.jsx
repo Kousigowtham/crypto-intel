@@ -4,7 +4,11 @@ import "./Input.css";
 const Input = ({ label, classes, formik, ...OtherProps }) => {
   return (
     <div className={`input-container ${classes}`}>
-      <label>{label}</label>
+      <label
+        className={`${formik.getFieldProps(OtherProps.name).value && "active"}`}
+      >
+        {label}
+      </label>
       <input
         className={`${
           formik.touched[OtherProps.name] &&

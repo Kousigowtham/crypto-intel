@@ -1,21 +1,9 @@
+@import "../../variables";
+
 .button {
-  background-color: var(--primary-color);
+  background-color: $light-secondary-color;
   color: white;
-  font-size: 0.9rem;
   border: none;
   padding: 0.5em 1.5em;
-  border-radius: 30px;
   cursor: pointer;
-  border: 1px solid var(--primary-color);
-
-  &:hover {
-    background-color: rgba(45, 223, 163, 0.5);
-    color: white;
-  }
-  &:active {
-    background-color: transparent;
-    border: 1px solid white;
-    color: white;
-    cursor: not-allowed;
-  }
 }

@@ -6,12 +6,13 @@
   position: relative;
   background-color: $background-terinary-color;
   box-shadow: -2px 5px 10px -1px rgba(0, 0, 0, 0.58);
-  padding: 3rem 2rem;
-  width: 50%;
-  min-width: 400px;
+  padding: 3em 2em 1.5em 2em;
+  width: 30%;
+  min-width: 600px;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  font-size: 0.95rem;
 
   .input-filter-container {
     display: flex;

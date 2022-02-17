@@ -82,7 +82,7 @@ const MessagesByPlatform = () => {
         {!METADATA.loading
           ? METADATA?.metaData?.platformList?.map((platform, index) => (
               <Channles
-                channelList={platformChannel.platformChannel.filter(
+                channelList={platformChannel.platformChannel?.filter(
                   (x) => x.platform === platform.name
                 )}
                 selectChannelHandler={selectedPlatformChannelHandler}

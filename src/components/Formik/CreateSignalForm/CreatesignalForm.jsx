@@ -91,77 +91,82 @@ const CreatesignalForm = ({ METADATA, coinList, setShowCreateSignal }) => {
         onSubmit={submitHandler}
       >
         {(formik) => {
-          console.log(formik.values);
           return (
             <Form
               onSubmit={formik.handleSubmit}
               className="signal-form-container"
             >
-              <div className="signal-input-container">
-                <FormikController
-                  control="dropdown"
-                  name="channel"
-                  label="Channel"
-                  classes="input-class"
-                  options={METADATA?.metaData?.channelList}
+              <div className="signal-form-inner-container">
+                <div className="signal-input-container">
+                  <FormikController
+                    control="dropdown"
+                    name="channel"
+                    label="Channel"
+                    classes="input-class"
+                    options={METADATA?.metaData?.channelList}
+                  />
+                  <FormikController
+                    control="text"
+                    name="leverage"
+                    label="Leverage"
+                    type="text"
+                    classes="input-class"
+                  />
+                </div>
+                <div className="signal-input-container">
+                  <FormikController
+                    id="market"
+                    label="SELECT MARKET"
+                    name="market"
+                    control="dropdown"
+                    options={METADATA?.metaData?.marketList}
+                    classes="input-class"
+                  />
+                  <FormikController
+                    id="coin"
+                    label="SELECT COIN"
+                    name="coin"
+                    control="dropdown"
+                    options={
+                      typeof formik?.values?.market === "object"
+                        ? coinList.filter(
+                            (x) => x.market === formik?.values?.market?.name
+                          )
+                        : typeof formik?.values?.market === "string"
+                        ? coinList.filter(
+                            (x) => x.market === formik?.values?.market
+                          )
+                        : coinList
+                    }
+                    isSearchPresent
+                    classes="input-class"
+                    disabled={formik.values?.market ? false : true}
+                  />
+                </div>
+                <div className="signal-input-container">
+                  <FormikController
+                    control="text"
+                    name="buyprice"
+                    label="Buy Price"
+                    type="number"
+                    classes="input-class"
+                  />
+                  <FormikController
+                    id="signaldate"
+                    label="Signal Date"
+                    name="signaldate"
+                    control="datepicker"
+                    classes="input-class"
+                  />
+                </div>
+                <TargetArray
+                  targetTypeList={METADATA?.metaData?.targetTypeList}
                 />
-                <FormikController
-                  control="text"
-                  name="leverage"
-                  label="Leverage"
-                  type="text"
-                  classes="input-class"
-                />
+                <i
+                  className="bi bi-x-square filter-close"
+                  onClick={clearHandler}
+                ></i>
               </div>
-              <div className="signal-input-container">
-                <FormikController
-                  id="market"
-                  label="SELECT MARKET"
-                  name="market"
-                  control="dropdown"
-                  options={METADATA?.metaData?.marketList}
-                  classes="input-class"
-                />
-                <FormikController
-                  id="coin"
-                  label="SELECT COIN"
-                  name="coin"
-                  control="dropdown"
-                  options={
-                    typeof formik?.values?.market === "object"
-                      ? coinList.filter(
-                          (x) => x.market === formik?.values?.market?.name
-                        )
-                      : typeof formik?.values?.market === "string"
-                      ? coinList.filter(
-                          (x) => x.market === formik?.values?.market
-                        )
-                      : coinList
-                  }
-                  isSearchPresent
-                  classes="input-class"
-                  disabled={formik.values?.market ? false : true}
-                />
-              </div>
-              <div className="signal-input-container">
-                <FormikController
-                  control="text"
-                  name="buyprice"
-                  label="Buy Price"
-                  type="number"
-                  classes="input-class"
-                />
-                <FormikController
-                  id="signaldate"
-                  label="Signal Date"
-                  name="signaldate"
-                  control="datepicker"
-                  classes="input-class"
-                />
-              </div>
-              <TargetArray
-                targetTypeList={METADATA?.metaData?.targetTypeList}
-              />
               <div className="signal-btn-grp">
                 {UPDATESIGNAL && (
                   <>
@@ -197,10 +202,6 @@ const CreatesignalForm = ({ METADATA, coinList, setShowCreateSignal }) => {
                   type="submit"
                 />
               </div>
-              <i
-                className="bi bi-x-square filter-close"
-                onClick={clearHandler}
-              ></i>
             </Form>
           );
         }}

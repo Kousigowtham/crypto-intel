@@ -1,23 +1,47 @@
+@import "../../variables";
+
 .input-container {
   display: flex;
   flex-direction: column;
-  label {
-    font-size: 0.7rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    @media screen and (max-width: 500px) {
-      margin-bottom: 0;
+  position: relative;
+
+  &:focus-within {
+    label {
+      font-size: 0.6rem;
+      top: -10%;
+      color: $primary-color;
     }
   }
+
+  .active {
+    font-size: 0.6rem;
+    top: -10%;
+    color: $primary-color;
+  }
+  // & label:not(input[value=""]) {
+  //   font-size: 0.6rem;
+  //   top: -10%;
+  //   background-color: antiquewhite;
+  //   color: $primary-color;
+  // }
+  label {
+    font-size: 0.75rem;
+    top: 20%;
+    font-weight: bold;
+    position: absolute;
+    transition: all 0.2s linear;
+  }
+
   input {
     background-color: inherit;
     border: none;
     border-bottom: 2px solid black;
     padding: 0.25rem;
     width: 100%;
+    margin-top: 1rem;
     &:focus {
       outline: none;
-      border-bottom: 2px solid rgb(1, 135, 189);
+      border-bottom: 2px solid $primary-color;
     }
   }
   .valid-input {

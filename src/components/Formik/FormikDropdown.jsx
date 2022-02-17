@@ -1,6 +1,6 @@
 import { ErrorMessage, Field } from "formik";
 import React from "react";
-import Dropdown from "../Drop_down/Dropdown";
+import Dropdown from "../Dropdown/Dropdown";
 import Label from "./Label/Label";
 import TextError from "./TextError/TextError";
 
