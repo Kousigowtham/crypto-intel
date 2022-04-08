@@ -21,6 +21,7 @@ const InitialValues = {
   coin: null,
   buyprice: "",
   signaldate: null,
+  direction: null,
   targetDetails: [
     {
       targetType: "",
@@ -32,8 +33,9 @@ const InitialValues = {
 
 const validationSchema = Yup.object({
   channel: Yup.object().required("*Required").nullable(),
-  leverage: Yup.string().required("*Required"),
+  leverage: Yup.number().required("*Required"),
   market: Yup.object().required("*Required").nullable(),
+  direction: Yup.object().required("*Required").nullable(),
   coin: Yup.object().when("market", (market, schema) => {
     return market ? schema.required("*Required").nullable() : schema.nullable();
   }),
@@ -109,7 +111,7 @@ const CreatesignalForm = ({ METADATA, coinList, setShowCreateSignal }) => {
                     control="text"
                     name="leverage"
                     label="Leverage"
-                    type="text"
+                    type="number"
                     classes="input-class"
                   />
                 </div>
@@ -156,6 +158,16 @@ const CreatesignalForm = ({ METADATA, coinList, setShowCreateSignal }) => {
                     label="Signal Date"
                     name="signaldate"
                     control="datepicker"
+                    classes="input-class"
+                  />
+                </div>
+                <div className="signal-input-container">
+                  <FormikController
+                    id="direction"
+                    label="SELECT DIRECTION"
+                    name="direction"
+                    control="dropdown"
+                    options={METADATA?.metaData?.directionList}
                     classes="input-class"
                   />
                 </div>

@@ -28,8 +28,9 @@ export const getCreateSignalPayloadObj = (values) => {
   const signalDate = dateConversion(values?.signaldate?._d);
   return {
     channelId: values.channel.id,
-    // leverage: values.leverage,
+    leverage: values.leverage,
     coinId: values.coin.id,
+    signalType: values.direction.name,
     exchange: values.coin.exchange,
     signalDate: signalDate,
     buyPrice: values.buyprice,
@@ -100,6 +101,8 @@ export const getUpdateSignalPayloadObj = (values, signalData) => {
     exchange: values.coin.exchange,
     signalDate: signaldate,
     buyPrice: values.buyPrice,
+    leverage: values.leverage,
+    signalType: values.direction,
     active: true,
     signalTargetDetails: [...updateTargetValues],
     coinDetail: { ...values.coin },

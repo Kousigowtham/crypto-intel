@@ -24,11 +24,12 @@ const SignalsByChannel = ({
         channel: METADATA?.metaData?.channelList.find(
           (x) => x.name === signal.channelDetail.name
         ),
-        leverage: validateYupSchema.leverage,
+        leverage: signal.leverage,
         market: METADATA?.metaData?.marketList.find(
           (x) => x.name === signal.coinDetail.market
         ),
         buyprice: signal.buyPrice,
+        direction: signal.signalType,
         coin: coinList?.coinList?.find((x) => x.id === signal.coinId),
         signaldate: signal?.signalDate,
         targetDetails: signal?.signalTargetDetails
