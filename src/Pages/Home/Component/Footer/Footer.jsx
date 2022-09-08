@@ -7,7 +7,7 @@ const Footer = () => {
     <footer>
       <Wrapper className="grid">
         <div className="grid-col-1">
-          <h3>CRYPTO-INTEL</h3>
+          <h3>Gift Craft</h3>
         </div>
         <div className="grid-col-2">
           <li>Home</li>
